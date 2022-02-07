@@ -1,0 +1,12 @@
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.deps.json
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.dll
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\bin\Debug\net5.0\ref\UniClub.Domain.dll
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.pdb
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfoInputs.cache
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfo.cs
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.CoreCompileInputs.cache
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.dll
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\ref\UniClub.Domain.dll
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.pdb
+C:\Users\arceu\source\repos\UniClub\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.AssemblyReference.cache

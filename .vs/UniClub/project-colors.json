@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "85ee3b89-0bf7-4b11-a40a-9bdae47d6cf4": {
+      "ProjectGuid": "85ee3b89-0bf7-4b11-a40a-9bdae47d6cf4",
+      "DisplayName": "Application",
+      "ColorIndex": 0
+    },
+    "08640215-79d9-4c1a-a900-5671de44c688": {
+      "ProjectGuid": "08640215-79d9-4c1a-a900-5671de44c688",
+      "DisplayName": "UniClub.Application",
+      "ColorIndex": 1
+    },
+    "1aff2280-6914-4fad-8f5a-207f6bf58f90": {
+      "ProjectGuid": "1aff2280-6914-4fad-8f5a-207f6bf58f90",
+      "DisplayName": "UniClub.Domain",
+      "ColorIndex": 2
+    },
+    "7ec58f20-2ac3-45d1-801c-d9f68abb9ad7": {
+      "ProjectGuid": "7ec58f20-2ac3-45d1-801c-d9f68abb9ad7",
+      "DisplayName": "UniClub.Infrastructure",
+      "ColorIndex": 3
+    },
+    "7f1e8501-1d25-4441-b73c-057561d12442": {
+      "ProjectGuid": "7f1e8501-1d25-4441-b73c-057561d12442",
+      "DisplayName": "UniClub.Shared",
+      "ColorIndex": 4
+    },
+    "71b97c24-4539-4b90-87da-7346a4139a19": {
+      "ProjectGuid": "71b97c24-4539-4b90-87da-7346a4139a19",
+      "DisplayName": "UniClub.Domain.Shared",
+      "ColorIndex": 5
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "06436ec0-5ca7-4d68-bcfd-c5a9bb94a5aa": {
+      "ProjectGuid": "06436ec0-5ca7-4d68-bcfd-c5a9bb94a5aa",
+      "DisplayName": "UniClub.HttpApi",
+      "ColorIndex": 6
+    },
+    "20d53750-0329-4e2f-85db-569066cee552": {
+      "ProjectGuid": "20d53750-0329-4e2f-85db-569066cee552",
+      "DisplayName": "UniClub.Infrastructure",
+      "ColorIndex": 7
+    }
+  },
+  "NextColorIndex": 8
+}
