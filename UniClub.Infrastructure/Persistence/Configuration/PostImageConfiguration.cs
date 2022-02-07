@@ -10,9 +10,9 @@ namespace UniClub.Infrastructure.Persistence.Configuration
         {
             entity.ToTable("PostImage");
 
-            entity.HasKey(e => e.ImageId);
+            entity.HasKey(e => e.Id);
 
-            entity.Property(e => e.ImageId).ValueGeneratedOnAdd();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.ImageUrl)
                 .IsRequired()

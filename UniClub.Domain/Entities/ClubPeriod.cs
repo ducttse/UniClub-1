@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniClub.Domain.Common.Enums;
 
 #nullable disable
 
@@ -13,6 +14,7 @@ namespace UniClub.Domain.Entities
         }
         public int ClubPeriodId { get; set; }
         public int ClubId { get; set; }
+        public ClubPeriodStatus Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

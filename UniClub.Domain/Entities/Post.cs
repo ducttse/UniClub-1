@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniClub.Domain.Common;
+using UniClub.Domain.Common.Enums;
 
 #nullable disable
 
@@ -15,7 +16,7 @@ namespace UniClub.Domain.Entities
 
         public string PersonId { get; set; }
         public string Content { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public PostStatus Status { get; set; }
         public string ShortDescription { get; set; }
         public int? EventId { get; set; }
 

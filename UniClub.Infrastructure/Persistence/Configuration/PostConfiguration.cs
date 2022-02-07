@@ -12,13 +12,11 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.HasKey(e => e.Id);
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.Content)
                 .IsRequired()
                 .HasMaxLength(2000);
-
-            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
             entity.Property(e => e.ShortDescription)
                 .IsRequired()

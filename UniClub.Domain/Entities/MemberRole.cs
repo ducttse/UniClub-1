@@ -1,4 +1,5 @@
 ﻿using System;
+using UniClub.Domain.Common.Enums;
 
 #nullable disable
 
@@ -8,7 +9,7 @@ namespace UniClub.Domain.Entities
     {
         public int MemberId { get; set; }
         public int ClubRoleId { get; set; }
-        public int Status { get; set; }
+        public MemberRoleStatus Status { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime? EndDate { get; set; }
 

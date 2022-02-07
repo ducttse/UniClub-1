@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniClub.Domain.Common;
+using UniClub.Domain.Common.Enums;
 
 #nullable disable
 
@@ -23,7 +24,8 @@ namespace UniClub.Domain.Entities
         public int MaxParticipants { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public int? Status { get; set; }
+        public EventStatus Status { get; set; }
+        public bool IsPrivate { get; set; }
 
         public virtual ICollection<EventByClub> EventByClubs { get; set; }
         public virtual ICollection<Participant> Participants { get; set; }

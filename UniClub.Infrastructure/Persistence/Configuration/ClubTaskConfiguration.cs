@@ -10,6 +10,8 @@ namespace UniClub.Infrastructure.Persistence.Configuration
         {
             entity.ToTable("Task");
 
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
             entity.HasIndex(e => e.EventId, "IX_Task_EventId");
 
             entity.Property(e => e.CreatedBy).HasMaxLength(300);

@@ -54,7 +54,8 @@ namespace UniClub.Infrastructure.Migrations
                     MaxParticipants = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
@@ -90,7 +91,8 @@ namespace UniClub.Infrastructure.Migrations
                 name: "University",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UniName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     UniAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     UniPhone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: true),
@@ -224,6 +226,7 @@ namespace UniClub.Infrastructure.Migrations
                     ClubPeriodId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClubId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
@@ -234,39 +237,6 @@ namespace UniClub.Infrastructure.Migrations
                         name: "FK_ClubPeriod_Club",
                         column: x => x.ClubId,
                         principalTable: "Club",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ClubRole",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClubId = table.Column<int>(type: "int", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ReportToRoleId = table.Column<int>(type: "int", nullable: true),
-                    ClubRolePeriod = table.Column<int>(type: "int", nullable: true),
-                    CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ClubRole", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ClubRole_Club",
-                        column: x => x.ClubId,
-                        principalTable: "Club",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ClubRole_ClubRole",
-                        column: x => x.ReportToRoleId,
-                        principalTable: "ClubRole",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -333,6 +303,45 @@ namespace UniClub.Infrastructure.Migrations
                         name: "FK_AspNetUsers_Department_DepId",
                         column: x => x.DepId,
                         principalTable: "Department",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClubRole",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClubId = table.Column<int>(type: "int", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ReportToRoleId = table.Column<int>(type: "int", nullable: true),
+                    ClubPeriodId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClubRole", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClubRole_Club",
+                        column: x => x.ClubId,
+                        principalTable: "Club",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClubRole_ClubPeriod",
+                        column: x => x.ClubPeriodId,
+                        principalTable: "ClubPeriod",
+                        principalColumn: "ClubPeriodId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClubRole_ClubRole",
+                        column: x => x.ReportToRoleId,
+                        principalTable: "ClubRole",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -429,7 +438,6 @@ namespace UniClub.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
                     JoinDate = table.Column<DateTime>(type: "date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "date", nullable: true),
                     ClubId = table.Column<int>(type: "int", nullable: false),
@@ -493,10 +501,11 @@ namespace UniClub.Infrastructure.Migrations
                 name: "Post",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PersonId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     ShortDescription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     EventId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
@@ -573,14 +582,19 @@ namespace UniClub.Infrastructure.Migrations
                 name: "PostImage",
                 columns: table => new
                 {
-                    ImageId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PostId = table.Column<int>(type: "int", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    ModificationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostImage", x => x.ImageId);
+                    table.PrimaryKey("PK_PostImage", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PostImage_Post",
                         column: x => x.PostId,
@@ -647,6 +661,11 @@ namespace UniClub.Infrastructure.Migrations
                 name: "IX_ClubRole_ClubId",
                 table: "ClubRole",
                 column: "ClubId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClubRole_ClubPeriodId",
+                table: "ClubRole",
+                column: "ClubPeriodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClubRole_ReportToRoleId",
@@ -748,9 +767,6 @@ namespace UniClub.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ClubPeriod");
-
-            migrationBuilder.DropTable(
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
@@ -787,13 +803,16 @@ namespace UniClub.Infrastructure.Migrations
                 name: "Task");
 
             migrationBuilder.DropTable(
-                name: "Club");
+                name: "ClubPeriod");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Event");
+
+            migrationBuilder.DropTable(
+                name: "Club");
 
             migrationBuilder.DropTable(
                 name: "Department");

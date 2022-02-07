@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UniClub.Domain.Common;
+using UniClub.Domain.Common.Enums;
 
 #nullable disable
 
@@ -14,7 +15,7 @@ namespace UniClub.Domain.Entities
         }
 
         public int EventId { get; set; }
-        public int Status { get; set; }
+        public ClubTaskStatus Status { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

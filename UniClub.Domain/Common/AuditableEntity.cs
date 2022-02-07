@@ -6,6 +6,7 @@ namespace UniClub.Domain.Common
 {
     public abstract class AuditableEntity<TKey> : IEntity<TKey>, IMayHaveCreator, IHasCreationTime, IMayHaveModifier, IHasModificationTime, ISoftDelete
     {
+        [Key]
         public TKey Id { get; set; }
         [MaxLength(300)]
         public string CreatedBy { get; set; }

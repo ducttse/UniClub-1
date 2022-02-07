@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UniClub.Domain.Common;
 
 #nullable disable
@@ -19,8 +20,8 @@ namespace UniClub.Domain.Entities
         public int ClubPeriodId { get; set; }
 
         public virtual Club Club { get; set; }
-        public virtual ClubRole ReportToRole { get; set; }
         public virtual ClubPeriod ClubPeriod { get; set; }
+        public virtual ClubRole ReportToRole { get; set; }
         public virtual ICollection<ClubRole> InverseReportToRole { get; set; }
         public virtual ICollection<MemberRole> MemberRoles { get; set; }
     }

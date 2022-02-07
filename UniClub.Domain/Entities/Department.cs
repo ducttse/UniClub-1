@@ -16,7 +16,7 @@ namespace UniClub.Domain.Entities
         public string DepName { get; set; }
         public string ShortName { get; set; }
 
-        public virtual University Uni { get; set; }
+        public virtual University University { get; set; }
         public virtual ICollection<Person> People { get; set; }
     }
 }

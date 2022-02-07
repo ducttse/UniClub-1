@@ -12,9 +12,9 @@ namespace UniClub.HttpApi.Controllers
     public class UniversitiesController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<University>>> Get()
+        public async Task<ActionResult<PaginatedList<University>>> GetTodoItemsWithPagination([FromQuery] GetUniversitiesWithPaginationQuery query)
         {
-            return await Mediator.Send(new GetUniversitiesWithPaginationQuery());
+            return await Mediator.Send(query);
         }
     }
 }

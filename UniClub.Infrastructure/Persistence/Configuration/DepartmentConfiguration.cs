@@ -8,11 +8,12 @@ namespace UniClub.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Department> entity)
         {
-            entity.HasKey(e => e.Id);
-
             entity.ToTable("Department");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Id).ValueGeneratedOnAdd();
+
+            entity.HasIndex(e => e.UniId, "IX_Department_UniId");
 
             entity.Property(e => e.DepName)
                 .IsRequired()
@@ -23,7 +24,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
                 .HasMaxLength(10)
                 .IsFixedLength(true);
 
-            entity.HasOne(d => d.Uni)
+            entity.HasOne(d => d.University)
                 .WithMany(p => p.Departments)
                 .HasForeignKey(d => d.UniId)
                 .OnDelete(DeleteBehavior.ClientSetNull)

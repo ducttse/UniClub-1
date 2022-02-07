@@ -8,11 +8,11 @@ namespace UniClub.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<University> entity)
         {
-            entity.HasKey(e => e.Id);
-
             entity.ToTable("University");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.FoundDate).HasColumnType("date");
 

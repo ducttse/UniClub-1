@@ -14,7 +14,6 @@ namespace UniClub.Domain.Entities
         }
 
         public string StudentId { get; set; }
-        public int Status { get; set; }
         public DateTime JoinDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int ClubId { get; set; }
