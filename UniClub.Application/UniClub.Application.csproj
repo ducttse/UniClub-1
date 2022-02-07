@@ -15,8 +15,4 @@
     <ProjectReference Include="..\UniClub.Domain\UniClub.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Universities\Commands\" />
-  </ItemGroup>
-
 </Project>

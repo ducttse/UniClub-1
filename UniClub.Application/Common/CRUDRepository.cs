@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Common;
 using UniClub.Domain.Common.Interfaces;
+using UniClub.Domain.Entities;
 
 namespace UniClub.Application.Common
 {
@@ -22,7 +23,7 @@ namespace UniClub.Application.Common
 
         public async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken)
             => await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
-        public async Task<PaginatedList<T>> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+        public async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
         {
             List<T> result = new();
             int count = 0;
@@ -35,7 +36,7 @@ namespace UniClub.Application.Common
             {
                 throw;
             }
-            return new PaginatedList<T>(result, count, pageNumber, pageSize);
+            return (result, count);
         }
         public async Task<int> CreateAsync(T entity, CancellationToken cancellationToken)
         {
@@ -80,12 +81,12 @@ namespace UniClub.Application.Common
             }
         }
 
-        public async Task<int> DeleteAsync(T entity, CancellationToken cancellationToken)
+        public async Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken)
         {
-            T e = await GetByIdAsync(entity.Id, cancellationToken);
+            T entity = await GetByIdAsync(id, cancellationToken);
             try
             {
-                if (e == null)
+                if (entity == null)
                 {
                     DbSet.Remove(entity);
                     return await _context.SaveChangesAsync(cancellationToken);

@@ -914,7 +914,7 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FoundDate")
+                    b.Property<DateTime>("EstablishedDate")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")

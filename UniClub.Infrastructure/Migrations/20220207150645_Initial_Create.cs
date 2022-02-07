@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UniClub.Infrastructure.Migrations
 {
-    public partial class initial_create : Migration
+    public partial class Initial_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -98,7 +98,7 @@ namespace UniClub.Infrastructure.Migrations
                     UniPhone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: true),
                     LogoUrl = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Slogan = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    FoundDate = table.Column<DateTime>(type: "date", nullable: false),
+                    EstablishedDate = table.Column<DateTime>(type: "date", nullable: false),
                     Website = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ShortName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),

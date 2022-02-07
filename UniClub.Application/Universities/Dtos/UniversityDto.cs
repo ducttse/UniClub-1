@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using UniClub.Domain.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UniClub.Application.Common.Mappings;
+using UniClub.Domain.Entities;
 
-#nullable disable
-
-namespace UniClub.Domain.Entities
+namespace UniClub.Application.Universities.Dtos
 {
-    public partial class University : AuditableEntity<int>
+    public class UniversityDto
     {
-        public University()
-        {
-            Clubs = new HashSet<Club>();
-            Departments = new HashSet<Department>();
-        }
-
+        public int Id { get; set; }
         public string UniName { get; set; }
         public string UniAddress { get; set; }
         public string UniPhone { get; set; }
@@ -22,8 +19,5 @@ namespace UniClub.Domain.Entities
         public DateTime EstablishedDate { get; set; }
         public string Website { get; set; }
         public string ShortName { get; set; }
-
-        public virtual ICollection<Club> Clubs { get; set; }
-        public virtual ICollection<Department> Departments { get; set; }
     }
 }

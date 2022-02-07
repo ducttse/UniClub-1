@@ -14,7 +14,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-            entity.Property(e => e.FoundDate).HasColumnType("date");
+            entity.Property(e => e.EstablishedDate).HasColumnType("date");
 
             entity.Property(e => e.LogoUrl)
                 .IsRequired()

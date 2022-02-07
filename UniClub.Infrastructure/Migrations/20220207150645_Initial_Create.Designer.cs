@@ -10,8 +10,8 @@ using UniClub.Infrastructure.Persistence;
 namespace UniClub.Infrastructure.Migrations
 {
     [DbContext(typeof(UniClubContext))]
-    [Migration("20220207121309_initial_create")]
-    partial class initial_create
+    [Migration("20220207150645_Initial_Create")]
+    partial class Initial_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -916,7 +916,7 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FoundDate")
+                    b.Property<DateTime>("EstablishedDate")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")
