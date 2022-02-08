@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UniClub.Application.Common.Interfaces;
@@ -45,6 +46,19 @@ namespace UniClub.Infrastructure.Identity
             return (result.ToApplicationResult(), user.Id.ToString());
         }
 
+        public async Task<(Result Result, string UserId)> CreateUserAsync(Person user, string password)
+        {
+            if (user.Email != null)
+            {
+                var u = await _userManager.FindByEmailAsync(user.Email);
+                return (Result.Failure(new List<string>() { "User does not exist" }), null);
+            }
+
+            var result = await _userManager.CreateAsync(user, password);
+
+            return (result.ToApplicationResult(), user.Id.ToString());
+        }
+
         public async Task<bool> IsInRoleAsync(string userId, string role)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id.ToString() == userId);
@@ -78,6 +92,20 @@ namespace UniClub.Infrastructure.Identity
         public async Task<Result> DeleteUserAsync(Person user)
         {
             var result = await _userManager.DeleteAsync(user);
+
+            return result.ToApplicationResult();
+        }
+
+        public async Task<Result> UpdateUserAsync(string userId)
+        {
+            var user = _userManager.Users.SingleOrDefault(u => u.Id.ToString() == userId);
+
+            return user != null ? await UpdateUserAsync(user) : Result.Failure(new List<string>() { "User does not exist" });
+        }
+
+        public async Task<Result> UpdateUserAsync(Person user)
+        {
+            var result = await _userManager.UpdateAsync(user);
 
             return result.ToApplicationResult();
         }

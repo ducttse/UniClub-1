@@ -6,7 +6,7 @@ using UniClub.Application.Universities.Commands.CreateUniversity;
 using UniClub.Application.Universities.Commands.DeleteUniversity;
 using UniClub.Application.Universities.Commands.UpdateUniversity;
 using UniClub.Application.Universities.Queries.GetUniversitiesWithPagination;
-using UniClub.Application.Universities.Queries.GetUniversityWithId;
+using UniClub.Application.Universities.Queries.GetUniversityById;
 using UniClub.HttpApi.ApiControllers;
 using UniClub.HttpApi.Models;
 

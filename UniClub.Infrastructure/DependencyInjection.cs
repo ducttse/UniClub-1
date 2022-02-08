@@ -26,6 +26,16 @@ namespace UniClub.Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<UniClubContext>());
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 0;
+            });
 
             services
             .AddDefaultIdentity<Person>()

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UniClub.Application.Posts.Dtos;
 using UniClub.Domain.Repository.Interfaces;
 
-namespace UniClub.Application.Posts.Queries.GetPostWithId
+namespace UniClub.Application.Posts.Queries.GetPostById
 {
     public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDto>
     {

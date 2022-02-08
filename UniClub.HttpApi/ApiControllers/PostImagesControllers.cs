@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.PostImages.Commands.CreatePostImage;
 using UniClub.Application.PostImages.Commands.DeletePostImage;
 using UniClub.Application.PostImages.Commands.UpdatePostImage;
+using UniClub.Application.PostImages.Queries.GetPostImageById;
 using UniClub.Application.PostImages.Queries.GetPostImagesWithPagination;
-using UniClub.Application.PostImages.Queries.GetPostImageWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

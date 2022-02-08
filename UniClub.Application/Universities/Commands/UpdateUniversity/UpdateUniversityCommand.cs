@@ -1,11 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading;
-using System.Threading.Tasks;
-using UniClub.Domain.Entities;
-using UniClub.Domain.Repository.Interfaces;
 
 namespace UniClub.Application.Universities.Commands.UpdateUniversity
 {
@@ -21,22 +16,5 @@ namespace UniClub.Application.Universities.Commands.UpdateUniversity
         public DateTime EstablishedDate { get; set; }
         public string Website { get; set; }
         public string ShortName { get; set; }
-    }
-
-    public class UpdateUniversityCommandHandler : IRequestHandler<UpdateUniversityCommand, int>
-    {
-        private readonly IUniversityRepository _universityRepository;
-        private readonly IMapper _mapper;
-
-        public UpdateUniversityCommandHandler(IUniversityRepository universityRepository, IMapper mapper)
-        {
-            _universityRepository = universityRepository;
-            _mapper = mapper;
-        }
-
-        public async Task<int> Handle(UpdateUniversityCommand request, CancellationToken cancellationToken)
-        {
-            return await _universityRepository.UpdateAsync(_mapper.Map<University>(request), cancellationToken);
-        }
     }
 }

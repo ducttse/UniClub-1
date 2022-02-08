@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.Events.Commands.CreateEvent;
 using UniClub.Application.Events.Commands.DeleteEvent;
 using UniClub.Application.Events.Commands.UpdateEvent;
+using UniClub.Application.Events.Queries.GetEventById;
 using UniClub.Application.Events.Queries.GetEventsWithPagination;
-using UniClub.Application.Events.Queries.GetEventWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

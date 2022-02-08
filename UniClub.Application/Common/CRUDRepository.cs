@@ -124,6 +124,6 @@ namespace UniClub.Application.Common
         }
 
         public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
-            => DbSet.ToList();
+            => await DbSet.ToListAsync();
     }
 }

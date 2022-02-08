@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UniClub.Application.Members.Dtos;
 using UniClub.Domain.Repository.Interfaces;
 
-namespace UniClub.Application.Members.Queries.GetMemberWithId
+namespace UniClub.Application.Members.Queries.GetMemberById
 {
     public class GetMemberByIdQueryHandler : IRequestHandler<GetMemberByIdQuery, MemberDto>
     {

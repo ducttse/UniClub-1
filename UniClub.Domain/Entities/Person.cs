@@ -10,16 +10,19 @@ namespace UniClub.Domain.Entities
     {
         public Person()
         {
+            Id = Guid.NewGuid().ToString();
+            SecurityStamp = Guid.NewGuid().ToString();
+
             Members = new HashSet<Member>();
             Participants = new HashSet<Participant>();
             Posts = new HashSet<Post>();
             StudentInTasks = new HashSet<StudentInTask>();
         }
-
+        public new string Id { get; set; }
         public string Name { get; set; }
         public bool? Gender { get; set; }
         public string Address { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public int? DepId { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreationTime { get; set; }

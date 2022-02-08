@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UniClub.Application.PostImages.Dtos;
 using UniClub.Domain.Repository.Interfaces;
 
-namespace UniClub.Application.PostImages.Queries.GetPostImageWithId
+namespace UniClub.Application.PostImages.Queries.GetPostImageById
 {
     public class GetPostImageByIdQueryHandler : IRequestHandler<GetPostImageByIdQuery, PostImageDto>
     {

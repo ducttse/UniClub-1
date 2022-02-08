@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UniClub.Application.Events.Dtos;
 using UniClub.Domain.Repository.Interfaces;
 
-namespace UniClub.Application.Events.Queries.GetEventWithId
+namespace UniClub.Application.Events.Queries.GetEventById
 {
     public class GetEventByIdQueryHandler : IRequestHandler<GetEventByIdQuery, EventDto>
     {

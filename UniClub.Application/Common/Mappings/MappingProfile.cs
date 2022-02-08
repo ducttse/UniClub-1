@@ -35,6 +35,9 @@ using UniClub.Application.Posts.Commands.CreatePost;
 using UniClub.Application.Posts.Commands.DeletePost;
 using UniClub.Application.Posts.Commands.UpdatePost;
 using UniClub.Application.Posts.Dtos;
+using UniClub.Application.Students.Commands.CreateStudent;
+using UniClub.Application.Students.Commands.UpdateStudent;
+using UniClub.Application.Students.Dtos;
 using UniClub.Application.Universities.Commands.CreateUniversity;
 using UniClub.Application.Universities.Commands.DeleteUniversity;
 using UniClub.Application.Universities.Commands.UpdateUniversity;
@@ -115,6 +118,12 @@ namespace UniClub.Application.Common.Mappings
             CreateMap<CreatePostImageCommand, PostImage>();
             CreateMap<UpdatePostImageCommand, PostImage>();
             CreateMap<DeletePostImageCommand, PostImage>();
+            #endregion
+
+            #region Student
+            CreateMap<Person, StudentDto>().ReverseMap();
+            CreateMap<CreateStudentCommand, Person>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
+            CreateMap<UpdateStudentCommand, Person>();
             #endregion
         }
     }

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.Posts.Commands.CreatePost;
 using UniClub.Application.Posts.Commands.DeletePost;
 using UniClub.Application.Posts.Commands.UpdatePost;
+using UniClub.Application.Posts.Queries.GetPostById;
 using UniClub.Application.Posts.Queries.GetPostsWithPagination;
-using UniClub.Application.Posts.Queries.GetPostWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

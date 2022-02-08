@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Services;
 using UniClub.Infrastructure;
 
@@ -26,7 +28,13 @@ namespace UniClub.HttpApi
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
+            services.AddControllersWithViews(options =>
+            options.Filters.Add<ApiExceptionFilterAttribute>())
+                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
+
+            services.AddHttpContextAccessor();
 
             services.AddControllers();
 

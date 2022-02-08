@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using UniClub.Application.Members.Dtos;
 
-namespace UniClub.Application.Members.Queries.GetMemberWithId
+namespace UniClub.Application.Members.Queries.GetMemberById
 {
     public class GetMemberByIdQuery : IRequest<MemberDto>
     {

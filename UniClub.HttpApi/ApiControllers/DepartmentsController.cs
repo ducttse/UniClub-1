@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.Departments.Commands.CreateDepartment;
 using UniClub.Application.Departments.Commands.DeleteDepartment;
 using UniClub.Application.Departments.Commands.UpdateDepartment;
+using UniClub.Application.Departments.Queries.GetDepartmentById;
 using UniClub.Application.Departments.Queries.GetDepartmentsWithPagination;
-using UniClub.Application.Departments.Queries.GetDepartmentWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

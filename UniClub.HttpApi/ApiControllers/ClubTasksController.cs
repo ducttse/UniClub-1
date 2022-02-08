@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.ClubTasks.Commands.CreateClubTask;
 using UniClub.Application.ClubTasks.Commands.DeleteClubTask;
 using UniClub.Application.ClubTasks.Commands.UpdateClubTask;
+using UniClub.Application.ClubTasks.Queries.GetClubTaskById;
 using UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination;
-using UniClub.Application.ClubTasks.Queries.GetClubTaskWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

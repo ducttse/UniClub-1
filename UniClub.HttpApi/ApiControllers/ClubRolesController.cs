@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.ClubRoles.Commands.CreateClubRole;
 using UniClub.Application.ClubRoles.Commands.DeleteClubRole;
 using UniClub.Application.ClubRoles.Commands.UpdateClubRole;
+using UniClub.Application.ClubRoles.Queries.GetClubRoleById;
 using UniClub.Application.ClubRoles.Queries.GetClubRolesWithPagination;
-using UniClub.Application.ClubRoles.Queries.GetClubRoleWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers

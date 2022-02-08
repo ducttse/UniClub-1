@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using UniClub.Application.Members.Commands.CreateMember;
 using UniClub.Application.Members.Commands.DeleteMember;
 using UniClub.Application.Members.Commands.UpdateMember;
+using UniClub.Application.Members.Queries.GetMemberById;
 using UniClub.Application.Members.Queries.GetMembersWithPagination;
-using UniClub.Application.Members.Queries.GetMemberWithId;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers
