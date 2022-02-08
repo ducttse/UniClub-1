@@ -18,7 +18,7 @@ namespace UniClub.Domain.Entities
             Posts = new HashSet<Post>();
             StudentInTasks = new HashSet<StudentInTask>();
         }
-        public new string Id { get; set; }
+        public override string Id { get; set; }
         public string Name { get; set; }
         public bool? Gender { get; set; }
         public string Address { get; set; }

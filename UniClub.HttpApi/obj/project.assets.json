@@ -6634,11 +6634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
+      "projectUniqueName": "E:\\UniClub\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
       "projectName": "UniClub.HttpApi",
-      "projectPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
+      "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
       "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.HttpApi\\obj\\",
+      "outputPath": "E:\\UniClub\\UniClub-1\\UniClub.HttpApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6659,11 +6659,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Application\\UniClub.Application.csproj": {
-              "projectPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Application\\UniClub.Application.csproj"
+            "E:\\UniClub\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj": {
+              "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj"
             },
-            "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Infrastructure\\UniClub.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Infrastructure\\UniClub.Infrastructure.csproj"
+            "E:\\UniClub\\UniClub-1\\UniClub.Infrastructure\\UniClub.Infrastructure.csproj": {
+              "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Infrastructure\\UniClub.Infrastructure.csproj"
             }
           }
         }

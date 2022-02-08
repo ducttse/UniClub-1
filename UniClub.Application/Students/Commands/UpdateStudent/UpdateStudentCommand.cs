@@ -8,7 +8,7 @@ namespace UniClub.Application.Students.Commands.UpdateStudent
     public class UpdateStudentCommand : IRequest<Result>
     {
         [Required]
-        public string UserId { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public bool? Gender { get; set; }
         public string Address { get; set; }

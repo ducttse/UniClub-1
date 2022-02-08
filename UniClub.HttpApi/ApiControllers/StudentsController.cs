@@ -60,11 +60,11 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStudent(int id, [FromBody] UpdateStudentCommand command)
+        public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudentCommand command)
         {
             try
             {
-                if (command.UserId.Equals(id))
+                if (command.Id.Equals(id))
                 {
                     var result = await Mediator.Send(command);
                     return NoContent();

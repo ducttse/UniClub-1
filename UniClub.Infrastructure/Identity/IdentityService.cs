@@ -51,7 +51,10 @@ namespace UniClub.Infrastructure.Identity
             if (user.Email != null)
             {
                 var u = await _userManager.FindByEmailAsync(user.Email);
-                return (Result.Failure(new List<string>() { "User does not exist" }), null);
+                if (u != null)
+                {
+                    return (Result.Failure(new List<string>() { "User has already existed" }), null);
+                }
             }
 
             var result = await _userManager.CreateAsync(user, password);
@@ -61,9 +64,17 @@ namespace UniClub.Infrastructure.Identity
 
         public async Task<bool> IsInRoleAsync(string userId, string role)
         {
-            var user = _userManager.Users.SingleOrDefault(u => u.Id.ToString() == userId);
-
+            var user = await _userManager.FindByIdAsync(userId);
             return user != null && await _userManager.IsInRoleAsync(user, role);
+        }
+
+        public async Task AddToRoleAsync(string userId, string role)
+        {
+            if (!await IsInRoleAsync(userId, role))
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                await _userManager.AddToRoleAsync(user, role);
+            }
         }
 
         public async Task<bool> AuthorizeAsync(string userId, string policyName)

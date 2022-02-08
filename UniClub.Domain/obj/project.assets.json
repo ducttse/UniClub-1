@@ -748,11 +748,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Domain\\UniClub.Domain.csproj",
+      "projectUniqueName": "E:\\UniClub\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj",
       "projectName": "UniClub.Domain",
-      "projectPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Domain\\UniClub.Domain.csproj",
+      "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj",
       "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arceu\\source\\repos\\UniClub\\UniClub.Domain\\obj\\",
+      "outputPath": "E:\\UniClub\\UniClub-1\\UniClub.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

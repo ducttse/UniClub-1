@@ -18,6 +18,7 @@ namespace UniClub.Application.Common.Interfaces
         Task<(Result Result, string UserId)> CreateUserAsync(Person user, string password);
         Task<Result> UpdateUserAsync(string userId);
         Task<Result> UpdateUserAsync(Person user);
+        Task AddToRoleAsync(string userId, string role);
 
     }
 

@@ -7,6 +7,8 @@ namespace UniClub.Application.Students.Commands.CreateStudent
     public class CreateStudentCommand : IRequest<string>
     {
         [Required]
+        public string UserName { get; set; }
+        [Required]
         public string Name { get; set; }
         public bool? Gender { get; set; }
         public string Address { get; set; }

@@ -23,9 +23,8 @@ namespace UniClub.Application.Students.Commands.CreateStudent
         }
         public async Task<string> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            var student = _mapper.Map<Person>(request);
-            var result = await _identityService.CreateUserAsync(student, request.Password);
-            await _userManager.AddToRoleAsync(student, STUDENT_ROLE);
+            var result = await _identityService.CreateUserAsync(_mapper.Map<Person>(request), request.Password);
+            await _identityService.AddToRoleAsync(result.UserId, STUDENT_ROLE);
             return result.UserId;
         }
     }
