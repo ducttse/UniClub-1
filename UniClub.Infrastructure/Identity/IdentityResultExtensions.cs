@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Linq;
-using UniClub.Application.Common.Models;
+using UniClub.Application.Models;
 
 namespace UniClub.Infrastructure.Identity
 {

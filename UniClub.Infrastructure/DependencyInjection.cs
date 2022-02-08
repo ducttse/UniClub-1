@@ -39,6 +39,15 @@ namespace UniClub.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
 
             services.AddTransient<IUniversityRepository, UniversityRepository>();
+            services.AddTransient<IClubRepository, ClubRepository>();
+            services.AddTransient<IClubPeriodRepository, ClubPeriodRepository>();
+            services.AddTransient<IClubRoleRepository, ClubRoleRepository>();
+            services.AddTransient<IClubTaskRepository, ClubTaskRepository>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<IMemberRepository, MemberRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IPostImageRepository, PostImageRepository>();
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

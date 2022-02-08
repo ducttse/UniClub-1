@@ -2,12 +2,12 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using UniClub.Domain.Entities;
+using UniClub.Application.Universities.Dtos;
 using UniClub.Domain.Repository.Interfaces;
 
 namespace UniClub.Application.Universities.Queries.GetUniversityWithId
 {
-    public class GetUniversityByIdQuery : IRequest<University>
+    public class GetUniversityByIdQuery : IRequest<UniversityDto>
     {
         public int Id { get; set; }
         public GetUniversityByIdQuery(int id)
@@ -16,17 +16,19 @@ namespace UniClub.Application.Universities.Queries.GetUniversityWithId
         }
     }
 
-    public class GetUniversityByIdQueryHandler : IRequestHandler<GetUniversityByIdQuery, University>
+    public class GetUniversityByIdQueryHandler : IRequestHandler<GetUniversityByIdQuery, UniversityDto>
     {
         private readonly IUniversityRepository _universityRepository;
+        private readonly IMapper _mapper;
 
-        public GetUniversityByIdQueryHandler(IUniversityRepository universityRepository)
+        public GetUniversityByIdQueryHandler(IUniversityRepository universityRepository, IMapper mapper)
         {
             _universityRepository = universityRepository;
+            _mapper = mapper;
         }
-        public Task<University> Handle(GetUniversityByIdQuery request, CancellationToken cancellationToken)
+        public async Task<UniversityDto> Handle(GetUniversityByIdQuery request, CancellationToken cancellationToken)
         {
-            return _universityRepository.GetByIdAsync(request.Id, cancellationToken);
+            return _mapper.Map<UniversityDto>(await _universityRepository.GetByIdAsync(request.Id, cancellationToken));
         }
     }
 }

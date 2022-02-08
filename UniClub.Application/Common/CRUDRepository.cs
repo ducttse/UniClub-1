@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Common;
 using UniClub.Domain.Common.Interfaces;
-using UniClub.Domain.Entities;
 
 namespace UniClub.Application.Common
 {
@@ -50,7 +49,7 @@ namespace UniClub.Application.Common
                 }
                 else
                 {
-                    throw new Exception("Object has already existed");
+                    throw new Exception($"{nameof(entity)} - ID:{entity.Id.ToString()} has already existed");
                 }
             }
             catch (Exception)
@@ -72,7 +71,7 @@ namespace UniClub.Application.Common
                 }
                 else
                 {
-                    throw new Exception("Object has not existed");
+                    throw new Exception($"{nameof(entity)} - ID:{entity.Id.ToString()} is invalid");
                 }
             }
             catch (Exception)
@@ -86,7 +85,7 @@ namespace UniClub.Application.Common
             T entity = await GetByIdAsync(id, cancellationToken);
             try
             {
-                if (entity == null)
+                if (entity != null)
                 {
                     DbSet.Remove(entity);
                     return await _context.SaveChangesAsync(cancellationToken);
@@ -101,5 +100,30 @@ namespace UniClub.Application.Common
                 throw;
             }
         }
+
+        public async Task<int> HardDeleteAsync(TKey id, CancellationToken cancellationToken)
+        {
+            T entity = await GetByIdAsync(id, cancellationToken);
+            try
+            {
+                if (entity != null)
+                {
+                    entity.IsHardDeleted = true;
+                    DbSet.Remove(entity);
+                    return await _context.SaveChangesAsync(cancellationToken);
+                }
+                else
+                {
+                    throw new Exception("Object has not existed");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
+            => DbSet.ToList();
     }
 }

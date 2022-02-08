@@ -99,8 +99,11 @@ namespace UniClub.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.Entity.IsDeleted = true;
+                        if (!entry.Entity.IsHardDeleted)
+                        {
+                            entry.State = EntityState.Modified;
+                            entry.Entity.IsDeleted = true;
+                        }
                         break;
                 }
             }
@@ -109,5 +112,6 @@ namespace UniClub.Infrastructure.Persistence
 
             return result;
         }
+
     }
 }

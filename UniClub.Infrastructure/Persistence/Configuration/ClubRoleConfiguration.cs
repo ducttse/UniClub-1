@@ -9,7 +9,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
         public void Configure(EntityTypeBuilder<ClubRole> entity)
         {
             entity.ToTable("ClubRole");
-            
+
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.HasIndex(e => e.ClubId, "IX_ClubRole_ClubId");

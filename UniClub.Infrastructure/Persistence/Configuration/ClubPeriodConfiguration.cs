@@ -10,9 +10,9 @@ namespace UniClub.Infrastructure.Persistence.Configuration
         {
             entity.ToTable("ClubPeriod");
 
-            entity.HasKey(e => e.ClubPeriodId);
+            entity.HasKey(e => e.Id);
 
-            entity.Property(e => e.ClubPeriodId).ValueGeneratedOnAdd();
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.EndDate).HasColumnType("date");
 

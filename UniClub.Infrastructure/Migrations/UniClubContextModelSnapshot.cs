@@ -278,15 +278,15 @@ namespace UniClub.Infrastructure.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("date");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
+
+                    b.Property<DateTime>("EstablishedDate")
+                        .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -324,7 +324,7 @@ namespace UniClub.Infrastructure.Migrations
 
             modelBuilder.Entity("UniClub.Domain.Entities.ClubPeriod", b =>
                 {
-                    b.Property<int>("ClubPeriodId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -332,8 +332,25 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<int>("ClubId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("ModificationTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -341,7 +358,7 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ClubPeriodId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ClubId");
 
@@ -651,7 +668,7 @@ namespace UniClub.Infrastructure.Migrations
 
             modelBuilder.Entity("UniClub.Domain.Entities.Participant", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("EventId")
@@ -663,30 +680,13 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<DateTime?>("CheckoutDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsJoined")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("JoinDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("LastModifiedBy")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id", "EventId");
+                    b.HasKey("UserId", "EventId");
 
                     b.HasIndex("EventId");
 
@@ -952,8 +952,8 @@ namespace UniClub.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("UniPhone")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Website")
                         .HasMaxLength(256)
@@ -1152,7 +1152,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.HasOne("UniClub.Domain.Entities.Person", "Person")
                         .WithMany("Participants")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("UserId")
                         .HasConstraintName("FK_Participant_Person")
                         .IsRequired();
 

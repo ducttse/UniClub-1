@@ -1,12 +1,12 @@
 ﻿using System;
-using UniClub.Domain.Common;
 
 #nullable disable
 
 namespace UniClub.Domain.Entities
 {
-    public partial class Participant : AuditableEntity<string>
+    public partial class Participant
     {
+        public string UserId { get; set; }
         public int EventId { get; set; }
         public bool IsJoined { get; set; }
         public DateTime JoinDate { get; set; }

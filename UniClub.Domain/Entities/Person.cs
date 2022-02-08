@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using UniClub.Domain.Common.Interfaces;
 
 namespace UniClub.Domain.Entities
@@ -25,6 +26,8 @@ namespace UniClub.Domain.Entities
         public string LastModifiedBy { get; set; }
         public DateTime ModificationTime { get; set; }
         public bool IsDeleted { get; set; }
+        [NotMapped]
+        public bool IsHardDeleted { get; set; }
 
         public virtual Department Dep { get; set; }
         public virtual ICollection<Member> Members { get; set; }

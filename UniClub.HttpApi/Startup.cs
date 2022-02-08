@@ -29,6 +29,7 @@ namespace UniClub.HttpApi
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniClub.HttpApi", Version = "v1" });

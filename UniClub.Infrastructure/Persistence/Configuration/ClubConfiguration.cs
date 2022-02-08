@@ -22,7 +22,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(256);
 
-            entity.Property(e => e.CreatedDate).HasColumnType("date");
+            entity.Property(e => e.EstablishedDate).HasColumnType("date");
 
             entity.Property(e => e.Description).HasMaxLength(400);
 

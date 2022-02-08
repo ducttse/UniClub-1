@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using UniClub.Application.Common.Interfaces;
-using UniClub.Application.Common.Models;
+using UniClub.Application.Models;
 using UniClub.Domain.Entities;
 
 namespace UniClub.Infrastructure.Identity

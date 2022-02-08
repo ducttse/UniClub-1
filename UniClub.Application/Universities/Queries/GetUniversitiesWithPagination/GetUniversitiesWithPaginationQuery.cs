@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Application.Universities.Dtos;
 using UniClub.Domain.Common;
-using UniClub.Domain.Entities;
 using UniClub.Domain.Repository.Interfaces;
 
 namespace UniClub.Application.Universities.Queries.GetUniversitiesWithPagination

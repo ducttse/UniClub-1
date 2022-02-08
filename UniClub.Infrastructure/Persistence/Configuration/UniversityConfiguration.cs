@@ -34,7 +34,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(256);
 
-            entity.Property(e => e.UniPhone).HasMaxLength(12);
+            entity.Property(e => e.UniPhone).HasMaxLength(20);
 
             entity.Property(e => e.Website).HasMaxLength(256);
         }

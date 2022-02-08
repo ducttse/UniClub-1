@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using UniClub.Application.Common.Models;
+using UniClub.Application.Models;
 
 namespace UniClub.Application.Common.Interfaces
 {

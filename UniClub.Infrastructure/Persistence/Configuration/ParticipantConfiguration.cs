@@ -8,7 +8,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Participant> entity)
         {
-            entity.HasKey(e => new { e.Id, e.EventId });
+            entity.HasKey(e => new { e.UserId, e.EventId });
 
             entity.ToTable("Participant");
 
@@ -26,7 +26,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.HasOne(d => d.Person)
                 .WithMany(p => p.Participants)
-                .HasForeignKey(d => d.Id)
+                .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Participant_Person");
         }

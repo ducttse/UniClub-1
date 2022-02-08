@@ -22,7 +22,7 @@ namespace UniClub.Domain.Entities
         public string ShortDescription { get; set; }
         public int UniId { get; set; }
         public string AvatarUrl { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime EstablishedDate { get; set; }
         public string Slogan { get; set; }
 
         public virtual University Uni { get; set; }
