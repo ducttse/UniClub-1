@@ -27,7 +27,7 @@ steps:
     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+    
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
@@ -38,11 +38,3 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'uniclub.zip'
-    
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure for Students(ce71902b-9d9d-4bfa-ada9-fa143e7f38ce)'
-    appType: 'webApp'
-    WebAppName: 'UniClub'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
