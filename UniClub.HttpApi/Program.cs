@@ -23,18 +23,18 @@ namespace UniClub.HttpApi
 
                 try
                 {
-                    var context = services.GetRequiredService<UniClubContext>();
+                    //var context = services.GetRequiredService<UniClubContext>();
 
-                    if (context.Database.IsSqlServer())
-                    {
-                        context.Database.Migrate();
-                    }
+                    //if (context.Database.IsSqlServer())
+                    //{
+                    //    context.Database.Migrate();
+                    //}
 
-                    var userManager = services.GetRequiredService<UserManager<Person>>();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    //var userManager = services.GetRequiredService<UserManager<Person>>();
+                    //var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-                    await UniClubDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
-                    await UniClubDbContextSeed.SeedSampleDataAsync(context);
+                    //await UniClubDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
+                    //await UniClubDbContextSeed.SeedSampleDataAsync(context);
                 }
                 catch (Exception ex)
                 {
