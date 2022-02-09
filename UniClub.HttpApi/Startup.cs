@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
 using UniClub.HttpApi.Filters;
+using UniClub.HttpApi.Helper;
 using UniClub.HttpApi.Services;
 using UniClub.Infrastructure;
 
@@ -28,8 +30,10 @@ namespace UniClub.HttpApi
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
-            services.AddControllersWithViews(options =>
-            options.Filters.Add<ApiExceptionFilterAttribute>())
+            services.AddControllersWithViews(options => {
+                options.Filters.Add<ApiExceptionFilterAttribute>();
+                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            })
                 .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
@@ -59,9 +63,17 @@ namespace UniClub.HttpApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+{
+    endpoints.MapAreaControllerRoute(
+        name: "AdminAreaRoute",
+        areaName: "Admin",
+        pattern: "admin/{controller:slugify=Dashboard}/{action:slugify=Index}/{id:slugify?}");
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
+        defaults: new { controller = "Home", action = "Index" });
+});
         }
     }
 }
