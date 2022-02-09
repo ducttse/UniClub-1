@@ -15,7 +15,7 @@ namespace UniClub.Domain.Entities
             EventByClubs = new HashSet<EventByClub>();
             Members = new HashSet<Member>();
         }
-
+        ////
         public string ClubName { get; set; }
         public string ShortName { get; set; }
         public string Description { get; set; }
