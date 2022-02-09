@@ -20,7 +20,7 @@ namespace UniClub.Application.Common
             _context = context;
         }
 
-        public async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken)
             => await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
         public async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
         {
@@ -37,7 +37,7 @@ namespace UniClub.Application.Common
             }
             return (result, count);
         }
-        public async Task<int> CreateAsync(T entity, CancellationToken cancellationToken)
+        public virtual async Task<int> CreateAsync(T entity, CancellationToken cancellationToken)
         {
             var e = await GetByIdAsync(entity.Id, cancellationToken);
             try
@@ -57,7 +57,7 @@ namespace UniClub.Application.Common
                 throw;
             }
         }
-        public async Task<int> UpdateAsync(T entity, CancellationToken cancellationToken)
+        public virtual async Task<int> UpdateAsync(T entity, CancellationToken cancellationToken)
         {
             T e = await GetByIdAsync(entity.Id, cancellationToken);
 
@@ -80,7 +80,7 @@ namespace UniClub.Application.Common
             }
         }
 
-        public async Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken)
         {
             T entity = await GetByIdAsync(id, cancellationToken);
             try
@@ -101,7 +101,7 @@ namespace UniClub.Application.Common
             }
         }
 
-        public async Task<int> HardDeleteAsync(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<int> HardDeleteAsync(TKey id, CancellationToken cancellationToken)
         {
             T entity = await GetByIdAsync(id, cancellationToken);
             try
@@ -123,7 +123,7 @@ namespace UniClub.Application.Common
             }
         }
 
-        public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
+        public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
             => await DbSet.ToListAsync();
     }
 }

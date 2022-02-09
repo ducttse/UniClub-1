@@ -58,7 +58,11 @@ namespace UniClub.Application.Common.Mappings
             #endregion
 
             #region ClubMapping
-            CreateMap<Club, ClubDto>().ReverseMap();
+            CreateMap<Club, ClubDto>()
+                .ForMember(dto => dto.UniName,
+                o => o.MapFrom(e => e.Uni.UniName))
+                .ForMember(dto => dto.ShortName,
+                o => o.MapFrom(e => e.Uni.ShortName));
             CreateMap<CreateClubCommand, Club>();
             CreateMap<UpdateClubCommand, Club>();
             CreateMap<DeleteClubCommand, Club>();

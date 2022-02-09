@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
@@ -30,7 +29,8 @@ namespace UniClub.HttpApi
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
-            services.AddControllersWithViews(options => {
+            services.AddControllersWithViews(options =>
+            {
                 options.Filters.Add<ApiExceptionFilterAttribute>();
                 options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
             })
