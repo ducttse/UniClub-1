@@ -88,7 +88,7 @@ namespace UniClub.Infrastructure.Persistence
             {
                 switch (entry.State)
                 {
-                    case EntityState.Added:
+                    case EntityState.Modified:
                         entry.Entity.ModificationTime = _dateTime.Now;
                         break;
                 }

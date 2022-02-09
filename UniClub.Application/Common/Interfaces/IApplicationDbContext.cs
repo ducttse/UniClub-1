@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Domain.Entities;
@@ -22,6 +23,7 @@ namespace UniClub.Application.Common.Interfaces
         DbSet<StudentInTask> StudentInTasks { get; }
         DbSet<ClubTask> ClubTasks { get; }
         DbSet<University> Universities { get; }
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

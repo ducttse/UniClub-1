@@ -21,15 +21,15 @@ namespace UniClub.Application.Common
         }
 
         public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken)
-            => await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken);
+            => await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id) && e.IsDeleted == false, cancellationToken);
         public async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
         {
             List<T> result = new();
             int count = 0;
             try
             {
-                count = await DbSet.CountAsync(cancellationToken);
-                result = await DbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                count = await DbSet.Where(e => e.IsDeleted == false).CountAsync(cancellationToken);
+                result = await DbSet.Where(e => e.IsDeleted == false).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
             }
             catch (Exception)
             {
@@ -65,7 +65,23 @@ namespace UniClub.Application.Common
             {
                 if (e != null)
                 {
-                    DbSet.Update(entity);
+                    foreach (var inDatabaseProperty in e.GetType().GetProperties())
+                    {
+                        if (!inDatabaseProperty.Name.Equals("Id"))
+                        {
+                            foreach (var inApplicationProperty in entity.GetType().GetProperties())
+                            {
+
+                                if (inDatabaseProperty.Name == inApplicationProperty.Name && inDatabaseProperty.PropertyType == inApplicationProperty.PropertyType)
+                                {
+                                    inApplicationProperty.SetValue(e, inDatabaseProperty.GetValue(entity));
+                                    break;
+                                }
+
+                            }
+                        }  
+                    }
+                    _context.Entry(e).Property(x => x.Id).IsModified = false;
                     return await _context.SaveChangesAsync(cancellationToken);
 
                 }
