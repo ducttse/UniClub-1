@@ -61,7 +61,7 @@ namespace UniClub.Application.Common.Mappings
             CreateMap<Club, ClubDto>()
                 .ForMember(dto => dto.UniName,
                 o => o.MapFrom(e => e.Uni.UniName))
-                .ForMember(dto => dto.ShortName,
+                .ForMember(dto => dto.UniShortName,
                 o => o.MapFrom(e => e.Uni.ShortName));
             CreateMap<CreateClubCommand, Club>();
             CreateMap<UpdateClubCommand, Club>();
