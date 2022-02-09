@@ -46,6 +46,16 @@ namespace UniClub.HttpApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniClub.HttpApi", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
