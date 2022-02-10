@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Entities;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 using UniClub.Infrastructure.Identity;
 using UniClub.Infrastructure.Persistence;
-using UniClub.Infrastructure.Repository;
+using UniClub.Infrastructure.Repositories;
 using UniClub.Infrastructure.Services;
 
 namespace UniClub.Infrastructure

@@ -3,7 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Application.ClubTasks.Dtos;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.ClubTasks.Queries.GetClubTaskById
 {

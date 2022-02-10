@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Application.ClubTasks.Dtos;
+using UniClub.Application.Helpers;
 using UniClub.Domain.Common;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination
 {
@@ -22,7 +23,11 @@ namespace UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination
 
         public async Task<PaginatedList<ClubTaskDto>> Handle(GetClubTasksWithPaginationQuery request, CancellationToken cancellationToken)
         {
-            var result = await _clubTaskRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken);
+            if (!string.IsNullOrWhiteSpace(request.OrderBy))
+            {
+                request.OrderBy = new ClubTaskDto().HasProperty(request.OrderBy);
+            }
+            var result = await _clubTaskRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending, false, request.StartTime, request.EndTime);
             return new PaginatedList<ClubTaskDto>(result.Items.Select(e => _mapper.Map<ClubTaskDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

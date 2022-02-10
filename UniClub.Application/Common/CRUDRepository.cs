@@ -2,11 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Application.Common.Exceptions;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Common;
 using UniClub.Domain.Common.Interfaces;
+
 
 namespace UniClub.Application.Common
 {
@@ -20,16 +23,64 @@ namespace UniClub.Application.Common
             _context = context;
         }
 
-        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken)
-            => await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id) && e.IsDeleted == false, cancellationToken);
-        public async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, bool isDelete = false)
+        => isDelete ? await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken)
+            : await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id) && !e.IsDeleted, cancellationToken);
+
+
+        public virtual async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken, string searchValue = null, string orderBy = null, bool IsAscending = true, bool isDelete = false, DateTime? startDate = null, DateTime? endDate = null)
         {
             List<T> result = new();
             int count = 0;
             try
             {
-                count = await DbSet.Where(e => e.IsDeleted == false).CountAsync(cancellationToken);
-                result = await DbSet.Where(e => e.IsDeleted == false).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                IQueryable<T> query = null;
+
+                if (!isDelete)
+                {
+                    if (query == null)
+                    {
+                        query = DbSet.Where(e => !e.IsDeleted);
+                    }
+                    else
+                    {
+                        query = query.Where(e => !e.IsDeleted);
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(searchValue))
+                {
+                    query = Search(query, searchValue);
+                }
+
+                if (startDate != null || endDate != null)
+                {
+                    query = InTime(query, startDate, endDate);
+                }
+
+                if (!string.IsNullOrWhiteSpace(orderBy))
+                {
+                    if (IsAscending)
+                    {
+                        query = query.OrderBy(orderBy);
+                    }
+                    else
+                    {
+                        query = query.OrderBy($"{orderBy} descending");
+                    }
+                }
+
+                if (query == null)
+                {
+                    count = await DbSet.CountAsync(cancellationToken);
+                    result = await DbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                }
+                else
+                {
+                    count = await query.CountAsync(cancellationToken);
+                    result = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                }
+
             }
             catch (Exception)
             {
@@ -37,6 +88,7 @@ namespace UniClub.Application.Common
             }
             return (result, count);
         }
+
         public virtual async Task<int> CreateAsync(T entity, CancellationToken cancellationToken)
         {
             var e = await GetByIdAsync(entity.Id, cancellationToken);
@@ -49,7 +101,7 @@ namespace UniClub.Application.Common
                 }
                 else
                 {
-                    throw new Exception($"{nameof(entity)} - ID:{entity.Id.ToString()} has already existed");
+                    throw new NotFoundException(nameof(entity), entity);
                 }
             }
             catch (Exception)
@@ -59,35 +111,34 @@ namespace UniClub.Application.Common
         }
         public virtual async Task<int> UpdateAsync(T entity, CancellationToken cancellationToken)
         {
-            T e = await GetByIdAsync(entity.Id, cancellationToken);
+            T inDatabase = await GetByIdAsync(entity.Id, cancellationToken);
 
             try
             {
-                if (e != null)
+                if (inDatabase != null)
                 {
-                    foreach (var inDatabaseProperty in e.GetType().GetProperties())
+                    foreach (var inDatabaseProperty in inDatabase.GetType().GetProperties())
                     {
                         if (!inDatabaseProperty.Name.Equals("Id"))
                         {
                             foreach (var inApplicationProperty in entity.GetType().GetProperties())
                             {
-
                                 if (inDatabaseProperty.Name == inApplicationProperty.Name && inDatabaseProperty.PropertyType == inApplicationProperty.PropertyType)
                                 {
-                                    inApplicationProperty.SetValue(e, inDatabaseProperty.GetValue(entity));
+                                    inApplicationProperty.SetValue(inDatabase, inDatabaseProperty.GetValue(entity));
                                     break;
                                 }
 
                             }
-                        }  
+                        }
                     }
-                    _context.Entry(e).Property(x => x.Id).IsModified = false;
+                    _context.Entry(inDatabase).Property(e => e.Id).IsModified = false;
                     return await _context.SaveChangesAsync(cancellationToken);
 
                 }
                 else
                 {
-                    throw new Exception($"{nameof(entity)} - ID:{entity.Id.ToString()} is invalid");
+                    throw new NotFoundException(nameof(entity), entity);
                 }
             }
             catch (Exception)
@@ -108,7 +159,7 @@ namespace UniClub.Application.Common
                 }
                 else
                 {
-                    throw new Exception("Object has not existed");
+                    throw new NotFoundException(nameof(entity), entity);
                 }
             }
             catch (Exception)
@@ -130,7 +181,7 @@ namespace UniClub.Application.Common
                 }
                 else
                 {
-                    throw new Exception("Object has not existed");
+                    throw new NotFoundException(nameof(entity), entity);
                 }
             }
             catch (Exception)
@@ -139,7 +190,11 @@ namespace UniClub.Application.Common
             }
         }
 
-        public virtual async Task<List<T>> GetAllAsync(CancellationToken cancellationToken)
-            => await DbSet.ToListAsync();
+        public virtual async Task<List<T>> GetAllWithoutPaginationAsync(CancellationToken cancellationToken)
+            => await DbSet.Where(e => e.IsDeleted == false).ToListAsync();
+
+        protected abstract IQueryable<T> Search(IQueryable<T> query, string searchValue);
+
+        protected virtual IQueryable<T> InTime(IQueryable<T> query, DateTime? startDate, DateTime? endDate) => query;
     }
 }

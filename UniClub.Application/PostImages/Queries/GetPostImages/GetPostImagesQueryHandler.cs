@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Application.PostImages.Dtos;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.PostImages.Queries.GetPostImagesWithPagination
 {
@@ -22,7 +22,7 @@ namespace UniClub.Application.PostImages.Queries.GetPostImagesWithPagination
 
         public async Task<List<PostImageDto>> Handle(GetPostImagesQuery request, CancellationToken cancellationToken)
         {
-            var result = await _postImageRepository.GetAllAsync(cancellationToken);
+            var result = await _postImageRepository.GetAllWithoutPaginationAsync(cancellationToken);
             return new List<PostImageDto>(result.Select(e => _mapper.Map<PostImageDto>(e))).ToList();
         }
     }

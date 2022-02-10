@@ -3,7 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Application.ClubPeriods.Dtos;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.ClubPeriods.Queries.GetClubPeriodById
 {

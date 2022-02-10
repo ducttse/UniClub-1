@@ -3,7 +3,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Domain.Entities;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.Universities.Commands.CreateUniversity
 {

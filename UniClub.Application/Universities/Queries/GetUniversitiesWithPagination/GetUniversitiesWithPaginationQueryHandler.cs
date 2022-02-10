@@ -3,9 +3,10 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Application.Helpers;
 using UniClub.Application.Universities.Dtos;
 using UniClub.Domain.Common;
-using UniClub.Domain.Repository.Interfaces;
+using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.Universities.Queries.GetUniversitiesWithPagination
 {
@@ -22,7 +23,11 @@ namespace UniClub.Application.Universities.Queries.GetUniversitiesWithPagination
 
         public async Task<PaginatedList<UniversityDto>> Handle(GetUniversitiesWithPaginationQuery request, CancellationToken cancellationToken)
         {
-            var result = await _universityRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken);
+            if (!string.IsNullOrWhiteSpace(request.OrderBy))
+            {
+                request.OrderBy = request.HasProperty(request.OrderBy);
+            }
+            var result = await _universityRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending);
             return new PaginatedList<UniversityDto>(result.Items.Select(e => _mapper.Map<UniversityDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

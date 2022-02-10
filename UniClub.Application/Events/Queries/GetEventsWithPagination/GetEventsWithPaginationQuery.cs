@@ -1,12 +1,14 @@
 ﻿using MediatR;
+using System;
+using UniClub.Application.Common;
 using UniClub.Application.Events.Dtos;
 using UniClub.Domain.Common;
 
 namespace UniClub.Application.Events.Queries.GetEventsWithPagination
 {
-    public class GetEventsWithPaginationQuery : IRequest<PaginatedList<EventDto>>
+    public class GetEventsWithPaginationQuery : RequestPaginationQuery, IRequest<PaginatedList<EventDto>>
     {
-        public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
     }
 }

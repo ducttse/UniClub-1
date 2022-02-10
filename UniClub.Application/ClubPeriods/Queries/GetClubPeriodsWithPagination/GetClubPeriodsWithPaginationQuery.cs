@@ -1,12 +1,15 @@
 ﻿using MediatR;
+using System;
 using UniClub.Application.ClubPeriods.Dtos;
+using UniClub.Application.Common;
 using UniClub.Domain.Common;
 
 namespace UniClub.Application.ClubPeriods.Queries.GetClubPeriodsWithPagination
 {
-    public class GetClubPeriodsWithPaginationQuery : IRequest<PaginatedList<ClubPeriodDto>>
+    public class GetClubPeriodsWithPaginationQuery : RequestPaginationQuery, IRequest<PaginatedList<ClubPeriodDto>>
     {
-        public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
     }
 }
