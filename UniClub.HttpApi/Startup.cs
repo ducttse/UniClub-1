@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
 using UniClub.HttpApi.Filters;
@@ -40,12 +41,19 @@ namespace UniClub.HttpApi
 
             services.AddHttpContextAccessor();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
+
+            services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniClub.HttpApi", Version = "v1" });
             });
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -69,17 +77,17 @@ namespace UniClub.HttpApi
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
-{
-    endpoints.MapAreaControllerRoute(
-        name: "AdminAreaRoute",
-        areaName: "Admin",
-        pattern: "admin/{controller:slugify=Dashboard}/{action:slugify=Index}/{id:slugify?}");
+            {
+                endpoints.MapAreaControllerRoute(
+                    name: "AdminAreaRoute",
+                    areaName: "Admin",
+                    pattern: "admin/{controller:slugify=Dashboard}/{action:slugify=Index}/{id:slugify?}");
 
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
-        defaults: new { controller = "Home", action = "Index" });
-});
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",
+                    defaults: new { controller = "Home", action = "Index" });
+            });
         }
     }
 }
