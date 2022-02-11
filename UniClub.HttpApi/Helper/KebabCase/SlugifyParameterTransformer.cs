@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using System.Text.RegularExpressions;
 
-namespace UniClub.HttpApi.Helper
+namespace UniClub.HttpApi.Helpers.KebabCase
 {
     public class SlugifyParameterTransformer : IOutboundParameterTransformer
     {

@@ -2,14 +2,17 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
 using UniClub.HttpApi.Filters;
-using UniClub.HttpApi.Helper;
+using UniClub.HttpApi.Helper.KebabCase;
+using UniClub.HttpApi.Helpers.KebabCase;
 using UniClub.HttpApi.Services;
 using UniClub.Infrastructure;
 
@@ -45,12 +48,17 @@ namespace UniClub.HttpApi
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                    {
+                        NamingStrategy = new KebabCaseNamingStrategy()
+                    };
                 });
 
             services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddSwaggerGen(c =>
             {
+                c.OperationFilter<KebabCasingParamOperationFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniClub.HttpApi", Version = "v1" });
             });
 
@@ -69,6 +77,8 @@ namespace UniClub.HttpApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var options = new RewriteOptions().Add(new ConvertKebabParameterToPascalCaseRule());
+            app.UseRewriter(options);
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UniClub.HttpApi v1"));
