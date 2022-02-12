@@ -14,6 +14,7 @@ namespace UniClub.Application.Clubs.Dtos
         public string UniShortName { get; set; }
         public string AvatarUrl { get; set; }
         public DateTime EstablishedDate { get; set; }
+        public int MemberCount { get; set; }
         public string Slogan { get; set; }
     }
 }

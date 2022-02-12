@@ -35,14 +35,7 @@ namespace UniClub.Infrastructure.Repositories
 
                 if (!isDelete)
                 {
-                    if (query == null)
-                    {
-                        query = DbSet.Where(e => !e.IsDeleted);
-                    }
-                    else
-                    {
-                        query = query.Where(e => !e.IsDeleted);
-                    }
+                    query = query == null ? DbSet.Where(e => !e.IsDeleted) : query = query.Where(e => !e.IsDeleted);
                 }
 
                 if (!string.IsNullOrWhiteSpace(searchValue))
@@ -52,20 +45,13 @@ namespace UniClub.Infrastructure.Repositories
 
                 if (!string.IsNullOrWhiteSpace(orderBy))
                 {
-                    if (IsAscending)
-                    {
-                        query = query.OrderBy(orderBy);
-                    }
-                    else
-                    {
-                        query = query.OrderBy($"{orderBy} descending");
-                    }
+                    query = IsAscending ? query = query.OrderBy(orderBy) : query = query.OrderBy($"{orderBy} descending");
                 }
 
                 if (query == null)
                 {
                     count = await DbSet.CountAsync(cancellationToken);
-                    result = await DbSet.Include(e => e.Uni).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                    result = await DbSet.Include(e => e.Uni).Include(e => e.Members).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
                 }
                 else
                 {

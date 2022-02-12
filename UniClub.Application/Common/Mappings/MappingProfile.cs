@@ -59,6 +59,8 @@ namespace UniClub.Application.Common.Mappings
 
             #region ClubMapping
             CreateMap<Club, ClubDto>()
+                .ForMember(dto => dto.MemberCount,
+                o => o.MapFrom(e => e.Members.Count))
                 .ForMember(dto => dto.UniName,
                 o => o.MapFrom(e => e.Uni.UniName))
                 .ForMember(dto => dto.UniShortName,

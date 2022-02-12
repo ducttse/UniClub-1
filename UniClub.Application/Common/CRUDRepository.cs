@@ -38,14 +38,7 @@ namespace UniClub.Application.Common
 
                 if (!isDelete)
                 {
-                    if (query == null)
-                    {
-                        query = DbSet.Where(e => !e.IsDeleted);
-                    }
-                    else
-                    {
-                        query = query.Where(e => !e.IsDeleted);
-                    }
+                    query = query == null ? query = DbSet.Where(e => !e.IsDeleted) : query.Where(e => !e.IsDeleted);
                 }
 
                 if (!string.IsNullOrWhiteSpace(searchValue))
@@ -60,14 +53,7 @@ namespace UniClub.Application.Common
 
                 if (!string.IsNullOrWhiteSpace(orderBy))
                 {
-                    if (IsAscending)
-                    {
-                        query = query.OrderBy(orderBy);
-                    }
-                    else
-                    {
-                        query = query.OrderBy($"{orderBy} descending");
-                    }
+                    query = IsAscending ? query = query.OrderBy(orderBy) : query = query.OrderBy($"{orderBy} descending");
                 }
 
                 if (query == null)
@@ -117,21 +103,7 @@ namespace UniClub.Application.Common
             {
                 if (inDatabase != null)
                 {
-                    foreach (var inDatabaseProperty in inDatabase.GetType().GetProperties())
-                    {
-                        if (!inDatabaseProperty.Name.Equals("Id"))
-                        {
-                            foreach (var inApplicationProperty in entity.GetType().GetProperties())
-                            {
-                                if (inDatabaseProperty.Name == inApplicationProperty.Name && inDatabaseProperty.PropertyType == inApplicationProperty.PropertyType)
-                                {
-                                    inApplicationProperty.SetValue(inDatabase, inDatabaseProperty.GetValue(entity));
-                                    break;
-                                }
-
-                            }
-                        }
-                    }
+                    UpdateEntityWithInDatabase(inDatabase, entity);
                     _context.Entry(inDatabase).Property(e => e.Id).IsModified = false;
                     return await _context.SaveChangesAsync(cancellationToken);
 
@@ -196,5 +168,16 @@ namespace UniClub.Application.Common
         protected abstract IQueryable<T> Search(IQueryable<T> query, string searchValue);
 
         protected virtual IQueryable<T> InTime(IQueryable<T> query, DateTime? startDate, DateTime? endDate) => query;
+
+        private void UpdateEntityWithInDatabase(T inDatabase, T entity)
+        {
+            foreach (var inDatabaseProperty in inDatabase.GetType().GetProperties())
+            {
+                if (!inDatabaseProperty.Name.Equals("Id"))
+                {
+                    entity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(inDatabase, inDatabaseProperty.GetValue(entity));
+                }
+            }
+        }
     }
 }
