@@ -22,8 +22,8 @@ namespace UniClub.Infrastructure.Repositories
         protected override DbSet<Club> DbSet { get; }
 
         public override async Task<Club> GetByIdAsync(int id, CancellationToken cancellationToken, bool isDelete = false)
-            => isDelete ? await DbSet.Where(e => e.Id.Equals(id)).Include(e => e.Uni).FirstOrDefaultAsync(cancellationToken)
-                        : await DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted).Include(e => e.Uni).FirstOrDefaultAsync(cancellationToken);
+            => isDelete ? await DbSet.Where(e => e.Id.Equals(id)).Include(e => e.Uni).Include(e => e.Members).FirstOrDefaultAsync(cancellationToken)
+                        : await DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted).Include(e => e.Uni).Include(e => e.Members).FirstOrDefaultAsync(cancellationToken);
 
         public override async Task<(List<Club> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken, string searchValue = null, string orderBy = null, bool IsAscending = true, bool isDelete = false, DateTime? startDate = null, DateTime? endDate = null)
         {
