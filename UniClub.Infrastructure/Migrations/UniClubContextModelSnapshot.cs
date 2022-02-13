@@ -188,7 +188,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
 
@@ -212,7 +212,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -224,7 +224,7 @@ namespace UniClub.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
@@ -239,7 +239,7 @@ namespace UniClub.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
@@ -317,7 +317,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UniId");
+                    b.HasIndex(new[] { "UniId" }, "IX_Club_UniId");
 
                     b.ToTable("Club");
                 });
@@ -360,7 +360,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClubId");
+                    b.HasIndex(new[] { "ClubId" }, "IX_ClubPeriod_ClubId");
 
                     b.ToTable("ClubPeriod");
                 });
@@ -371,12 +371,6 @@ namespace UniClub.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClubId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClubPeriodId")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasMaxLength(300)
@@ -404,10 +398,6 @@ namespace UniClub.Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex(new[] { "ClubId" }, "IX_ClubRole_ClubId");
-
-                    b.HasIndex(new[] { "ClubPeriodId" }, "IX_ClubRole_ClubPeriodId");
 
                     b.HasIndex(new[] { "ReportToRoleId" }, "IX_ClubRole_ReportToRoleId");
 
@@ -597,57 +587,16 @@ namespace UniClub.Infrastructure.Migrations
                     b.ToTable("EventByClub");
                 });
 
-            modelBuilder.Entity("UniClub.Domain.Entities.Member", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClubId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("JoinDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
-                    b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("StudentId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClubId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Member");
-                });
-
             modelBuilder.Entity("UniClub.Domain.Entities.MemberRole", b =>
                 {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
+                    b.Property<string>("MemberId")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("ClubRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClubPeriodId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
@@ -659,9 +608,11 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("MemberId", "ClubRoleId");
+                    b.HasKey("MemberId", "ClubRoleId", "ClubPeriodId");
 
-                    b.HasIndex("ClubRoleId");
+                    b.HasIndex("ClubPeriodId");
+
+                    b.HasIndex(new[] { "ClubRoleId" }, "IX_MemberRole_ClubRoleId");
 
                     b.ToTable("MemberRole");
                 });
@@ -669,7 +620,7 @@ namespace UniClub.Infrastructure.Migrations
             modelBuilder.Entity("UniClub.Domain.Entities.Participant", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
@@ -696,7 +647,8 @@ namespace UniClub.Infrastructure.Migrations
             modelBuilder.Entity("UniClub.Domain.Entities.Person", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -823,7 +775,7 @@ namespace UniClub.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PersonId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
@@ -882,7 +834,8 @@ namespace UniClub.Infrastructure.Migrations
             modelBuilder.Entity("UniClub.Domain.Entities.StudentInTask", b =>
                 {
                     b.Property<string>("StudentId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int>("TaskId")
                         .HasColumnType("int");
@@ -895,7 +848,7 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.HasKey("StudentId", "TaskId");
 
-                    b.HasIndex("TaskId");
+                    b.HasIndex(new[] { "TaskId" }, "IX_StudentInTask_TaskId");
 
                     b.ToTable("StudentInTask");
                 });
@@ -1039,27 +992,10 @@ namespace UniClub.Infrastructure.Migrations
 
             modelBuilder.Entity("UniClub.Domain.Entities.ClubRole", b =>
                 {
-                    b.HasOne("UniClub.Domain.Entities.Club", "Club")
-                        .WithMany("ClubRoles")
-                        .HasForeignKey("ClubId")
-                        .HasConstraintName("FK_ClubRole_Club")
-                        .IsRequired();
-
-                    b.HasOne("UniClub.Domain.Entities.ClubPeriod", "ClubPeriod")
-                        .WithMany("ClubRoles")
-                        .HasForeignKey("ClubPeriodId")
-                        .HasConstraintName("FK_ClubRole_ClubPeriod")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("UniClub.Domain.Entities.ClubRole", "ReportToRole")
                         .WithMany("InverseReportToRole")
                         .HasForeignKey("ReportToRoleId")
                         .HasConstraintName("FK_ClubRole_ClubRole");
-
-                    b.Navigation("Club");
-
-                    b.Navigation("ClubPeriod");
 
                     b.Navigation("ReportToRole");
                 });
@@ -1105,37 +1041,27 @@ namespace UniClub.Infrastructure.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("UniClub.Domain.Entities.Member", b =>
-                {
-                    b.HasOne("UniClub.Domain.Entities.Club", "Club")
-                        .WithMany("Members")
-                        .HasForeignKey("ClubId")
-                        .HasConstraintName("FK_Member_Club")
-                        .IsRequired();
-
-                    b.HasOne("UniClub.Domain.Entities.Person", "Student")
-                        .WithMany("Members")
-                        .HasForeignKey("StudentId")
-                        .HasConstraintName("FK_Member_Person");
-
-                    b.Navigation("Club");
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("UniClub.Domain.Entities.MemberRole", b =>
                 {
+                    b.HasOne("UniClub.Domain.Entities.ClubPeriod", "ClubPeriod")
+                        .WithMany("MemberRoles")
+                        .HasForeignKey("ClubPeriodId")
+                        .HasConstraintName("FK_MemberRole_ClubPeriod")
+                        .IsRequired();
+
                     b.HasOne("UniClub.Domain.Entities.ClubRole", "ClubRole")
                         .WithMany("MemberRoles")
                         .HasForeignKey("ClubRoleId")
                         .HasConstraintName("FK_MemberRole_ClubRole")
                         .IsRequired();
 
-                    b.HasOne("UniClub.Domain.Entities.Member", "Member")
+                    b.HasOne("UniClub.Domain.Entities.Person", "Member")
                         .WithMany("MemberRoles")
                         .HasForeignKey("MemberId")
-                        .HasConstraintName("FK_MemberRole_Member")
+                        .HasConstraintName("FK_MemberRole_AspNetUsers")
                         .IsRequired();
+
+                    b.Navigation("ClubPeriod");
 
                     b.Navigation("ClubRole");
 
@@ -1214,16 +1140,12 @@ namespace UniClub.Infrastructure.Migrations
                 {
                     b.Navigation("ClubPeriods");
 
-                    b.Navigation("ClubRoles");
-
                     b.Navigation("EventByClubs");
-
-                    b.Navigation("Members");
                 });
 
             modelBuilder.Entity("UniClub.Domain.Entities.ClubPeriod", b =>
                 {
-                    b.Navigation("ClubRoles");
+                    b.Navigation("MemberRoles");
                 });
 
             modelBuilder.Entity("UniClub.Domain.Entities.ClubRole", b =>
@@ -1252,14 +1174,9 @@ namespace UniClub.Infrastructure.Migrations
                     b.Navigation("Tasks");
                 });
 
-            modelBuilder.Entity("UniClub.Domain.Entities.Member", b =>
-                {
-                    b.Navigation("MemberRoles");
-                });
-
             modelBuilder.Entity("UniClub.Domain.Entities.Person", b =>
                 {
-                    b.Navigation("Members");
+                    b.Navigation("MemberRoles");
 
                     b.Navigation("Participants");
 

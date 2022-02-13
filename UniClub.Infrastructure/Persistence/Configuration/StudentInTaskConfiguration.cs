@@ -12,6 +12,10 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.ToTable("StudentInTask");
 
+            entity.HasIndex(e => e.TaskId, "IX_StudentInTask_TaskId");
+
+            entity.Property(e => e.StudentId).HasMaxLength(300);
+
             entity.Property(e => e.AssignedTime).HasColumnType("datetime");
 
             entity.HasOne(d => d.Student)

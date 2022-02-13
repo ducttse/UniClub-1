@@ -20,7 +20,8 @@ namespace UniClub.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string TaskName { get; set; }
-        public virtual ICollection<StudentInTask> StudentInTasks { get; set; }
+
         public virtual Event Event { get; set; }
+        public virtual ICollection<StudentInTask> StudentInTasks { get; set; }
     }
 }

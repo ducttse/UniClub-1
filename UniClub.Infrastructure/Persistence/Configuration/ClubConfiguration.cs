@@ -14,6 +14,8 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
+            entity.HasIndex(e => e.UniId, "IX_Club_UniId");
+
             entity.Property(e => e.AvatarUrl)
                 .IsRequired()
                 .HasMaxLength(256);
@@ -22,9 +24,10 @@ namespace UniClub.Infrastructure.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(256);
 
-            entity.Property(e => e.EstablishedDate).HasColumnType("date");
 
             entity.Property(e => e.Description).HasMaxLength(400);
+
+            entity.Property(e => e.EstablishedDate).HasColumnType("date");
 
             entity.Property(e => e.ShortDescription)
                 .IsRequired()

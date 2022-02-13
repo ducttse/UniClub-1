@@ -11,7 +11,8 @@ namespace UniClub.Domain.Entities
         public int TaskId { get; set; }
         public TaskStatus Status { get; set; }
         public DateTime AssignedTime { get; set; }
-        public virtual ClubTask Task { get; set; }
+
         public virtual Person Student { get; set; }
+        public virtual ClubTask Task { get; set; }
     }
 }

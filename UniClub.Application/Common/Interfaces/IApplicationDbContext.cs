@@ -14,7 +14,6 @@ namespace UniClub.Application.Common.Interfaces
         DbSet<Department> Departments { get; }
         DbSet<Event> Events { get; }
         DbSet<EventByClub> EventByClubs { get; }
-        DbSet<Member> Members { get; }
         DbSet<MemberRole> MemberRoles { get; }
         DbSet<Participant> Participants { get; }
         DbSet<Person> People { get; }

@@ -13,13 +13,10 @@ namespace UniClub.Domain.Entities
             MemberRoles = new HashSet<MemberRole>();
         }
 
-        public int ClubId { get; set; }
         public string Role { get; set; }
         public int? ReportToRoleId { get; set; }
-        public int ClubPeriodId { get; set; }
 
-        public virtual Club Club { get; set; }
-        public virtual ClubPeriod ClubPeriod { get; set; }
+
         public virtual ClubRole ReportToRole { get; set; }
         public virtual ICollection<ClubRole> InverseReportToRole { get; set; }
         public virtual ICollection<MemberRole> MemberRoles { get; set; }

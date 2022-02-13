@@ -11,14 +11,15 @@ namespace UniClub.Domain.Entities
     {
         public ClubPeriod()
         {
-            ClubRoles = new HashSet<ClubRole>();
+            MemberRoles = new HashSet<MemberRole>();
         }
+
         public int ClubId { get; set; }
         public ClubPeriodStatus Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
         public virtual Club Club { get; set; }
-        public virtual ICollection<ClubRole> ClubRoles { get; set; }
+        public virtual ICollection<MemberRole> MemberRoles { get; set; }
     }
 }

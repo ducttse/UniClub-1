@@ -23,10 +23,6 @@ using UniClub.Application.Events.Commands.CreateEvent;
 using UniClub.Application.Events.Commands.DeleteEvent;
 using UniClub.Application.Events.Commands.UpdateEvent;
 using UniClub.Application.Events.Dtos;
-using UniClub.Application.Members.Commands.CreateMember;
-using UniClub.Application.Members.Commands.DeleteMember;
-using UniClub.Application.Members.Commands.UpdateMember;
-using UniClub.Application.Members.Dtos;
 using UniClub.Application.PostImages.Commands.CreatePostImage;
 using UniClub.Application.PostImages.Commands.DeletePostImage;
 using UniClub.Application.PostImages.Commands.UpdatePostImage;
@@ -59,8 +55,6 @@ namespace UniClub.Application.Common.Mappings
 
             #region ClubMapping
             CreateMap<Club, ClubDto>()
-                .ForMember(dto => dto.MemberCount,
-                o => o.MapFrom(e => e.Members.Count))
                 .ForMember(dto => dto.UniName,
                 o => o.MapFrom(e => e.Uni.UniName))
                 .ForMember(dto => dto.UniShortName,
@@ -105,12 +99,6 @@ namespace UniClub.Application.Common.Mappings
             CreateMap<DeleteEventCommand, Event>();
             #endregion
 
-            #region MemberMapping
-            CreateMap<Member, MemberDto>().ReverseMap();
-            CreateMap<CreateMemberCommand, Member>();
-            CreateMap<UpdateMemberCommand, Member>();
-            CreateMap<DeleteMemberCommand, Member>();
-            #endregion
 
             #region PostMapping
             CreateMap<Post, PostDto>().ReverseMap();

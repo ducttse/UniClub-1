@@ -14,7 +14,6 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.HasIndex(e => e.EventId, "IX_Task_EventId");
 
-            entity.Property(e => e.CreatedBy).HasMaxLength(300);
 
             entity.Property(e => e.Description)
                 .IsRequired()
@@ -22,7 +21,6 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-            entity.Property(e => e.LastModifiedBy).HasMaxLength(300);
 
             entity.Property(e => e.StartDate).HasColumnType("datetime");
 

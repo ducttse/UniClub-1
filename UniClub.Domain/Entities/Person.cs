@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using UniClub.Domain.Common.Interfaces;
 
@@ -13,11 +14,12 @@ namespace UniClub.Domain.Entities
             Id = Guid.NewGuid().ToString();
             SecurityStamp = Guid.NewGuid().ToString();
 
-            Members = new HashSet<Member>();
+            MemberRoles = new HashSet<MemberRole>();
             Participants = new HashSet<Participant>();
             Posts = new HashSet<Post>();
             StudentInTasks = new HashSet<StudentInTask>();
         }
+        [MaxLength(300)]
         public override string Id { get; set; }
         public string Name { get; set; }
         public bool? Gender { get; set; }
@@ -33,7 +35,7 @@ namespace UniClub.Domain.Entities
         public bool IsHardDeleted { get; set; }
 
         public virtual Department Dep { get; set; }
-        public virtual ICollection<Member> Members { get; set; }
+        public virtual ICollection<MemberRole> MemberRoles { get; set; }
         public virtual ICollection<Participant> Participants { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<StudentInTask> StudentInTasks { get; set; }

@@ -55,7 +55,6 @@ namespace UniClub.Infrastructure
             services.AddTransient<IClubTaskRepository, ClubTaskRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IEventRepository, EventRepository>();
-            services.AddTransient<IMemberRepository, MemberRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostImageRepository, PostImageRepository>();
 

@@ -14,6 +14,9 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
+            entity.HasIndex(e => e.ClubId, "IX_ClubPeriod_ClubId");
+
+
             entity.Property(e => e.EndDate).HasColumnType("date");
 
             entity.Property(e => e.StartDate).HasColumnType("date");

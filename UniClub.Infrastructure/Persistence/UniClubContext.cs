@@ -34,7 +34,6 @@ namespace UniClub.Infrastructure.Persistence
         public DbSet<Department> Departments => Set<Department>();
         public DbSet<Event> Events => Set<Event>();
         public DbSet<EventByClub> EventByClubs => Set<EventByClub>();
-        public DbSet<Member> Members => Set<Member>();
         public DbSet<MemberRole> MemberRoles => Set<MemberRole>();
         public DbSet<Participant> Participants => Set<Participant>();
         public DbSet<Person> People => Set<Person>();
