@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using UniClub.Application.Common;
 
-namespace UniClub.Application.ClubRoles.Commands.CreateClubRole
+namespace UniClub.Application.ClubRoles.Commands.UpdateClubRole
 {
-    public class CreateClubRoleCommandValidator : UniClubAbstractValidator<CreateClubRoleCommand>
+    public class UpdateClubRoleCommandValidator : UniClubAbstractValidator<UpdateClubRoleCommand>
     {
-        public CreateClubRoleCommandValidator()
+        public UpdateClubRoleCommandValidator()
         {
             RuleFor(c => c.ClubId)
                 .NotEmpty().WithMessage("{PropertyName} is not empty")
@@ -19,7 +19,6 @@ namespace UniClub.Application.ClubRoles.Commands.CreateClubRole
             RuleFor(c => c.ClubPeriodId)
                 .NotEmpty().WithMessage("{PropertyName} is not empty")
                 .GreaterThan(0).WithMessage("{PropertyName} is invalid");
-
         }
     }
 }

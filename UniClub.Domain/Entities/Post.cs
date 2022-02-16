@@ -13,6 +13,7 @@ namespace UniClub.Domain.Entities
             PostImages = new HashSet<PostImage>();
         }
 
+        public string Title { get; set; }
         public string PersonId { get; set; }
         public string Content { get; set; }
         public PostStatus Status { get; set; }

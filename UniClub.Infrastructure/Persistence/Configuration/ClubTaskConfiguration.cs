@@ -26,8 +26,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.TaskName)
                 .IsRequired()
-                .HasMaxLength(10)
-                .IsFixedLength(true);
+                .HasMaxLength(100);
 
             entity.HasOne(d => d.Event)
                 .WithMany(p => p.Tasks)

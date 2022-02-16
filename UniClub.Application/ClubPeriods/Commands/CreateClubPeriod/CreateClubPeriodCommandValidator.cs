@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
+using System;
+using UniClub.Application.Common;
 
 namespace UniClub.Application.ClubPeriods.Commands.CreateClubPeriod
 {
-    public class CreateClubPeriodCommandValidator : AbstractValidator<CreateClubPeriodCommand>
+    public class CreateClubPeriodCommandValidator : UniClubAbstractValidator<CreateClubPeriodCommand>
     {
         public CreateClubPeriodCommandValidator()
         {
@@ -11,10 +13,12 @@ namespace UniClub.Application.ClubPeriods.Commands.CreateClubPeriod
                 .GreaterThan(0);
 
             RuleFor(c => c.StartDate)
-                .NotEmpty().WithMessage("{PropertyName} is not valid date");
+                .NotEmpty().WithMessage("{PropertyName} is not valid date")
+                .GreaterThan(default(DateTime)).WithMessage("{PropertyName} is not valid date");
 
             RuleFor(c => c.EndDate)
-            .NotEmpty().WithMessage("{PropertyName} is not valid date");
+            .NotNull().WithMessage("{PropertyName} is not valid date")
+            .GreaterThan(c => c.StartDate).WithMessage("{PropertyName} is not valid date");
 
             RuleFor(c => c.Status)
                 .IsInEnum().WithMessage("{PropertyName} is invalid");

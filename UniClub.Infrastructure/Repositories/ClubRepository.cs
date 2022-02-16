@@ -73,6 +73,21 @@ namespace UniClub.Infrastructure.Repositories
                                     || e.Description.Contains(searchValue)
                                     || e.ShortDescription.Contains(searchValue)
                                     || e.EstablishedDate.ToString().Contains(searchValue)
-                                    || e.Slogan.Contains(searchValue));
+                                    || e.Slogan.Contains(searchValue))
+            .Include(e => e.Uni)
+            .Include(e => e.ClubPeriods.Where(p => p.StartDate <= DateTime.Now.AddDays(-1) && p.EndDate >= DateTime.Now.AddDays(-1)))
+            .ThenInclude(e => e.MemberRoles).Select(e => new Club
+            {
+                Id = e.Id,
+                ClubName = e.ClubName,
+                ShortName = e.ShortName,
+                Description = e.Description,
+                ShortDescription = e.ShortDescription,
+                Slogan = e.Slogan,
+                AvatarUrl = e.AvatarUrl,
+                EstablishedDate = e.EstablishedDate,
+                UniId = e.Uni.Id,
+                MemberCount = e.ClubPeriods.SelectMany(p => p.MemberRoles).Count(),
+            });
     }
 }

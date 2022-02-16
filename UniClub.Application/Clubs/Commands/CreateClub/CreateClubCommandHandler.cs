@@ -7,12 +7,12 @@ using UniClub.Domain.Repositories.Interfaces;
 
 namespace UniClub.Application.Clubs.Commands.CreateClub
 {
-    public class CreateClubCommandQueryHandler : IRequestHandler<CreateClubCommand, int>
+    public class CreateClubCommandHandler : IRequestHandler<CreateClubCommand, int>
     {
         private readonly IClubRepository _clubRepository;
         private readonly IMapper _mapper;
 
-        public CreateClubCommandQueryHandler(IClubRepository clubRepository, IMapper mapper)
+        public CreateClubCommandHandler(IClubRepository clubRepository, IMapper mapper)
         {
             _clubRepository = clubRepository;
             _mapper = mapper;

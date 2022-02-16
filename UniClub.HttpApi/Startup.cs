@@ -1,13 +1,18 @@
+using FirebaseAdmin;
 using FluentValidation.AspNetCore;
+using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using System.IO;
 using UniClub.Application;
 using UniClub.Application.Common.Interfaces;
 using UniClub.HttpApi.Filters;
@@ -41,8 +46,27 @@ namespace UniClub.HttpApi
                 .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
-
             services.AddHttpContextAccessor();
+
+            //FirebaseApp.Create(new AppOptions
+            //{
+            //    Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration.GetSection("Firebase").GetSection("FileOptions").Value))
+            //});
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(opt =>
+            //    {
+            //        opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
+            //        opt.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = true,
+            //            ValidateAudience = true,
+            //            ValidateLifetime = true,
+            //            ValidateIssuerSigningKey = true,
+            //            ValidIssuer = Configuration.GetSection("Jwt").GetSection("Firebase").GetSection("ValidIssuer").Value,
+            //            ValidAudience = Configuration.GetSection("Jwt").GetSection("Firebase").GetSection("ValidAudience").Value
+            //        };
+            //    });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
@@ -50,7 +74,7 @@ namespace UniClub.HttpApi
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver
                     {
-                        NamingStrategy = new KebabCaseNamingStrategy()
+                        NamingStrategy = new Helper.KebabCase.KebabCaseNamingStrategy()
                     };
                 });
 
@@ -85,6 +109,7 @@ namespace UniClub.HttpApi
             app.UseHttpsRedirection();
             app.UseCors();
             app.UseRouting();
+            //app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

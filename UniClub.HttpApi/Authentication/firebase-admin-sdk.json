@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "uniclub-70dda",
+  "private_key_id": "d5e0740abef637e74af94a9c50f3bfedf969c19e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCiFjwyRJ8AFvkY\nTdRqTKQSOCqY8z4g33J2VGzOWaajgiv4f4LQEcET4nFKnHfJrt4J6E3wDxG/p6lR\nJe+bPRTqMn20BMwkEvEmbSTkG3jdMaRnkkn+9RNz8m7yYK5UaPv6hNkzUFwky6XD\n9NeqH2KydJqkj5NOfluEuLTUMuvcF+PjvwSmO/wn9dIKDUqjVAMYfRwcQPu4Af/Y\nPpTe9at2Tq3WPKsxnV8H4NMTgUufHqWrncwVuOd6Ctf1aSLLn1ZbkMhT5Q0SHeq2\n6vqPLP9cY+PDN+8U/tPlzQM6PCEcgRQTatx0Uwtyxo3EBw2ngvPT6X68djLO+20I\nVvkiPyFjAgMBAAECggEAAjLCAJPcrNrNkw5PK108ZmuGQbUe1Rb4DZx0g1HvnXfA\n/T72zmKcl0FIHxEYhiQ4f7LmXQifSYBOdBAge/RWnxyDMZiqZMeFp2tDMlLLD1jt\nLWMXB32vFLCnijhUdPGdj+wS/raqy+xKeb9i2LxR5ttc/jlc7+ttIKjZTv1yecrV\nnqDTT3Z2bf6h4ZnXvAhpePakDtO6zMLe0fBrDyRzK5MDXcb1WCVYVNYABld0QKuI\nWKrfDCfaf+L2o/aAb7gxZ8WypPN2BiCbefXyAzfs0H82pQ0a6F01kz4pPO/StuIW\nV3wXbwrwjdslcuypGINk7TX+UQueWj18ccyrQ7bMrQKBgQDYAaHniiietzZnAbO5\nix71HG4ZDaRM5E9GrUualOIiqaSMYAAZCx+NkO0axBAq1aWuj58MDN2IzPO+LL1A\ndqqs2fKgEHWLEzgdqnLxqDhYn+MAvXca/6zs7vpRqLij/eQZfXNq8gkJ9TNUwcUQ\nsRMizFPckHoXkvYium8X3kmqDwKBgQDAGOal4hr6/6KCDgu0jn4Qzf25hpWvmP1L\n63fyTayGoeObf3SmwvmHS7/2//R8MmvCfQrhiG3tIL14qLVepNfrndBYLPCYVvID\nCFCuFNEGC3XacyDMXRlGsiif4Adny3srAAZAdY6Gta5N9zvKOK8NxWlRnJIMlhKh\nQGJde5+3bQKBgQCSyPEzvZAC4u+mKeLu6Bo+aHZssfd/hPpWRfcFcb0F3xABkE8g\ntY1Yjy6ArNFruklfiRuEfc2hY90S06Y7gyhSU7zrhqPJwWK1zhlUHINFvkjtPNMO\nVsY1L+SMz0HBtwtlQvnGp/j6elTKeO6ofBxL3lvym39MO8LlMJnDt3uJgwKBgQCw\nWGusjtPb5b9GiyRdvY2nWaL5pL5XNCgbgO9c5cdi1M0Am9H3oPe3J2fzlObY+OSJ\n54aMolTfofWuBZpyZvu81eREfgTkpLSI6iI+nOeCGBU51ASg9zpT9wtqMRw7QcYx\nJFWY6RJNQg3gjv05WC4Dg116yTQeD8rMczGZxfpKRQKBgEoM1HMnxR5iY4JjzlP/\nMELNshp65zv4EbWw4lwhB++CIDf66LeSqGp/MaxWnc8rGAAZbLSOFePjqnO+cYw0\nOsj7h+L4E6koOYwpJruMTv6jlXquUWDgzBZwrAGmkjOu+H5NT7yT47KKIJGArytK\n3sPOnXkR0mmfds4O8DKR/n8y\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-j26hf@uniclub-70dda.iam.gserviceaccount.com",
+  "client_id": "104026978738082874117",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-j26hf%40uniclub-70dda.iam.gserviceaccount.com"
+}

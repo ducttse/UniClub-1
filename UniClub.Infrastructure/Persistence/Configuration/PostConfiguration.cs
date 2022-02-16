@@ -14,6 +14,10 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(100);
+
             entity.Property(e => e.Content)
                 .IsRequired()
                 .HasMaxLength(2000);

@@ -54,11 +54,7 @@ namespace UniClub.Application.Common.Mappings
             #endregion
 
             #region ClubMapping
-            CreateMap<Club, ClubDto>()
-                .ForMember(dto => dto.UniName,
-                o => o.MapFrom(e => e.Uni.UniName))
-                .ForMember(dto => dto.UniShortName,
-                o => o.MapFrom(e => e.Uni.ShortName));
+            CreateMap<Club, ClubDto>();
             CreateMap<CreateClubCommand, Club>();
             CreateMap<UpdateClubCommand, Club>();
             CreateMap<DeleteClubCommand, Club>();
