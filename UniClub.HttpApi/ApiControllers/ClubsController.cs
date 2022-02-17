@@ -7,6 +7,7 @@ using UniClub.Application.Clubs.Commands.DeleteClub;
 using UniClub.Application.Clubs.Commands.UpdateClub;
 using UniClub.Application.Clubs.Queries.GetClubById;
 using UniClub.Application.Clubs.Queries.GetClubsWithPagination;
+using UniClub.HttpApi.Cache;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers
@@ -16,6 +17,7 @@ namespace UniClub.HttpApi.ApiControllers
     public class ClubsController : ApiControllerBase
     {
         [HttpGet]
+        //[Cached(600)]
         public async Task<IActionResult> GetClubsWithPagination([FromQuery] GetClubsWithPaginationQuery query)
         {
             try

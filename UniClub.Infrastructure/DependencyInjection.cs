@@ -10,6 +10,7 @@ using UniClub.Infrastructure.Identity;
 using UniClub.Infrastructure.Persistence;
 using UniClub.Infrastructure.Repositories;
 using UniClub.Infrastructure.Services;
+using UniClub.Infrastructure.Settings;
 
 namespace UniClub.Infrastructure
 {
@@ -60,6 +61,22 @@ namespace UniClub.Infrastructure
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            #region redis
+            var redisCacheSettings = new RedisCacheSettings();
+            configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
+            services.AddSingleton(redisCacheSettings);  
+
+            if (redisCacheSettings.Enabled)
+            {
+                services.AddStackExchangeRedisCache(options =>
+                {
+                    options.Configuration = redisCacheSettings.ConnectionString;
+                });
+
+                services.AddSingleton<IResponseCacheService, ResponseCacheService>();
+            }
+            #endregion
 
             return services;
         }
