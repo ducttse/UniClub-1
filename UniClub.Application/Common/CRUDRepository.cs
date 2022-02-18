@@ -24,8 +24,8 @@ namespace UniClub.Application.Common
         }
 
         public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, bool isDelete = false)
-        => isDelete ? await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id), cancellationToken)
-            : await DbSet.FirstOrDefaultAsync(e => e.Id.Equals(id) && !e.IsDeleted, cancellationToken);
+        => isDelete ? await SelectProperty(DbSet.Where(e => e.Id.Equals(id))).FirstOrDefaultAsync(cancellationToken)
+            : await SelectProperty(DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted)).FirstOrDefaultAsync(cancellationToken);
 
 
         public virtual async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken, string searchValue = null, string orderBy = null, bool IsAscending = true, bool isDelete = false, DateTime? startDate = null, DateTime? endDate = null)
@@ -179,5 +179,7 @@ namespace UniClub.Application.Common
                 }
             }
         }
+
+        protected virtual IQueryable<T> SelectProperty(IQueryable<T> query) => query;
     }
 }

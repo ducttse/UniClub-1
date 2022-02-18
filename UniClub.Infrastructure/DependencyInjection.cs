@@ -47,7 +47,7 @@ namespace UniClub.Infrastructure
                 .AddApiAuthorization<Person, UniClubContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddTransient<IUniversityRepository, UniversityRepository>();
             services.AddTransient<IClubRepository, ClubRepository>();
@@ -65,7 +65,7 @@ namespace UniClub.Infrastructure
             #region redis
             var redisCacheSettings = new RedisCacheSettings();
             configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
-            services.AddSingleton(redisCacheSettings);  
+            services.AddSingleton(redisCacheSettings);
 
             if (redisCacheSettings.Enabled)
             {

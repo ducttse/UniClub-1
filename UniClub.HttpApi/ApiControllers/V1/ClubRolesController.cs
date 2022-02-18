@@ -2,25 +2,24 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.PostImages.Commands.CreatePostImage;
-using UniClub.Application.PostImages.Commands.DeletePostImage;
-using UniClub.Application.PostImages.Commands.UpdatePostImage;
-using UniClub.Application.PostImages.Queries.GetPostImageById;
-using UniClub.Application.PostImages.Queries.GetPostImagesWithPagination;
+using UniClub.Application.ClubRoles.Commands.CreateClubRole;
+using UniClub.Application.ClubRoles.Commands.DeleteClubRole;
+using UniClub.Application.ClubRoles.Commands.UpdateClubRole;
+using UniClub.Application.ClubRoles.Queries.GetClubRoleById;
+using UniClub.Application.ClubRoles.Queries.GetClubRolesWithPagination;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class PostImagesController : ApiControllerBase
+    public class ClubRolesController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetPostImagesWithPagination()
+        public async Task<IActionResult> GetClubRolesWithPagination([FromQuery] GetClubRolesWithPaginationQuery query)
         {
             try
             {
-                var query = new GetPostImagesQuery();
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -30,15 +29,15 @@ namespace UniClub.HttpApi.ApiControllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetPostImage")]
-        public async Task<IActionResult> GetPostImage(int id)
+        [HttpGet("{id}", Name = "GetClubRole")]
+        public async Task<IActionResult> GetClubRole(int id)
         {
             try
             {
-                var query = new GetPostImageByIdQuery(id);
+                var query = new GetClubRoleByIdQuery(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
-                    : NotFound(new ResponseResult() { Data = $"PostImage {id} is not found", StatusCode = HttpStatusCode.NotFound });
+                    : NotFound(new ResponseResult() { Data = $"ClubRole {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
             catch (Exception ex)
             {
@@ -47,12 +46,12 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePostImage([FromBody] CreatePostImageCommand command)
+        public async Task<IActionResult> CreateClubRole([FromBody] CreateClubRoleCommand command)
         {
             try
             {
                 var result = await Mediator.Send(command);
-                return CreatedAtRoute(nameof(GetPostImage), new { id = result }, command);
+                return CreatedAtRoute(nameof(GetClubRole), new { id = result }, command);
             }
             catch (Exception ex)
             {
@@ -61,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePostImage(int id, [FromBody] UpdatePostImageCommand command)
+        public async Task<IActionResult> UpdateClubRole(int id, [FromBody] UpdateClubRoleCommand command)
         {
             try
             {
@@ -82,11 +81,11 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePostImage(int id)
+        public async Task<IActionResult> DeleteClubRole(int id)
         {
             try
             {
-                var command = new DeletePostImageCommand(id);
+                var command = new DeleteClubRoleCommand(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }
@@ -97,3 +96,4 @@ namespace UniClub.HttpApi.ApiControllers
         }
     }
 }
+

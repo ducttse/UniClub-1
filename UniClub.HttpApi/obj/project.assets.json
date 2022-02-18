@@ -1198,6 +1198,28 @@
           }
         }
       },
+      "MockQueryable.Core/5.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/MockQueryable.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MockQueryable.Core.dll": {}
+        }
+      },
+      "MockQueryable.EntityFrameworkCore/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.0",
+          "MockQueryable.Core": "5.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/MockQueryable.EntityFrameworkCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/MockQueryable.EntityFrameworkCore.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
@@ -4109,6 +4131,34 @@
         "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MockQueryable.Core/5.0.1": {
+      "sha512": "l8+aU1yAl9Dmep0geZR2PCu7UWNwo6kKFaeuigDSimOTSd7U8ScHSAbNT1pLusUrkU2p6lwb28dJ+3wfbv2F3A==",
+      "type": "package",
+      "path": "mockqueryable.core/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.1/MockQueryable.Core.dll",
+        "logo.png",
+        "mockqueryable.core.5.0.1.nupkg.sha512",
+        "mockqueryable.core.nuspec"
+      ]
+    },
+    "MockQueryable.EntityFrameworkCore/5.0.1": {
+      "sha512": "LaS2NMn12kJO/tMLC3MHoGMw8JwLayjMPHHkO0oVDA1kZxF/cJ5+0zLXGN3j9pyA/3p0yHUrVya3JJFqF+16wQ==",
+      "type": "package",
+      "path": "mockqueryable.entityframeworkcore/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.1/MockQueryable.EntityFrameworkCore.dll",
+        "logo.png",
+        "mockqueryable.entityframeworkcore.5.0.1.nupkg.sha512",
+        "mockqueryable.entityframeworkcore.nuspec"
       ]
     },
     "Newtonsoft.Json/12.0.3": {
@@ -7825,6 +7875,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.14",
       "Microsoft.Extensions.Diagnostics.HealthChecks >= 5.0.14",
+      "MockQueryable.EntityFrameworkCore >= 5.0.1",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "Swashbuckle.AspNetCore.Newtonsoft >= 6.2.3",
       "UniClub.Application >= 1.0.0",
@@ -7913,6 +7964,10 @@
           "Microsoft.Extensions.Diagnostics.HealthChecks": {
             "target": "Package",
             "version": "[5.0.14, )"
+          },
+          "MockQueryable.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

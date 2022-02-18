@@ -18,6 +18,7 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Role)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(50);
 
             entity.HasOne(d => d.ReportToRole)

@@ -21,8 +21,8 @@ namespace UniClub.Infrastructure.Repositories
             => query.Where(e => e.Id.ToString().Equals(searchValue)
                                     || e.EventId.ToString().Equals(searchValue)
                                     || e.Status.ToString().Equals(searchValue)
-                                    || e.TaskName.Contains(searchValue)
-                                    || e.Description.Contains(searchValue));
+                                    || EF.Functions.Collate(e.TaskName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.Description, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue));
 
         protected override IQueryable<ClubTask> InTime(IQueryable<ClubTask> query, DateTime? startDate, DateTime? endDate)
         {

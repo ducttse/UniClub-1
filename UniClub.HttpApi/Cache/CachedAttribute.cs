@@ -62,7 +62,7 @@ namespace UniClub.HttpApi.Cache
 
             keyBuilder.Append($"{request.Path}");
 
-            foreach (var (key,value) in request.Query.OrderBy(r => r.Key))
+            foreach (var (key, value) in request.Query.OrderBy(r => r.Key))
             {
                 keyBuilder.Append($"|{key}-{value}");
             }

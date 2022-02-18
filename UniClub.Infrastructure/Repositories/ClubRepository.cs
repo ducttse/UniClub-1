@@ -22,8 +22,8 @@ namespace UniClub.Infrastructure.Repositories
         protected override DbSet<Club> DbSet { get; }
 
         public override async Task<Club> GetByIdAsync(int id, CancellationToken cancellationToken, bool isDelete = false)
-            => isDelete ? await DbSet.Where(e => e.Id.Equals(id)).Include(e => e.Uni).FirstOrDefaultAsync(cancellationToken)
-                        : await DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted).Include(e => e.Uni).FirstOrDefaultAsync(cancellationToken);
+            => isDelete ? await SelectProperty(DbSet.Where(e => e.Id.Equals(id))).FirstOrDefaultAsync(cancellationToken)
+                        : await SelectProperty(DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted)).FirstOrDefaultAsync(cancellationToken);
 
         public override async Task<(List<Club> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken, string searchValue = null, string orderBy = null, bool IsAscending = true, bool isDelete = false, DateTime? startDate = null, DateTime? endDate = null)
         {
@@ -51,12 +51,12 @@ namespace UniClub.Infrastructure.Repositories
                 if (query == null)
                 {
                     count = await DbSet.CountAsync(cancellationToken);
-                    result = await DbSet.Include(e => e.Uni).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                    result = await DbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
                 }
                 else
                 {
                     count = await query.CountAsync(cancellationToken);
-                    result = await query.Include(e => e.Uni).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+                    result = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
                 }
             }
             catch (Exception)
@@ -68,14 +68,18 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override IQueryable<Club> Search(IQueryable<Club> query, string searchValue)
             => query.Where(e => e.Id.ToString().Equals(searchValue)
-                                    || e.ClubName.Contains(searchValue)
-                                    || e.ShortName.Contains(searchValue)
-                                    || e.Description.Contains(searchValue)
-                                    || e.ShortDescription.Contains(searchValue)
+                                    || EF.Functions.Collate(e.ClubName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.ShortName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.Description, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.ShortDescription, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                     || e.EstablishedDate.ToString().Contains(searchValue)
-                                    || e.Slogan.Contains(searchValue))
+                                    || EF.Functions.Collate(e.Slogan, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue))
             .Include(e => e.Uni)
-            .Include(e => e.ClubPeriods.Where(p => p.StartDate <= DateTime.Now.AddDays(-1) && p.EndDate >= DateTime.Now.AddDays(-1)))
+            .Include(e => e.ClubPeriods.Where(p => p.StartDate <= DateTime.Now.AddDays(-1) && p.EndDate >= DateTime.Now.AddDays(-1)));
+
+        protected override IQueryable<Club> SelectProperty(IQueryable<Club> query) =>
+            query
+            .Include(e => e.ClubPeriods.Where(p => p.StartDate <= DateTime.Now.AddDays(-15) && p.EndDate >= DateTime.Now.AddDays(-15)))
             .ThenInclude(e => e.MemberRoles).Select(e => new Club
             {
                 Id = e.Id,
@@ -86,7 +90,7 @@ namespace UniClub.Infrastructure.Repositories
                 Slogan = e.Slogan,
                 AvatarUrl = e.AvatarUrl,
                 EstablishedDate = e.EstablishedDate,
-                UniId = e.Uni.Id,
+                UniId = e.UniId,
                 MemberCount = e.ClubPeriods.SelectMany(p => p.MemberRoles).Count(),
             });
     }

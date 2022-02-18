@@ -235,6 +235,10 @@
               "target": "Package",
               "version": "[5.0.14, )"
             },
+            "MockQueryable.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"

@@ -18,7 +18,7 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override IQueryable<ClubRole> Search(IQueryable<ClubRole> query, string searchValue)
              => query.Where(e => e.Id.ToString().Equals(searchValue)
-                                    || e.Role.Contains(searchValue)
+                                    || EF.Functions.Collate(e.Role, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                     || e.ReportToRoleId.ToString().Equals(searchValue));
     }
 }

@@ -18,12 +18,12 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override IQueryable<University> Search(IQueryable<University> query, string searchValue)
             => query.Where(e => e.Id.ToString().Equals(searchValue)
-                                        || e.ShortName.Contains(searchValue)
+                                        || EF.Functions.Collate(e.ShortName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                         || e.Website.Contains(searchValue)
                                         || e.UniPhone.Contains(searchValue)
-                                        || e.UniName.Contains(searchValue)
-                                        || e.UniAddress.Contains(searchValue)
-                                        || e.Slogan.Contains(searchValue)
+                                        || EF.Functions.Collate(e.UniName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                        || EF.Functions.Collate(e.UniAddress, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                        || EF.Functions.Collate(e.Slogan, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                         || e.EstablishedDate.ToString().Equals(searchValue));
     }
 }

@@ -19,11 +19,11 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override IQueryable<Event> Search(IQueryable<Event> query, string searchValue)
             => query.Where(e => e.Id.ToString().Equals(searchValue)
-                                    || e.EventName.Contains(searchValue)
-                                    || e.Location.Equals(searchValue)
+                                    || EF.Functions.Collate(e.EventName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.Location, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                     || e.Point.ToString().Equals(searchValue)
                                     || e.MaxParticipants.ToString().Equals(searchValue)
-                                    || e.Description.ToString().Contains(searchValue)
+                                    || EF.Functions.Collate(e.Description, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
                                     || e.Status.ToString().Equals(searchValue));
 
         protected override IQueryable<Event> InTime(IQueryable<Event> query, DateTime? startDate, DateTime? endDate)

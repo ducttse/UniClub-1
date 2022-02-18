@@ -2,24 +2,25 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Students.Commands.CreateStudent;
-using UniClub.Application.Students.Commands.DeleteStudent;
-using UniClub.Application.Students.Commands.UpdateStudent;
-using UniClub.Application.Students.Queries.GetStudentById;
-using UniClub.Application.Students.Queries.GetStudentsWithPagination;
+using UniClub.Application.PostImages.Commands.CreatePostImage;
+using UniClub.Application.PostImages.Commands.DeletePostImage;
+using UniClub.Application.PostImages.Commands.UpdatePostImage;
+using UniClub.Application.PostImages.Queries.GetPostImageById;
+using UniClub.Application.PostImages.Queries.GetPostImagesWithPagination;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class StudentsController : ApiControllerBase
+    public class PostImagesController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetStudentsWithPagination([FromQuery] GetStudentsWithPaginationQuery query)
+        public async Task<IActionResult> GetPostImagesWithPagination()
         {
             try
             {
+                var query = new GetPostImagesQuery();
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -29,15 +30,15 @@ namespace UniClub.HttpApi.ApiControllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetStudent")]
-        public async Task<IActionResult> GetStudent(string id)
+        [HttpGet("{id}", Name = "GetPostImage")]
+        public async Task<IActionResult> GetPostImage(int id)
         {
             try
             {
-                var query = new GetStudentByIdQuery(id);
+                var query = new GetPostImageByIdQuery(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
-                    : NotFound(new ResponseResult() { Data = $"Student {id} is not found", StatusCode = HttpStatusCode.NotFound });
+                    : NotFound(new ResponseResult() { Data = $"PostImage {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
             catch (Exception ex)
             {
@@ -46,12 +47,12 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand command)
+        public async Task<IActionResult> CreatePostImage([FromBody] CreatePostImageCommand command)
         {
             try
             {
                 var result = await Mediator.Send(command);
-                return CreatedAtRoute(nameof(GetStudent), new { id = result }, command);
+                return CreatedAtRoute(nameof(GetPostImage), new { id = result }, command);
             }
             catch (Exception ex)
             {
@@ -60,7 +61,7 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudentCommand command)
+        public async Task<IActionResult> UpdatePostImage(int id, [FromBody] UpdatePostImageCommand command)
         {
             try
             {
@@ -81,11 +82,11 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(string id)
+        public async Task<IActionResult> DeletePostImage(int id)
         {
             try
             {
-                var command = new DeleteStudentCommand(id);
+                var command = new DeletePostImageCommand(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

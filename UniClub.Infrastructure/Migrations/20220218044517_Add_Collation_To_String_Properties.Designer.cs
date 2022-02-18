@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniClub.Infrastructure.Persistence;
 
 namespace UniClub.Infrastructure.Migrations
 {
     [DbContext(typeof(UniClubContext))]
-    partial class UniClubContextModelSnapshot : ModelSnapshot
+    [Migration("20220218044517_Add_Collation_To_String_Properties")]
+    partial class Add_Collation_To_String_Properties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

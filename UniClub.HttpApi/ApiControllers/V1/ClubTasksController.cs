@@ -2,21 +2,21 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.ClubRoles.Commands.CreateClubRole;
-using UniClub.Application.ClubRoles.Commands.DeleteClubRole;
-using UniClub.Application.ClubRoles.Commands.UpdateClubRole;
-using UniClub.Application.ClubRoles.Queries.GetClubRoleById;
-using UniClub.Application.ClubRoles.Queries.GetClubRolesWithPagination;
+using UniClub.Application.ClubTasks.Commands.CreateClubTask;
+using UniClub.Application.ClubTasks.Commands.DeleteClubTask;
+using UniClub.Application.ClubTasks.Commands.UpdateClubTask;
+using UniClub.Application.ClubTasks.Queries.GetClubTaskById;
+using UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ClubRolesController : ApiControllerBase
+    public class ClubTasksController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetClubRolesWithPagination([FromQuery] GetClubRolesWithPaginationQuery query)
+        public async Task<IActionResult> GetClubTasksWithPagination([FromQuery] GetClubTasksWithPaginationQuery query)
         {
             try
             {
@@ -29,15 +29,15 @@ namespace UniClub.HttpApi.ApiControllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetClubRole")]
-        public async Task<IActionResult> GetClubRole(int id)
+        [HttpGet("{id}", Name = "GetClubTask")]
+        public async Task<IActionResult> GetClubTask(int id)
         {
             try
             {
-                var query = new GetClubRoleByIdQuery(id);
+                var query = new GetClubTaskByIdQuery(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
-                    : NotFound(new ResponseResult() { Data = $"ClubRole {id} is not found", StatusCode = HttpStatusCode.NotFound });
+                    : NotFound(new ResponseResult() { Data = $"ClubTask {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
             catch (Exception ex)
             {
@@ -46,12 +46,12 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClubRole([FromBody] CreateClubRoleCommand command)
+        public async Task<IActionResult> CreateClubTask([FromBody] CreateClubTaskCommand command)
         {
             try
             {
                 var result = await Mediator.Send(command);
-                return CreatedAtRoute(nameof(GetClubRole), new { id = result }, command);
+                return CreatedAtRoute(nameof(GetClubTask), new { id = result }, command);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateClubRole(int id, [FromBody] UpdateClubRoleCommand command)
+        public async Task<IActionResult> UpdateClubTask(int id, [FromBody] UpdateClubTaskCommand command)
         {
             try
             {
@@ -81,11 +81,11 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClubRole(int id)
+        public async Task<IActionResult> DeleteClubTask(int id)
         {
             try
             {
-                var command = new DeleteClubRoleCommand(id);
+                var command = new DeleteClubTaskCommand(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }
@@ -96,4 +96,3 @@ namespace UniClub.HttpApi.ApiControllers
         }
     }
 }
-

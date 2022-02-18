@@ -19,7 +19,7 @@ namespace UniClub.Infrastructure.Repositories
         protected override IQueryable<Department> Search(IQueryable<Department> query, string searchValue)
             => query.Where(e => e.Id.ToString().Equals(searchValue)
                                     || e.UniId.ToString().Equals(searchValue)
-                                    || e.DepName.Contains(searchValue)
-                                    || e.ShortName.Contains(searchValue));
+                                    || EF.Functions.Collate(e.DepName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
+                                    || EF.Functions.Collate(e.ShortName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue));
     }
 }

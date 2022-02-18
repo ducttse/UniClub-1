@@ -48,6 +48,14 @@ namespace UniClub.Infrastructure.Persistence
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            modelBuilder.Entity<Person>()
+                .Property(p => p.Name)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Person>()
+                .Property(p => p.Address)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
             base.OnModelCreating(modelBuilder);
         }
 

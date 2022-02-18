@@ -9,7 +9,7 @@ using UniClub.Application.Departments.Queries.GetDepartmentById;
 using UniClub.Application.Departments.Queries.GetDepartmentsWithPagination;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]

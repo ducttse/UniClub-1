@@ -7,10 +7,9 @@ using UniClub.Application.Clubs.Commands.DeleteClub;
 using UniClub.Application.Clubs.Commands.UpdateClub;
 using UniClub.Application.Clubs.Queries.GetClubById;
 using UniClub.Application.Clubs.Queries.GetClubsWithPagination;
-using UniClub.HttpApi.Cache;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]

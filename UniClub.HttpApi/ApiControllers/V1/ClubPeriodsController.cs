@@ -2,21 +2,21 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Events.Commands.CreateEvent;
-using UniClub.Application.Events.Commands.DeleteEvent;
-using UniClub.Application.Events.Commands.UpdateEvent;
-using UniClub.Application.Events.Queries.GetEventById;
-using UniClub.Application.Events.Queries.GetEventsWithPagination;
+using UniClub.Application.ClubPeriods.Commands.CreateClubPeriod;
+using UniClub.Application.ClubPeriods.Commands.DeleteClubPeriod;
+using UniClub.Application.ClubPeriods.Commands.UpdateClubPeriod;
+using UniClub.Application.ClubPeriods.Queries.GetClubPeriodById;
+using UniClub.Application.ClubPeriods.Queries.GetClubPeriodsWithPagination;
 using UniClub.HttpApi.Models;
 
-namespace UniClub.HttpApi.ApiControllers
+namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class EventsController : ApiControllerBase
+    public class ClubPeriodsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetEventsWithPagination([FromQuery] GetEventsWithPaginationQuery query)
+        public async Task<IActionResult> GetClubPeriodsWithPagination([FromQuery] GetClubPeriodsWithPaginationQuery query)
         {
             try
             {
@@ -29,15 +29,15 @@ namespace UniClub.HttpApi.ApiControllers
             }
         }
 
-        [HttpGet("{id}", Name = "GetEvent")]
-        public async Task<IActionResult> GetEvent(int id)
+        [HttpGet("{id}", Name = "GetClubPeriod")]
+        public async Task<IActionResult> GetClubPeriod(int id)
         {
             try
             {
-                var query = new GetEventByIdQuery(id);
+                var query = new GetClubPeriodByIdQuery(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
-                    : NotFound(new ResponseResult() { Data = $"Event {id} is not found", StatusCode = HttpStatusCode.NotFound });
+                    : NotFound(new ResponseResult() { Data = $"ClubPeriod {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
             catch (Exception ex)
             {
@@ -46,12 +46,12 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
+        public async Task<IActionResult> CreateClubPeriod([FromBody] CreateClubPeriodCommand command)
         {
             try
             {
                 var result = await Mediator.Send(command);
-                return CreatedAtRoute(nameof(GetEvent), new { id = result }, command);
+                return CreatedAtRoute(nameof(GetClubPeriod), new { id = result }, command);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventCommand command)
+        public async Task<IActionResult> UpdateClubPeriod(int id, [FromBody] UpdateClubPeriodCommand command)
         {
             try
             {
@@ -81,11 +81,11 @@ namespace UniClub.HttpApi.ApiControllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
+        public async Task<IActionResult> DeleteClubPeriod(int id)
         {
             try
             {
-                var command = new DeleteEventCommand(id);
+                var command = new DeleteClubPeriodCommand(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }
@@ -96,3 +96,4 @@ namespace UniClub.HttpApi.ApiControllers
         }
     }
 }
+

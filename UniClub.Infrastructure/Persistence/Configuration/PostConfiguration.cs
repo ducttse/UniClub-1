@@ -16,14 +16,17 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.Title)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(100);
 
             entity.Property(e => e.Content)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(2000);
 
             entity.Property(e => e.ShortDescription)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(1000);
 
             entity.HasOne(d => d.Person)

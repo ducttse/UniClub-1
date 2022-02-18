@@ -22,22 +22,29 @@ namespace UniClub.Infrastructure.Persistence.Configuration
 
             entity.Property(e => e.ClubName)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(256);
 
 
-            entity.Property(e => e.Description).HasMaxLength(400);
+            entity.Property(e => e.Description)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
+                .HasMaxLength(400);
 
             entity.Property(e => e.EstablishedDate).HasColumnType("date");
 
             entity.Property(e => e.ShortDescription)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(100);
 
             entity.Property(e => e.ShortName)
                 .IsRequired()
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
                 .HasMaxLength(10);
 
-            entity.Property(e => e.Slogan).HasMaxLength(256);
+            entity.Property(e => e.Slogan)
+                .UseCollation("SQL_Latin1_General_CP1_CI_AI")
+                .HasMaxLength(256);
 
             entity.HasOne(d => d.Uni)
                 .WithMany(p => p.Clubs)
