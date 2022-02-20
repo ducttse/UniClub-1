@@ -27,7 +27,7 @@ namespace UniClub.Application.Events.Queries.GetEventsWithPagination
             {
                 request.OrderBy = new EventDto().HasProperty(request.OrderBy);
             }
-            var result = await _eventRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending, false, request.StartTime, request.EndTime);
+            var result = await _eventRepository.GetListAsync(cancellationToken, new GetEventsWithPaginationSpecification(request));
             return new PaginatedList<EventDto>(result.Items.Select(e => _mapper.Map<EventDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

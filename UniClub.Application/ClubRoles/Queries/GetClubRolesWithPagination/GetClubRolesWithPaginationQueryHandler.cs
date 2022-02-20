@@ -27,7 +27,7 @@ namespace UniClub.Application.ClubRoles.Queries.GetClubRolesWithPagination
             {
                 request.OrderBy = new ClubRoleDto().HasProperty(request.OrderBy);
             }
-            var result = await _clubRoleRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending);
+            var result = await _clubRoleRepository.GetListAsync(cancellationToken, new GetClubRolesWithPaginationSpecification(request));
             return new PaginatedList<ClubRoleDto>(result.Items.Select(e => _mapper.Map<ClubRoleDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

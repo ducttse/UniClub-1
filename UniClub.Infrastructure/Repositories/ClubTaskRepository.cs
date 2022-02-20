@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using UniClub.Application.Common;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Entities;
@@ -17,29 +15,5 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override DbSet<ClubTask> DbSet { get; }
 
-        protected override IQueryable<ClubTask> Search(IQueryable<ClubTask> query, string searchValue)
-            => query.Where(e => e.Id.ToString().Equals(searchValue)
-                                    || e.EventId.ToString().Equals(searchValue)
-                                    || e.Status.ToString().Equals(searchValue)
-                                    || EF.Functions.Collate(e.TaskName, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
-                                    || EF.Functions.Collate(e.Description, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue));
-
-        protected override IQueryable<ClubTask> InTime(IQueryable<ClubTask> query, DateTime? startDate, DateTime? endDate)
-        {
-            if (startDate != null && endDate != null)
-            {
-                return query.Where(e => startDate <= e.StartDate && e.EndDate <= endDate);
-            }
-
-            if (startDate != null)
-            {
-                return query.Where(e => startDate <= e.StartDate);
-            }
-            if (endDate != null)
-            {
-                return query.Where(e => e.EndDate <= endDate);
-            }
-            return query;
-        }
     }
 }

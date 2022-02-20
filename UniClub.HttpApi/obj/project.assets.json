@@ -1706,7 +1706,7 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Dynamic.Core/1.2.15": {
+      "System.Linq.Dynamic.Core/1.2.16": {
         "type": "package",
         "compile": {
           "lib/net5.0/System.Linq.Dynamic.Core.dll": {}
@@ -2410,7 +2410,6 @@
           "FluentValidation.DependencyInjectionExtensions": "10.3.6",
           "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
           "Microsoft.EntityFrameworkCore": "5.0.13",
-          "System.Linq.Dynamic.Core": "1.2.15",
           "UniClub.Domain": "1.0.0"
         },
         "compile": {
@@ -2425,7 +2424,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.13",
-          "Microsoft.EntityFrameworkCore": "5.0.13"
+          "Microsoft.EntityFrameworkCore": "5.0.13",
+          "System.Linq.Dynamic.Core": "1.2.16"
         },
         "compile": {
           "bin/placeholder/UniClub.Domain.dll": {}
@@ -5588,10 +5588,10 @@
         "system.linq.nuspec"
       ]
     },
-    "System.Linq.Dynamic.Core/1.2.15": {
-      "sha512": "46PeyhpG36FWBFShRlmumMWGqdUd8SA+NMd/DwnGzkHY3SzFPAILndgViRzcUtsHhqGBrMOI0aqhpm0u9JAitg==",
+    "System.Linq.Dynamic.Core/1.2.16": {
+      "sha512": "gL1Utu+zos+Bo/A5el+JzCbbRPVlP6363kIDbN+Dzp/xWPcFWLQGw+sxSaAla6LR805b0jOGjLvsqHjfnWdNwg==",
       "type": "package",
-      "path": "system.linq.dynamic.core/1.2.15",
+      "path": "system.linq.dynamic.core/1.2.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5629,7 +5629,7 @@
         "lib/uap10.0.10240/System.Linq.Dynamic.Core.pdb",
         "lib/uap10.0.10240/System.Linq.Dynamic.Core.pri",
         "lib/uap10.0.10240/System.Linq.Dynamic.Core.xml",
-        "system.linq.dynamic.core.1.2.15.nupkg.sha512",
+        "system.linq.dynamic.core.1.2.16.nupkg.sha512",
         "system.linq.dynamic.core.nuspec"
       ]
     },

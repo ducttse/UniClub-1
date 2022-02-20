@@ -27,7 +27,7 @@ namespace UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination
             {
                 request.OrderBy = new ClubTaskDto().HasProperty(request.OrderBy);
             }
-            var result = await _clubTaskRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending, false, request.StartTime, request.EndTime);
+            var result = await _clubTaskRepository.GetListAsync(cancellationToken, new GetClubTaskWithPaginationSpecification(request));
             return new PaginatedList<ClubTaskDto>(result.Items.Select(e => _mapper.Map<ClubTaskDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

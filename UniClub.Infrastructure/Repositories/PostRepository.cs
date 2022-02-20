@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using UniClub.Application.Common;
 using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Entities;
@@ -16,11 +15,5 @@ namespace UniClub.Infrastructure.Repositories
 
         protected override DbSet<Post> DbSet { get; }
 
-        protected override IQueryable<Post> Search(IQueryable<Post> query, string searchValue)
-            => query.Where(e => e.Id.ToString().Equals(searchValue)
-                            || e.PersonId.ToString().Equals(searchValue)
-                            || e.Status.ToString().Equals(searchValue)
-                            || EF.Functions.Collate(e.Content, "SQL_Latin1_General_CP1_CI_AI").Contains(searchValue)
-                            || e.EventId.ToString().Equals(searchValue));
     }
 }

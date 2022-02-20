@@ -8,7 +8,7 @@ namespace UniClub.Application.ClubTasks.Queries.GetClubTasksWithPagination
 {
     public class GetClubTasksWithPaginationQuery : RequestPaginationQuery, IRequest<PaginatedList<ClubTaskDto>>
     {
-        public DateTime? StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

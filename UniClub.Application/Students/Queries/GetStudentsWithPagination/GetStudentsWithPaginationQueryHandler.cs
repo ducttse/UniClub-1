@@ -25,7 +25,7 @@ namespace UniClub.Application.Students.Queries.GetStudentsWithPagination
         public async Task<PaginatedList<StudentDto>> Handle(GetStudentsWithPaginationQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.GetUsersInRoleAsync(STUDENT_ROLE);
-            var result = users.Skip((request.PageNumber - 1) * request.PageSize).Select(e => _mapper.Map<StudentDto>(e)).ToList();
+            var result = SpecificationEvaluator<Person>.GetQuery(users.AsQueryable(), new GetStudentsWithPaginationSpecification(request)).Select(e => _mapper.Map<StudentDto>(e)).ToList();
             return new PaginatedList<StudentDto>(result, users.Count, request.PageNumber, request.PageSize);
         }
     }

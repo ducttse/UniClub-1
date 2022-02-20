@@ -10,7 +10,6 @@ using UniClub.Application.Common.Interfaces;
 using UniClub.Domain.Common;
 using UniClub.Domain.Common.Interfaces;
 
-
 namespace UniClub.Application.Common
 {
     public abstract class CRUDRepository<T, TKey> : ICRUDRepository<T, TKey> where T : AuditableEntity<TKey>
@@ -23,50 +22,19 @@ namespace UniClub.Application.Common
             _context = context;
         }
 
-        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, bool isDelete = false)
-        => isDelete ? await SelectProperty(DbSet.Where(e => e.Id.Equals(id))).FirstOrDefaultAsync(cancellationToken)
-            : await SelectProperty(DbSet.Where(e => e.Id.Equals(id) && !e.IsDeleted)).FirstOrDefaultAsync(cancellationToken);
+        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, ISpecification<T> specification = null)
+        => await SpecificationEvaluator<T>.GetQuery(DbSet.Where(e => e.Id.Equals(id))
+            .AsQueryable(), specification).FirstOrDefaultAsync();
 
-
-        public virtual async Task<(List<T> Items, int Count)> GetListAsync(int pageNumber, int pageSize, CancellationToken cancellationToken, string searchValue = null, string orderBy = null, bool IsAscending = true, bool isDelete = false, DateTime? startDate = null, DateTime? endDate = null)
+        public virtual async Task<(List<T> Items, int Count)> GetListAsync(CancellationToken cancellationToken, ISpecification<T> specification = null)
         {
             List<T> result = new();
             int count = 0;
             try
             {
-                IQueryable<T> query = null;
-
-                if (!isDelete)
-                {
-                    query = query == null ? query = DbSet.Where(e => !e.IsDeleted) : query.Where(e => !e.IsDeleted);
-                }
-
-                if (!string.IsNullOrWhiteSpace(searchValue))
-                {
-                    query = Search(query, searchValue);
-                }
-
-                if (startDate != null || endDate != null)
-                {
-                    query = InTime(query, startDate, endDate);
-                }
-
-                if (!string.IsNullOrWhiteSpace(orderBy))
-                {
-                    query = IsAscending ? query = query.OrderBy(orderBy) : query = query.OrderBy($"{orderBy} descending");
-                }
-
-                if (query == null)
-                {
-                    count = await DbSet.CountAsync(cancellationToken);
-                    result = await DbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
-                }
-                else
-                {
-                    count = await query.CountAsync(cancellationToken);
-                    result = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
-                }
-
+                var query = SpecificationEvaluator<T>.GetQuery(DbSet, specification);
+                count = await query.CountAsync(cancellationToken);
+                result = await query.ToListAsync(cancellationToken);
             }
             catch (Exception)
             {
@@ -162,13 +130,6 @@ namespace UniClub.Application.Common
             }
         }
 
-        public virtual async Task<List<T>> GetAllWithoutPaginationAsync(CancellationToken cancellationToken)
-            => await DbSet.Where(e => e.IsDeleted == false).ToListAsync();
-
-        protected abstract IQueryable<T> Search(IQueryable<T> query, string searchValue);
-
-        protected virtual IQueryable<T> InTime(IQueryable<T> query, DateTime? startDate, DateTime? endDate) => query;
-
         private void UpdateEntityWithInDatabase(T inDatabase, T entity)
         {
             foreach (var inDatabaseProperty in inDatabase.GetType().GetProperties())
@@ -179,7 +140,5 @@ namespace UniClub.Application.Common
                 }
             }
         }
-
-        protected virtual IQueryable<T> SelectProperty(IQueryable<T> query) => query;
     }
 }

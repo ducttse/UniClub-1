@@ -27,7 +27,7 @@ namespace UniClub.Application.Posts.Queries.GetPostsWithPagination
             {
                 request.OrderBy = new PostDto().HasProperty(request.OrderBy);
             }
-            var result = await _postRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending);
+            var result = await _postRepository.GetListAsync(cancellationToken, new GetPostsWithPaginationSpecification(request));
             return new PaginatedList<PostDto>(result.Items.Select(e => _mapper.Map<PostDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

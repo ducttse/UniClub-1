@@ -27,7 +27,7 @@ namespace UniClub.Application.Departments.Queries.GetDepartmentsWithPagination
             {
                 request.OrderBy = new DepartmentDto().HasProperty(request.OrderBy);
             }
-            var result = await _departmentRepository.GetListAsync(request.PageNumber, request.PageSize, cancellationToken, request.SearchValue, request.OrderBy, request.IsAscending);
+            var result = await _departmentRepository.GetListAsync(cancellationToken, new GetDepartmentsWithPaginationSpecification(request));
             return new PaginatedList<DepartmentDto>(result.Items.Select(e => _mapper.Map<DepartmentDto>(e)).ToList(), result.Count, request.PageNumber, request.PageSize);
         }
     }

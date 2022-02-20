@@ -7,7 +7,7 @@ using UniClub.Domain.Common.Interfaces;
 
 namespace UniClub.Domain.Entities
 {
-    public class Person : IdentityUser, IMayHaveCreator, IHasCreationTime, IMayHaveModifier, IHasModificationTime, ISoftDelete
+    public class Person : IdentityUser, IEntity<string>, IEntity, IMayHaveCreator, IHasCreationTime, IMayHaveModifier, IHasModificationTime, ISoftDelete
     {
         public Person()
         {
