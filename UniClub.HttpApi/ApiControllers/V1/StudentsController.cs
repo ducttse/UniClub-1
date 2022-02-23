@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Students.Commands.CreateStudent;
-using UniClub.Application.Students.Commands.DeleteStudent;
-using UniClub.Application.Students.Commands.UpdateStudent;
-using UniClub.Application.Students.Queries.GetStudentById;
-using UniClub.Application.Students.Queries.GetStudentsWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -16,7 +16,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class StudentsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetStudentsWithPagination([FromQuery] GetStudentsWithPaginationQuery query)
+        public async Task<IActionResult> GetStudentsWithPagination([FromQuery] GetStudentsWithPaginationDto query)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetStudentByIdQuery(id);
+                var query = new GetStudentByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Student {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -46,7 +46,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand command)
+        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentDto command)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudentCommand command)
+        public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateStudentDto command)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeleteStudentCommand(id);
+                var command = new DeleteStudentDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

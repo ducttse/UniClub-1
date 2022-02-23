@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Universities.Commands.CreateUniversity;
-using UniClub.Application.Universities.Commands.DeleteUniversity;
-using UniClub.Application.Universities.Commands.UpdateUniversity;
-using UniClub.Application.Universities.Queries.GetUniversitiesWithPagination;
-using UniClub.Application.Universities.Queries.GetUniversityById;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.ApiControllers;
 using UniClub.HttpApi.Models;
 
@@ -15,7 +15,7 @@ using UniClub.HttpApi.Models;
 public class UniversitiesController : ApiControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetUniversitiesWithPagination([FromQuery] GetUniversitiesWithPaginationQuery query)
+    public async Task<IActionResult> GetUniversitiesWithPagination([FromQuery] GetUniversitiesWithPaginationDto query)
     {
         try
         {
@@ -33,7 +33,7 @@ public class UniversitiesController : ApiControllerBase
     {
         try
         {
-            var query = new GetUniversityByIdQuery(id);
+            var query = new GetUniversityByIdDto(id);
             var result = await Mediator.Send(query);
             return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                 : NotFound(new ResponseResult() { Data = $"University {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -45,7 +45,7 @@ public class UniversitiesController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateUniversity([FromBody] CreateUniversityCommand command)
+    public async Task<IActionResult> CreateUniversity([FromBody] CreateUniversityDto command)
     {
         try
         {
@@ -59,7 +59,7 @@ public class UniversitiesController : ApiControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUniversity(int id, [FromBody] UpdateUniversityCommand command)
+    public async Task<IActionResult> UpdateUniversity(int id, [FromBody] UpdateUniversityDto command)
     {
         try
         {
@@ -84,7 +84,7 @@ public class UniversitiesController : ApiControllerBase
     {
         try
         {
-            var command = new DeleteUniversityCommand(id);
+            var command = new DeleteUniversityDto(id);
             var result = await Mediator.Send(command);
             return NoContent();
         }

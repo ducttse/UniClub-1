@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.ClubRoles.Commands.CreateClubRole;
-using UniClub.Application.ClubRoles.Commands.DeleteClubRole;
-using UniClub.Application.ClubRoles.Commands.UpdateClubRole;
-using UniClub.Application.ClubRoles.Queries.GetClubRoleById;
-using UniClub.Application.ClubRoles.Queries.GetClubRolesWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -16,7 +16,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class ClubRolesController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetClubRolesWithPagination([FromQuery] GetClubRolesWithPaginationQuery query)
+        public async Task<IActionResult> GetClubRolesWithPagination([FromQuery] GetClubRolesWithPaginationDto query)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetClubRoleByIdQuery(id);
+                var query = new GetClubRoleByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"ClubRole {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -46,7 +46,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClubRole([FromBody] CreateClubRoleCommand command)
+        public async Task<IActionResult> CreateClubRole([FromBody] CreateClubRoleDto command)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateClubRole(int id, [FromBody] UpdateClubRoleCommand command)
+        public async Task<IActionResult> UpdateClubRole(int id, [FromBody] UpdateClubRoleDto command)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeleteClubRoleCommand(id);
+                var command = new DeleteClubRoleDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 using UniClub.Domain.Entities;
-using UniClub.Infrastructure.Persistence;
+using UniClub.EntityFrameworkCore;
 
 namespace UniClub.HttpApi
 {

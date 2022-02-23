@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.PostImages.Commands.CreatePostImage;
-using UniClub.Application.PostImages.Commands.DeletePostImage;
-using UniClub.Application.PostImages.Commands.UpdatePostImage;
-using UniClub.Application.PostImages.Queries.GetPostImageById;
-using UniClub.Application.PostImages.Queries.GetPostImages;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -20,7 +20,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetPostImagesQuery();
+                var query = new GetPostImagesDto();
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -35,7 +35,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetPostImageByIdQuery(id);
+                var query = new GetPostImageByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"PostImage {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -47,7 +47,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePostImage([FromBody] CreatePostImageCommand command)
+        public async Task<IActionResult> CreatePostImage([FromBody] CreatePostImageDto command)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePostImage(int id, [FromBody] UpdatePostImageCommand command)
+        public async Task<IActionResult> UpdatePostImage(int id, [FromBody] UpdatePostImageDto command)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeletePostImageCommand(id);
+                var command = new DeletePostImageDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

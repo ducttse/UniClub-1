@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using UniClub.Domain.Common;
 
+
 #nullable disable
 
 namespace UniClub.Domain.Entities

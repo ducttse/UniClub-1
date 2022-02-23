@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Events.Commands.CreateEvent;
-using UniClub.Application.Events.Commands.DeleteEvent;
-using UniClub.Application.Events.Commands.UpdateEvent;
-using UniClub.Application.Events.Queries.GetEventById;
-using UniClub.Application.Events.Queries.GetEventsWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -16,7 +16,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class EventsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetEventsWithPagination([FromQuery] GetEventsWithPaginationQuery query)
+        public async Task<IActionResult> GetEventsWithPagination([FromQuery] GetEventsWithPaginationDto query)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetEventByIdQuery(id);
+                var query = new GetEventByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Event {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -46,7 +46,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand command)
+        public async Task<IActionResult> CreateEvent([FromBody] CreateEventDto command)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventCommand command)
+        public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventDto command)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeleteEventCommand(id);
+                var command = new DeleteEventDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

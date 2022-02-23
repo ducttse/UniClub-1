@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Posts.Commands.CreatePost;
-using UniClub.Application.Posts.Commands.DeletePost;
-using UniClub.Application.Posts.Commands.UpdatePost;
-using UniClub.Application.Posts.Queries.GetPostById;
-using UniClub.Application.Posts.Queries.GetPostsWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -16,7 +16,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class PostsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetPostsWithPagination([FromQuery] GetPostsWithPaginationQuery query)
+        public async Task<IActionResult> GetPostsWithPagination([FromQuery] GetPostsWithPaginationDto query)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetPostByIdQuery(id);
+                var query = new GetPostByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Post {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -46,7 +46,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
+        public async Task<IActionResult> CreatePost([FromBody] CreatePostDto command)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePost(int id, [FromBody] UpdatePostCommand command)
+        public async Task<IActionResult> UpdatePost(int id, [FromBody] UpdatePostDto command)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeletePostCommand(id);
+                var command = new DeletePostDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

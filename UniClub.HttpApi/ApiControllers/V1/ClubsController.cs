@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Clubs.Commands.CreateClub;
-using UniClub.Application.Clubs.Commands.DeleteClub;
-using UniClub.Application.Clubs.Commands.UpdateClub;
-using UniClub.Application.Clubs.Queries.GetClubById;
-using UniClub.Application.Clubs.Queries.GetClubsWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -17,7 +17,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     {
         [HttpGet]
         //[Cached(600)]
-        public async Task<IActionResult> GetClubsWithPagination([FromQuery] GetClubsWithPaginationQuery query)
+        public async Task<IActionResult> GetClubsWithPagination([FromQuery] GetClubsWithPaginationDto query)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetClubByIdQuery(id);
+                var query = new GetClubByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Club {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -47,7 +47,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClub([FromBody] CreateClubCommand command)
+        public async Task<IActionResult> CreateClub([FromBody] CreateClubDto command)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateClub(int id, [FromBody] UpdateClubCommand command)
+        public async Task<IActionResult> UpdateClub(int id, [FromBody] UpdateClubDto command)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeleteClubCommand(id);
+                var command = new DeleteClubDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

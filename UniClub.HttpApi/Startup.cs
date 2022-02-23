@@ -9,12 +9,14 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using UniClub.Application;
-using UniClub.Application.Common.Interfaces;
+using UniClub.Commands;
+using UniClub.EntityFrameworkCore;
+using UniClub.Helper.KebabCase;
 using UniClub.HttpApi.Filters;
-using UniClub.HttpApi.Helper.KebabCase;
-using UniClub.HttpApi.Helpers.KebabCase;
 using UniClub.HttpApi.Services;
-using UniClub.Infrastructure;
+using UniClub.HttpApi.Utils;
+using UniClub.Queries;
+using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi
 {
@@ -30,8 +32,11 @@ namespace UniClub.HttpApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFrameworkCore(Configuration);
             services.AddApplication();
-            services.AddInfrastructure(Configuration);
+
+            services.AddMediaRCommands();
+            services.AddMediaRQueries();
 
             services.AddControllersWithViews(options =>
             {
@@ -69,7 +74,7 @@ namespace UniClub.HttpApi
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver
                     {
-                        NamingStrategy = new Helper.KebabCase.KebabCaseNamingStrategy()
+                        NamingStrategy = new KebabCaseNamingStrategy()
                     };
                 });
 

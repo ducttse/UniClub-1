@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using UniClub.Application.Common.Interfaces;
+using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi.Services
 {

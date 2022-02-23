@@ -2,11 +2,11 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Application.Departments.Commands.CreateDepartment;
-using UniClub.Application.Departments.Commands.DeleteDepartment;
-using UniClub.Application.Departments.Commands.UpdateDepartment;
-using UniClub.Application.Departments.Queries.GetDepartmentById;
-using UniClub.Application.Departments.Queries.GetDepartmentsWithPagination;
+using UniClub.Dtos.Create;
+using UniClub.Dtos.Delete;
+using UniClub.Dtos.GetById;
+using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -16,7 +16,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class DepartmentsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetDepartmentsWithPagination([FromQuery] GetDepartmentsWithPaginationQuery query)
+        public async Task<IActionResult> GetDepartmentsWithPagination([FromQuery] GetDepartmentsWithPaginationDto query)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetDepartmentByIdQuery(id);
+                var query = new GetDepartmentByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Department {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -46,7 +46,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentCommand command)
+        public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentDto command)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDepartment(int id, [FromBody] UpdateDepartmentCommand command)
+        public async Task<IActionResult> UpdateDepartment(int id, [FromBody] UpdateDepartmentDto command)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var command = new DeleteDepartmentCommand(id);
+                var command = new DeleteDepartmentDto(id);
                 var result = await Mediator.Send(command);
                 return NoContent();
             }

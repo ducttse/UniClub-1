@@ -45,7 +45,22 @@
       "ProjectGuid": "20d53750-0329-4e2f-85db-569066cee552",
       "DisplayName": "UniClub.Infrastructure",
       "ColorIndex": 7
+    },
+    "9bb3d332-1007-4a5b-9814-3919d08d3239": {
+      "ProjectGuid": "9bb3d332-1007-4a5b-9814-3919d08d3239",
+      "DisplayName": "UniClub.HttpApi",
+      "ColorIndex": 8
+    },
+    "0cdae6dc-7edd-4e97-8840-d6551de30c06": {
+      "ProjectGuid": "0cdae6dc-7edd-4e97-8840-d6551de30c06",
+      "DisplayName": "UniClub.Commands",
+      "ColorIndex": 9
+    },
+    "b2e0ab18-c41f-447b-909a-f07401e2e0fc": {
+      "ProjectGuid": "b2e0ab18-c41f-447b-909a-f07401e2e0fc",
+      "DisplayName": "UniClub.Domain",
+      "ColorIndex": 10
     }
   },
-  "NextColorIndex": 8
+  "NextColorIndex": 11
 }
