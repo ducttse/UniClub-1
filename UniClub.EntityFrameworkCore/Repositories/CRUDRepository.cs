@@ -35,7 +35,14 @@ namespace UniClub.EntityFrameworkCore.Repositories
             {
                 var query = SpecificationEvaluator<T>.GetQuery(DbSet, specification);
                 count = await query.CountAsync(cancellationToken);
-                result = await query.ToListAsync(cancellationToken);
+                if (specification.IsPagination)
+                {
+                    result = await query.Skip(specification.Skip).Take(specification.Take).ToListAsync(cancellationToken);
+                }
+                else
+                {
+                    result = await query.ToListAsync(cancellationToken);
+                }
             }
             catch (Exception)
             {

@@ -14,4 +14,8 @@
     <ProjectReference Include="..\UniClub.Services\UniClub.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

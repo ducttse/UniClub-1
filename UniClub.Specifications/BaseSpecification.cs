@@ -21,6 +21,7 @@ namespace UniClub.Specifications
         public bool IsPagination { get; set; } = true;
         public int Skip { get; set; } = 0;
         public int Take { get; set; } = 50;
+
         public List<Expression<Func<T, object>>> Includes => _includeCollection;
 
         public Expression<Func<T, object>> GroupBy { get; private set; }

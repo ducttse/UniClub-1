@@ -38,11 +38,6 @@ namespace UniClub.Specifications
                 query = query.GroupBy(specifications.GroupBy).SelectMany(x => x);
             }
 
-            if (specifications.IsPagination)
-            {
-                query = query.Skip(specifications.Skip).Take(specifications.Take);
-            }
-
             return query;
         }
     }

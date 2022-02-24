@@ -60,7 +60,12 @@
       "ProjectGuid": "b2e0ab18-c41f-447b-909a-f07401e2e0fc",
       "DisplayName": "UniClub.Domain",
       "ColorIndex": 10
+    },
+    "93f2051a-000a-4e09-acaa-866b5b0e7ade": {
+      "ProjectGuid": "93f2051a-000a-4e09-acaa-866b5b0e7ade",
+      "DisplayName": "UniClub.EntityFrameworkCore",
+      "ColorIndex": 11
     }
   },
-  "NextColorIndex": 11
+  "NextColorIndex": 12
 }
