@@ -16,6 +16,7 @@ using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Services;
 using UniClub.HttpApi.Utils;
 using UniClub.Queries;
+using UniClub.Redis;
 using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi
@@ -34,6 +35,7 @@ namespace UniClub.HttpApi
         {
             services.AddEntityFrameworkCore(Configuration);
             services.AddApplication();
+            services.AddRedis(Configuration);
 
             services.AddMediaRCommands();
             services.AddMediaRQueries();

@@ -65,7 +65,32 @@
       "ProjectGuid": "93f2051a-000a-4e09-acaa-866b5b0e7ade",
       "DisplayName": "UniClub.EntityFrameworkCore",
       "ColorIndex": 11
+    },
+    "cc678f72-2405-4725-b760-6aa926b102a3": {
+      "ProjectGuid": "cc678f72-2405-4725-b760-6aa926b102a3",
+      "DisplayName": "UniClub.Specifications",
+      "ColorIndex": 12
+    },
+    "40adc0c1-d368-479a-825e-19a64306c559": {
+      "ProjectGuid": "40adc0c1-d368-479a-825e-19a64306c559",
+      "DisplayName": "UniClub.Queries",
+      "ColorIndex": 13
+    },
+    "9e477deb-706a-4ab7-9597-e22094e9cf92": {
+      "ProjectGuid": "9e477deb-706a-4ab7-9597-e22094e9cf92",
+      "DisplayName": "UniClub.Application",
+      "ColorIndex": 14
+    },
+    "ec550dc5-f31e-40a6-9c23-cbb4184677ec": {
+      "ProjectGuid": "ec550dc5-f31e-40a6-9c23-cbb4184677ec",
+      "DisplayName": "UniClub.Redis",
+      "ColorIndex": 15
+    },
+    "6779e6f2-9d0f-4f9b-941a-7c81915f20aa": {
+      "ProjectGuid": "6779e6f2-9d0f-4f9b-941a-7c81915f20aa",
+      "DisplayName": "UniClub.Services",
+      "ColorIndex": 0
     }
   },
-  "NextColorIndex": 12
+  "NextColorIndex": 1
 }
