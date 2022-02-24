@@ -14,6 +14,7 @@ namespace UniClub.Commands.Update.Validators
                 .GreaterThan(0).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.StartDate)
+                .NotEmpty().WithMessage("{PropertyName} is not valid date")
                 .Must(BeAPresentDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.EndDate)

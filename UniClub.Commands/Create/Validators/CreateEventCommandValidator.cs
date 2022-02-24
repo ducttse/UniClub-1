@@ -9,11 +9,11 @@ namespace UniClub.Commands.Create.Validators
         public CreateEventCommandValidator()
         {
             RuleFor(e => e.StartDate)
-                .NotNull().WithMessage("{PropertyName} is not null")
+                .NotEmpty().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.EndDate)
-                .NotNull().WithMessage("{PropertyName} is not null")
+                .NotEmpty().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.Status)

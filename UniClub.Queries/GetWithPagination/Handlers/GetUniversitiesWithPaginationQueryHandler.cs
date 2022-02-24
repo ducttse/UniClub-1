@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Domain.Common;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Response;
-using UniClub.Helpers;
 using UniClub.Queries.GetWithPagination.Specifications;
 using UniClub.Repositories.Interfaces;
 

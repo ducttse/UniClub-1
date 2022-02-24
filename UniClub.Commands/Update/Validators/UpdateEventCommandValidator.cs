@@ -9,11 +9,11 @@ namespace UniClub.Commands.Update.Validators
         public UpdateEventCommandValidator()
         {
             RuleFor(e => e.StartDate)
-                .NotNull().WithMessage("{PropertyName} is not null")
+                .NotEmpty().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.EndDate)
-                .NotNull().WithMessage("{PropertyName} is not null")
+                .NotEmpty().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.Status)
@@ -21,7 +21,7 @@ namespace UniClub.Commands.Update.Validators
 
             RuleFor(e => e.Description)
                 .NotEmpty().WithMessage("{PropertyName} is not empty")
-                .Length(2, 256).WithMessage("Length {PropertyName} must between 2 and 256")
+                .Length(2, 50).WithMessage("Length {PropertyName} must between 2 and 256")
                 .Must(BeAValidName).WithMessage("{PropertyName} contains invalid characters");
 
             RuleFor(e => e.MaxParticipants)
