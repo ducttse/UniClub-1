@@ -90,7 +90,22 @@
       "ProjectGuid": "6779e6f2-9d0f-4f9b-941a-7c81915f20aa",
       "DisplayName": "UniClub.Services",
       "ColorIndex": 0
+    },
+    "b8b96c22-279c-4646-8ec0-7cde66525dda": {
+      "ProjectGuid": "b8b96c22-279c-4646-8ec0-7cde66525dda",
+      "DisplayName": "UniClub.Repositories",
+      "ColorIndex": 1
+    },
+    "341fd727-0185-4540-9943-29eb87d64498": {
+      "ProjectGuid": "341fd727-0185-4540-9943-29eb87d64498",
+      "DisplayName": "UniClub.Dtos",
+      "ColorIndex": 2
+    },
+    "7d3ceb42-acc4-4479-849a-1941b31b86c9": {
+      "ProjectGuid": "7d3ceb42-acc4-4479-849a-1941b31b86c9",
+      "DisplayName": "UniClub.AutoMapper",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }
