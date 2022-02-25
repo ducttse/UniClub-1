@@ -14,6 +14,7 @@ namespace UniClub.Specifications
 
         private readonly List<Expression<Func<T, object>>> _includeCollection = new List<Expression<Func<T, object>>>();
         private readonly List<Expression<Func<T, bool>>> _filterCollection = new List<Expression<Func<T, bool>>>();
+        private readonly List<string> _stringIncludeCollection = new List<string>();
 
         public List<Expression<Func<T, bool>>> FilterCondition { get => _filterCollection; }
         public string? OrderBy { get; private set; }
@@ -23,12 +24,18 @@ namespace UniClub.Specifications
         public int Take { get; set; } = 50;
 
         public List<Expression<Func<T, object>>> Includes => _includeCollection;
+        public List<string> StringIncludes => _stringIncludeCollection;
 
         public Expression<Func<T, object>> GroupBy { get; private set; }
 
         protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
+        }
+
+        protected void AddInclude(string navigationPropertyPath)
+        {
+            StringIncludes.Add(navigationPropertyPath);
         }
 
         protected void ApplyOrderBy(string orderBy)

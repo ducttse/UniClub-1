@@ -25,7 +25,18 @@ namespace UniClub.Domain.Entities
         public DateTime EstablishedDate { get; set; }
         public string Slogan { get; set; }
         [NotMapped]
-        public int MemberCount { get; set; }
+        public int MemberCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (var period in ClubPeriods)
+                {
+                    count += period.MemberRoles.Count;
+                }
+                return count;
+            }
+        }
 
 
         public virtual University Uni { get; set; }

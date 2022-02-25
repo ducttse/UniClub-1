@@ -8,7 +8,7 @@ namespace UniClub.EntityFrameworkCore.Configurations
     {
         public void Configure(EntityTypeBuilder<MemberRole> entity)
         {
-            entity.HasKey(e => new { e.MemberId, e.ClubRoleId, e.ClubPeriodId });
+            entity.HasKey(e => new { e.MemberId, e.ClubPeriodId });
 
             entity.ToTable("MemberRole");
 

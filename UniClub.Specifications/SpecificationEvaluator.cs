@@ -26,6 +26,12 @@ namespace UniClub.Specifications
             query = specifications.Includes
                         .Aggregate(query, (current, include) => current.Include(include));
 
+            foreach (var navigationPath in specifications.StringIncludes)
+            {
+                query = query.Include(navigationPath);
+            }
+
+
             // Apply ordering
             if (!string.IsNullOrEmpty(specifications.OrderBy))
             {

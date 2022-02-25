@@ -11,6 +11,7 @@ namespace UniClub.Specifications.Interfaces
         string? OrderBy { get; }
         bool IsAscending { get; }
         List<Expression<Func<T, object>>> Includes { get; }
+        List<string> StringIncludes { get; }
         Expression<Func<T, object>> GroupBy { get; }
         bool IsPagination { get; }
         int Skip { get; }
