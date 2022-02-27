@@ -36,6 +36,10 @@ namespace UniClub.Domain.Entities
                 }
                 return count;
             }
+
+            set
+            {
+            }
         }
 
 

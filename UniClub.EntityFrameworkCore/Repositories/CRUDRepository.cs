@@ -144,7 +144,10 @@ namespace UniClub.EntityFrameworkCore.Repositories
             {
                 if (!inDatabaseProperty.Name.Equals("Id"))
                 {
-                    entity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(inDatabase, inDatabaseProperty.GetValue(entity));
+                    var entityValue = entity.GetType().GetProperty(inDatabaseProperty.Name).GetValue(entity);
+                    {
+                        entity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(inDatabase, entityValue);
+                    }
                 }
             }
         }
