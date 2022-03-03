@@ -95,5 +95,6 @@ namespace UniClub.HttpApi.ApiControllers.V1
                 return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
             }
         }
+
     }
 }

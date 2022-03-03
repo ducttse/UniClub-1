@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using UniClub.Domain.Common;
 
 
@@ -24,23 +23,7 @@ namespace UniClub.Domain.Entities
         public string AvatarUrl { get; set; }
         public DateTime EstablishedDate { get; set; }
         public string Slogan { get; set; }
-        [NotMapped]
-        public int MemberCount
-        {
-            get
-            {
-                int count = 0;
-                foreach (var period in ClubPeriods)
-                {
-                    count += period.MemberRoles.Count;
-                }
-                return count;
-            }
-
-            set
-            {
-            }
-        }
+        public int MemberCount { get; set; }
 
 
         public virtual University Uni { get; set; }

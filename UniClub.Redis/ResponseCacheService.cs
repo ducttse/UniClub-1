@@ -31,7 +31,7 @@ namespace UniClub.Redis
         public async Task<string> GetCachedResponseAsync(string cacheKey)
         {
             var cachedResponse = await _distributedCache.GetStringAsync(cacheKey);
-            return String.IsNullOrEmpty(cachedResponse) ? null : cachedResponse;
+            return string.IsNullOrEmpty(cachedResponse) ? null : cachedResponse;
         }
     }
 }

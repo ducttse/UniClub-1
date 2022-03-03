@@ -105,7 +105,12 @@
       "ProjectGuid": "7d3ceb42-acc4-4479-849a-1941b31b86c9",
       "DisplayName": "UniClub.AutoMapper",
       "ColorIndex": 3
+    },
+    "2f978e60-2721-408e-ab75-775d3aad6dee": {
+      "ProjectGuid": "2f978e60-2721-408e-ab75-775d3aad6dee",
+      "DisplayName": "UniClub.Helper",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }

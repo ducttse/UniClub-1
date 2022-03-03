@@ -18,10 +18,9 @@ namespace UniClub.HttpApi.Cache
         private readonly int _timeToLiveSeconds;
         private readonly IConfiguration _configuration;
 
-        public CachedAttribute(int timeToLiveSeconds, IConfiguration configuration)
+        public CachedAttribute(int timeToLiveSeconds)
         {
             _timeToLiveSeconds = timeToLiveSeconds;
-            _configuration = configuration;
         }
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {

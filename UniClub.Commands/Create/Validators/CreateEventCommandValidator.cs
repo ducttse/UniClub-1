@@ -9,11 +9,11 @@ namespace UniClub.Commands.Create.Validators
         public CreateEventCommandValidator()
         {
             RuleFor(e => e.StartDate)
-                .NotEmpty().WithMessage("{PropertyName} is not null")
+                .NotNull().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.EndDate)
-                .NotEmpty().WithMessage("{PropertyName} is not null")
+                .NotNull().WithMessage("{PropertyName} is not null")
                 .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.Status)
@@ -25,11 +25,11 @@ namespace UniClub.Commands.Create.Validators
                 .Must(BeAValidName).WithMessage("{PropertyName} contains invalid characters");
 
             RuleFor(e => e.MaxParticipants)
-                .NotEmpty().WithMessage("{PropertyName} is invalid")
+                .NotNull().WithMessage("{PropertyName} is invalid")
                 .GreaterThan(0).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.Point)
-                .NotEmpty().WithMessage("{PropertyName} is invalid")
+                .NotNull().WithMessage("{PropertyName} is invalid")
                 .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} is invalid");
         }
     }

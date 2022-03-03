@@ -21,11 +21,11 @@ namespace UniClub.Domain.Common
             return name.All(Char.IsLetterOrDigit);
         }
 
-        protected virtual bool BeAFutureDate(DateTime date) => date == default(DateTime) ? false : (date <= DateTime.Today);
+        protected virtual bool BeAFutureDate(DateTime date) => date == default(DateTime) ? false : (date.Date >= DateTime.UtcNow.AddDays(-1).Date);
 
-        protected virtual bool BeAPastDate(DateTime date) => date == default(DateTime) ? false : (date <= DateTime.Today);
+        protected virtual bool BeAPastDate(DateTime date) => date == default(DateTime) ? false : (date.Date <= DateTime.UtcNow.AddDays(1).Date);
 
-        protected virtual bool BeAPresentDate(DateTime date) => date != default(DateTime) && (date >= DateTime.Today.AddDays(-1) && date <= DateTime.Today.AddDays(1));
+        protected virtual bool BeAPresentDate(DateTime date) => date != default(DateTime) && (date.Date >= DateTime.UtcNow.AddDays(-1).Date && date <= DateTime.UtcNow.AddDays(1).Date);
         protected virtual bool BeAPresentYear(DateTime date) => date.Year == DateTime.Now.Year;
     }
 }
