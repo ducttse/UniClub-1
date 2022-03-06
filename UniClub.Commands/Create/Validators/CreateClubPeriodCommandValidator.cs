@@ -14,11 +14,11 @@ namespace UniClub.Commands.Create.Validators
                 .GreaterThan(0);
 
             RuleFor(c => c.StartDate)
-                .NotEmpty().WithMessage("{PropertyName} is not valid date")
+                .NotNull().WithMessage("{PropertyName} is not valid date")
                 .GreaterThan(default(DateTime)).WithMessage("{PropertyName} is not valid date");
 
             RuleFor(c => c.EndDate)
-            .NotEmpty().WithMessage("{PropertyName} is not valid date")
+            .NotNull().WithMessage("{PropertyName} is not valid date")
             .GreaterThan(c => c.StartDate).WithMessage("{PropertyName} is not valid date");
 
             RuleFor(c => c.Status)

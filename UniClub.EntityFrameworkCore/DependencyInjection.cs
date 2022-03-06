@@ -48,7 +48,7 @@ namespace UniClub.EntityFrameworkCore
             services.AddTransient<IEventRepository, EventRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostImageRepository, PostImageRepository>();
-
+            services.AddTransient<IMemberRoleRepository, MemberRoleRepository>();
 
 
             return services;

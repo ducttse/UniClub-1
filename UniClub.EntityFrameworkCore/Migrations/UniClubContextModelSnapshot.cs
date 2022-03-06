@@ -190,6 +190,9 @@ namespace UniClub.Infrastructure.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("MemberCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ModificationTime")
                         .HasColumnType("datetime2");
 
@@ -241,6 +244,9 @@ namespace UniClub.Infrastructure.Migrations
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPresent")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastModifiedBy")
@@ -507,7 +513,7 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime");
 
                     b.Property<int>("Status")

@@ -10,7 +10,7 @@ namespace UniClub.Domain.Entities
         public string MemberId { get; set; }
         public int ClubRoleId { get; set; }
         public MemberRoleStatus Status { get; set; }
-        public DateTime StartTime { get; set; }
+        public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int ClubPeriodId { get; set; }
 

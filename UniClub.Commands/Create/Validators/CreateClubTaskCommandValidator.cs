@@ -17,7 +17,7 @@ namespace UniClub.Commands.Create.Validators
                 .Must(BeAPresentDate).WithMessage("{PropertyName} is invalid");
 
             RuleFor(e => e.EndDate)
-                .Must(BeAFutureDate).WithMessage("{PropertyName} is invalid");
+                .Must(BeAFutureDate).WithMessage("{PropertyName} is must be a future date");
 
             RuleFor(e => e.Status)
                 .IsInEnum().WithMessage("{PropertyName} is invalid");
@@ -29,8 +29,7 @@ namespace UniClub.Commands.Create.Validators
 
             RuleFor(e => e.Description)
                 .NotEmpty().WithMessage("{PropertyName} is not empty")
-                .Length(2, 256).WithMessage("Length {PropertyName} must between 2 and 256")
-                .Must(BeAValidName).WithMessage("{PropertyName} contains invalid characters");
+                .Length(2, 256).WithMessage("Length {PropertyName} must between 2 and 256");
         }
     }
 }

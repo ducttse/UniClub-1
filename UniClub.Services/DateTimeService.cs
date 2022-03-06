@@ -1,7 +1,7 @@
 ﻿using System;
 using UniClub.Services.Interfaces;
 
-namespace UniClub.Interfaces
+namespace UniClub.Services
 {
     public class DateTimeService : IDateTime
     {

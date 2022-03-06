@@ -8,7 +8,6 @@ namespace UniClub.Dtos.GetWithPagination
 {
     public class GetEventsWithPaginationDto : RequestPaginationQuery<EventProperties?>, IRequest<PaginatedList<EventDto>>
     {
-
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public override EventProperties? OrderBy { get; set; }

@@ -9,7 +9,7 @@ namespace UniClub.Repositories.Interfaces
     public interface ICRUDRepository<T, TKey> where T : AuditableEntity<TKey>
     {
         Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, ISpecification<T> specification = null);
-        Task<(List<T> Items, int Count)> GetListAsync(CancellationToken cancellationToken, ISpecification<T> specification);
+        Task<(List<T> Items, int Count)> GetListAsync(CancellationToken cancellationToken, ISpecification<T> specification = null);
         Task<int> CreateAsync(T entity, CancellationToken cancellationToken);
         Task<int> UpdateAsync(T entity, CancellationToken cancellationToken);
         Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken);

@@ -18,7 +18,7 @@ namespace UniClub.EntityFrameworkCore.Configurations
 
             entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-            entity.Property(e => e.StartTime).HasColumnType("datetime");
+            entity.Property(e => e.StartDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.ClubPeriod)
                 .WithMany(p => p.MemberRoles)

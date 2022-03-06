@@ -11,6 +11,7 @@ namespace UniClub.Queries.GetWithPagination.Specifications
         public GetClubRolesWithPaginationSpecification(GetClubRolesWithPaginationDto query) : base()
         {
             SetFilterCondition(e => e.IsDeleted == false);
+
             if (!string.IsNullOrWhiteSpace(query.SearchValue))
             {
                 SetFilterCondition(e => e.Id.ToString().Equals(query.SearchValue)

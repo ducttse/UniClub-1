@@ -26,7 +26,7 @@ namespace UniClub.Commands.Update.Validators
 
             RuleFor(e => e.MaxParticipants)
                 .NotNull().WithMessage("{PropertyName} is invalid")
-                .GreaterThan(0).WithMessage("{PropertyName} is invalid");
+                .GreaterThan(0).WithMessage("{PropertyName} must be greater than 0");
 
             RuleFor(e => e.Point)
                 .NotNull().WithMessage("{PropertyName} is invalid")

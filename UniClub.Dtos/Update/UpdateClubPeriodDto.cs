@@ -13,5 +13,12 @@ namespace UniClub.Dtos.Update
         public ClubPeriodStatus Status { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public bool IsPresent
+        {
+            get
+            {
+                return StartDate.Date <= DateTime.UtcNow.AddDays(1).Date && EndDate.Date >= DateTime.UtcNow.AddDays(-1).Date;
+            }
+        }
     }
 }

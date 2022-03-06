@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GetById\Specifications\" />
     <Folder Include="GetById\Validators\" />
     <Folder Include="GetWithPagination\Validators\" />
   </ItemGroup>

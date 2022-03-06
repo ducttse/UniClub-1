@@ -80,6 +80,16 @@ namespace UniClub.AutoMapper
             CreateMap<CreateStudentDto, Person>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
             CreateMap<UpdateStudentDto, Person>();
             #endregion
+
+            #region ClubMembers
+            CreateMap<MemberRole, MemberRoleDto>()
+                .ForMember(dto => dto.StudentId, opt => opt.MapFrom(e => e.MemberId))
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(e => e.Member.Name))
+                .ForMember(dto => dto.Role, opt => opt.MapFrom(e => e.ClubRole.Role));
+            CreateMap<CreateClubMemberDto, MemberRole>();
+            CreateMap<UpdateClubMemberDto, MemberRole>();
+            CreateMap<DeleteClubMemberDto, MemberRole>();
+            #endregion
         }
     }
 }
