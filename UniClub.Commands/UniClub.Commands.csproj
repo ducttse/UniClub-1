@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <Folder Include="Create\Specifications\" />
-    <Folder Include="Delete\Specifications\" />
     <Folder Include="Delete\Validators\" />
-    <Folder Include="HardDelete\Specifications\" />
     <Folder Include="HardDelete\Validators\" />
-    <Folder Include="Update\Specifications\" />
   </ItemGroup>
 
   <ItemGroup>

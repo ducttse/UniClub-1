@@ -37,7 +37,7 @@ namespace UniClub.HttpApi
             services.AddEntityFrameworkCore(Configuration);
             services.AddApplication();
             services.AddRedis(Configuration);
-            services.AddWorkers();
+            //services.AddWorkers();
             services.AddMediaRCommands();
             services.AddMediaRQueries();
 

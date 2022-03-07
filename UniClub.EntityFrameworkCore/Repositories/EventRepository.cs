@@ -5,7 +5,7 @@ using UniClub.Repositories.Interfaces;
 
 namespace UniClub.EntityFrameworkCore.Repositories
 {
-    public class EventRepository : CRUDRepository<Event, int>, IEventRepository
+    public class EventRepository : CRUDRepository<Event>, IEventRepository
     {
         public EventRepository(IApplicationDbContext context) : base(context)
         {

@@ -488,6 +488,9 @@ namespace UniClub.Infrastructure.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsHost")
                         .HasColumnType("bit");
 
@@ -512,6 +515,9 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime");
@@ -541,6 +547,9 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.Property<DateTime?>("CheckoutDate")
                         .HasColumnType("datetime");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsJoined")
                         .HasColumnType("bit");
@@ -765,6 +774,9 @@ namespace UniClub.Infrastructure.Migrations
 
                     b.Property<DateTime>("AssignedTime")
                         .HasColumnType("datetime");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

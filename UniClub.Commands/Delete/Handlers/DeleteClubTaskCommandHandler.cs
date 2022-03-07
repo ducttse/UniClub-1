@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Commands.Delete.Specifications;
 using UniClub.Dtos.Delete;
 using UniClub.Repositories.Interfaces;
 
@@ -17,7 +18,8 @@ namespace UniClub.Commands.Delete.Handlers
 
         public async Task<int> Handle(DeleteClubTaskDto request, CancellationToken cancellationToken)
         {
-            return await _clubTaskRepository.DeleteAsync(request.Id, cancellationToken);
+            var entity = await _clubTaskRepository.GetByIdAsync(cancellationToken, new DeleteClubTaskCommandSpecification(request));
+            return await _clubTaskRepository.DeleteAsync(entity, cancellationToken);
         }
     }
 }

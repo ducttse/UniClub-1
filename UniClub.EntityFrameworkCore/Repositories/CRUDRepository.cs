@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Domain.Common;
-using UniClub.Domain.Common.Exceptions;
 using UniClub.Domain.Common.Interfaces;
 using UniClub.Repositories.Interfaces;
 using UniClub.Specifications;
@@ -13,7 +12,7 @@ using UniClub.Specifications.Interfaces;
 
 namespace UniClub.EntityFrameworkCore.Repositories
 {
-    public abstract class CRUDRepository<T, TKey> : ICRUDRepository<T, TKey> where T : AuditableEntity<TKey>
+    public abstract class CRUDRepository<T> : ICRUDRepository<T> where T : BaseEntity
     {
         private readonly IApplicationDbContext _context;
         protected abstract DbSet<T> DbSet { get; }
@@ -23,9 +22,8 @@ namespace UniClub.EntityFrameworkCore.Repositories
             _context = context;
         }
 
-        public virtual async Task<T> GetByIdAsync(TKey id, CancellationToken cancellationToken, ISpecification<T> specification = null)
-        => await SpecificationEvaluator<T>.GetQuery(DbSet.Where(e => e.Id.Equals(id))
-            .AsQueryable(), specification).FirstOrDefaultAsync();
+        public virtual async Task<T> GetByIdAsync(CancellationToken cancellationToken, ISpecification<T> specification)
+        => await SpecificationEvaluator<T>.GetQuery(DbSet, specification).FirstOrDefaultAsync();
 
         public virtual async Task<(List<T> Items, int Count)> GetListAsync(CancellationToken cancellationToken, ISpecification<T> specification = null)
         {
@@ -53,41 +51,32 @@ namespace UniClub.EntityFrameworkCore.Repositories
 
         public virtual async Task<int> CreateAsync(T entity, CancellationToken cancellationToken)
         {
-            var e = await GetByIdAsync(entity.Id, cancellationToken);
             try
             {
-                if (e == null)
+                if (entity == null)
                 {
-                    DbSet.Add(entity);
-                    return await _context.SaveChangesAsync(cancellationToken);
+                    throw new ArgumentNullException(nameof(entity));
                 }
-                else
-                {
-                    throw new NotFoundException(nameof(entity), entity);
-                }
+
+                DbSet.Add(entity);
+                return await _context.SaveChangesAsync(cancellationToken);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public virtual async Task<int> UpdateAsync(T entity, CancellationToken cancellationToken)
+        public virtual async Task<int> UpdateAsync(T entity, T updatedEntity, CancellationToken cancellationToken)
         {
-            T inDatabase = await GetByIdAsync(entity.Id, cancellationToken);
-
             try
             {
-                if (inDatabase != null)
+                if (entity == null)
                 {
-                    UpdateEntityWithInDatabase(inDatabase, entity);
-                    _context.Entry(inDatabase).Property(e => e.Id).IsModified = false;
-                    return await _context.SaveChangesAsync(cancellationToken);
+                    throw new ArgumentNullException(nameof(entity));
+                }
 
-                }
-                else
-                {
-                    throw new NotFoundException(nameof(entity), entity);
-                }
+                UpdateEntityWithInDatabase(entity, updatedEntity);
+                return await _context.SaveChangesAsync(cancellationToken);
             }
             catch (Exception)
             {
@@ -95,20 +84,17 @@ namespace UniClub.EntityFrameworkCore.Repositories
             }
         }
 
-        public virtual async Task<int> DeleteAsync(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<int> DeleteAsync(T entity, CancellationToken cancellationToken)
         {
-            T entity = await GetByIdAsync(id, cancellationToken);
             try
             {
-                if (entity != null)
+                if (entity == null)
                 {
-                    DbSet.Remove(entity);
-                    return await _context.SaveChangesAsync(cancellationToken);
+                    throw new ArgumentNullException(nameof(entity));
                 }
-                else
-                {
-                    throw new NotFoundException(nameof(entity), entity);
-                }
+
+                DbSet.Remove(entity);
+                return await _context.SaveChangesAsync(cancellationToken);
             }
             catch (Exception)
             {
@@ -116,21 +102,19 @@ namespace UniClub.EntityFrameworkCore.Repositories
             }
         }
 
-        public virtual async Task<int> HardDeleteAsync(TKey id, CancellationToken cancellationToken)
+        public virtual async Task<int> HardDeleteAsync(T entity, CancellationToken cancellationToken)
         {
-            T entity = await GetByIdAsync(id, cancellationToken);
             try
             {
-                if (entity != null)
+                if (entity == null)
                 {
-                    entity.IsHardDeleted = true;
-                    DbSet.Remove(entity);
-                    return await _context.SaveChangesAsync(cancellationToken);
+                    throw new ArgumentNullException(nameof(entity));
                 }
-                else
-                {
-                    throw new NotFoundException(nameof(entity), entity);
-                }
+
+                entity.IsHardDeleted = true;
+                DbSet.Remove(entity);
+                return await _context.SaveChangesAsync(cancellationToken);
+
             }
             catch (Exception)
             {
@@ -138,17 +122,17 @@ namespace UniClub.EntityFrameworkCore.Repositories
             }
         }
 
-        private void UpdateEntityWithInDatabase(T inDatabase, T entity)
+        protected virtual void UpdateEntityWithInDatabase(T entity, T updatedEntity)
         {
-            foreach (var inDatabaseProperty in inDatabase.GetType().GetProperties())
+            foreach (var inDatabaseProperty in entity.GetType().GetProperties())
             {
                 if (!inDatabaseProperty.Name.Equals("Id"))
                 {
-                    var entityValue = entity.GetType().GetProperty(inDatabaseProperty.Name).GetValue(entity);
+                    var entityValue = updatedEntity.GetType().GetProperty(inDatabaseProperty.Name).GetValue(updatedEntity);
                     {
                         if (entityValue != null && entityValue != default)
                         {
-                            entity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(inDatabase, entityValue);
+                            updatedEntity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(entity, entityValue);
                         }
                     }
                 }

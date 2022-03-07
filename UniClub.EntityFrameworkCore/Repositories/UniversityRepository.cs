@@ -5,7 +5,7 @@ using UniClub.Repositories.Interfaces;
 
 namespace UniClub.EntityFrameworkCore.Repositories
 {
-    public class UniversityRepository : CRUDRepository<University, int>, IUniversityRepository
+    public class UniversityRepository : CRUDRepository<University>, IUniversityRepository
     {
         public UniversityRepository(IApplicationDbContext context) : base(context)
         {

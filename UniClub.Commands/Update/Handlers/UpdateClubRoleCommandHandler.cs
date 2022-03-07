@@ -2,6 +2,7 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Commands.Update.Specifications;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.Update;
 using UniClub.Repositories.Interfaces;
@@ -21,7 +22,8 @@ namespace UniClub.Commands.Update.Handlers
 
         public async Task<int> Handle(UpdateClubRoleDto request, CancellationToken cancellationToken)
         {
-            return await _clubRoleRepository.UpdateAsync(_mapper.Map<ClubRole>(request), cancellationToken);
+            var entity = await _clubRoleRepository.GetByIdAsync(cancellationToken, new UpdateClubRoleCommandSpecification(request));
+            return await _clubRoleRepository.UpdateAsync(entity, _mapper.Map<ClubRole>(request), cancellationToken);
         }
     }
 }

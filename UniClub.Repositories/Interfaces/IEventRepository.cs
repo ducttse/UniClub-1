@@ -2,7 +2,7 @@
 
 namespace UniClub.Repositories.Interfaces
 {
-    public interface IEventRepository : ICRUDRepository<Event, int>
+    public interface IEventRepository : ICRUDRepository<Event>
     {
     }
 }

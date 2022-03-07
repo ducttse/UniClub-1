@@ -2,7 +2,7 @@
 
 namespace UniClub.Repositories.Interfaces
 {
-    public interface IClubRepository : ICRUDRepository<Club, int>
+    public interface IClubRepository : ICRUDRepository<Club>
     {
     }
 }

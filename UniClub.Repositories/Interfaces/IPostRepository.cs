@@ -2,7 +2,7 @@
 
 namespace UniClub.Repositories.Interfaces
 {
-    public interface IPostRepository : ICRUDRepository<Post, int>
+    public interface IPostRepository : ICRUDRepository<Post>
     {
     }
 }

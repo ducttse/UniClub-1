@@ -1,10 +1,11 @@
 ﻿using System;
+using UniClub.Domain.Common;
 
 #nullable disable
 
 namespace UniClub.Domain.Entities
 {
-    public partial class Participant
+    public partial class Participant : BaseEntity
     {
         public string UserId { get; set; }
         public int EventId { get; set; }

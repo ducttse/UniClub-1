@@ -4,7 +4,7 @@ using UniClub.Domain.Entities;
 using UniClub.Repositories.Interfaces;
 namespace UniClub.EntityFrameworkCore.Repositories
 {
-    public class ClubRoleRepository : CRUDRepository<ClubRole, int>, IClubRoleRepository
+    public class ClubRoleRepository : CRUDRepository<ClubRole>, IClubRoleRepository
     {
         public ClubRoleRepository(IApplicationDbContext context) : base(context)
         {

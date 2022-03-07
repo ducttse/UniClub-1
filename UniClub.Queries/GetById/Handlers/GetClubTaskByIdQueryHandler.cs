@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.Response;
+using UniClub.Queries.GetById.Specifications;
 using UniClub.Repositories.Interfaces;
 
 namespace UniClub.Queries.GetById.Handlers
@@ -20,7 +21,7 @@ namespace UniClub.Queries.GetById.Handlers
         }
         public async Task<ClubTaskDto> Handle(GetClubTaskByIdDto request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<ClubTaskDto>(await _clubTaskRepository.GetByIdAsync(request.Id, cancellationToken));
+            return _mapper.Map<ClubTaskDto>(await _clubTaskRepository.GetByIdAsync(cancellationToken, new GetClubTaskByIdQuerySpecification(request)));
         }
     }
 }

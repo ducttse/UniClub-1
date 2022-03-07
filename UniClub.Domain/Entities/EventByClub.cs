@@ -1,8 +1,10 @@
 ﻿#nullable disable
 
+using UniClub.Domain.Common;
+
 namespace UniClub.Domain.Entities
 {
-    public partial class EventByClub
+    public partial class EventByClub : BaseEntity
     {
         public int ClubId { get; set; }
         public int EventId { get; set; }

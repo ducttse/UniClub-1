@@ -2,11 +2,12 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Commands.Update.Specifications;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.Update;
 using UniClub.Repositories.Interfaces;
 
-namespace UniClub.Commands.Update
+namespace UniClub.Commands.Update.Handlers
 {
     public class UpdateClubMemberCommandHandler : IRequestHandler<UpdateClubMemberDto, int>
     {
@@ -21,7 +22,8 @@ namespace UniClub.Commands.Update
 
         public async Task<int> Handle(UpdateClubMemberDto request, CancellationToken cancellationToken)
         {
-            return await _memberRoleRepository.UpdateAsync(_mapper.Map<MemberRole>(request), cancellationToken);
+            var entity = await _memberRoleRepository.GetByIdAsync(cancellationToken, new UpdateClubMemberCommandSpecification(request));
+            return await _memberRoleRepository.UpdateAsync(entity, _mapper.Map<MemberRole>(request), cancellationToken);
         }
     }
 }

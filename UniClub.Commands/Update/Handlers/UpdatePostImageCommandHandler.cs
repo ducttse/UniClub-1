@@ -2,6 +2,7 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Commands.Update.Specifications;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.Update;
 using UniClub.Repositories.Interfaces;
@@ -21,7 +22,8 @@ namespace UniClub.Commands.Update.Handlers
 
         public async Task<int> Handle(UpdatePostImageDto request, CancellationToken cancellationToken)
         {
-            return await _postImageRepository.UpdateAsync(_mapper.Map<PostImage>(request), cancellationToken);
+            var entity = await _postImageRepository.GetByIdAsync(cancellationToken, new UpdatePostImageCommandSpecification(request));
+            return await _postImageRepository.UpdateAsync(entity, _mapper.Map<PostImage>(request), cancellationToken);
         }
     }
 }

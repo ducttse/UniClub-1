@@ -2,6 +2,7 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Commands.Update.Specifications;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.Update;
 using UniClub.Repositories.Interfaces;
@@ -21,7 +22,8 @@ namespace UniClub.Commands.Update.Handlers
 
         public async Task<int> Handle(UpdateUniversityDto request, CancellationToken cancellationToken)
         {
-            return await _universityRepository.UpdateAsync(_mapper.Map<University>(request), cancellationToken);
+            var entity = await _universityRepository.GetByIdAsync(cancellationToken, new UpdateUniversityCommandSpecification(request));
+            return await _universityRepository.UpdateAsync(entity, _mapper.Map<University>(request), cancellationToken);
         }
     }
 }

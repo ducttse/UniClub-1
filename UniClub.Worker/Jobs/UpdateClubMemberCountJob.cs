@@ -13,12 +13,12 @@ namespace UniClub.Worker.Jobs
     public class UpdateClubMemberCountJob : IJob
     {
         private readonly ILogger<UpdateClubMemberCountJob> _logger;
-        private readonly IClubRepository _repository;
+        private readonly IClubRepository _clubRepository;
 
         public UpdateClubMemberCountJob(ILogger<UpdateClubMemberCountJob> logger, IClubRepository repository)
         {
             _logger = logger;
-            _repository = repository;
+            _clubRepository = repository;
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -26,12 +26,13 @@ namespace UniClub.Worker.Jobs
             _logger.LogDebug("Executing UpdateClubMemberCountJob");
             CancellationToken cancellationToken = CancellationToken.None;
             var specification = new ClubSpecification();
-            var clubs = await _repository.GetListAsync(cancellationToken, specification);
+            var clubs = await _clubRepository.GetListAsync(cancellationToken, specification);
 
             foreach (var club in clubs.Items)
             {
-                club.MemberCount = club.ClubPeriods.FirstOrDefault(p => !p.IsDeleted && p.IsPresent).MemberRoles.Count;
-                await _repository.UpdateAsync(club, cancellationToken);
+                var dummy = new Club();
+                dummy.MemberCount = club.ClubPeriods.FirstOrDefault(p => !p.IsDeleted && p.IsPresent).MemberRoles.Count;
+                await _clubRepository.UpdateAsync(club, dummy, cancellationToken);
             }
             return;
         }

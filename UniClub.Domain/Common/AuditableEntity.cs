@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using UniClub.Domain.Common.Interfaces;
 
 namespace UniClub.Domain.Common
@@ -11,7 +10,7 @@ namespace UniClub.Domain.Common
         public TKey Id { get; set; }
     }
 
-    public abstract class AuditableEntity : IEntity, IMayHaveCreator, IHasCreationTime, IMayHaveModifier, IHasModificationTime, ISoftDelete
+    public abstract class AuditableEntity : BaseEntity, IEntity, IMayHaveCreator, IHasCreationTime, IMayHaveModifier, IHasModificationTime, ISoftDelete
     {
         [MaxLength(300)]
         public virtual string CreatedBy { get; set; }
@@ -19,8 +18,5 @@ namespace UniClub.Domain.Common
         [MaxLength(300)]
         public string LastModifiedBy { get; set; }
         public DateTime ModificationTime { get; set; }
-        public bool IsDeleted { get; set; }
-        [NotMapped]
-        public bool IsHardDeleted { get; set; }
     }
 }

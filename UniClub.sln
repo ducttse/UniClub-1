@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{A68A20
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniClub.Redis", "UniClub.Redis\UniClub.Redis.csproj", "{EC550DC5-F31E-40A6-9C23-CBB4184677EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniClub.Worker", "UniClub.Worker\UniClub.Worker.csproj", "{8482138B-21E1-4431-8093-23623C22972D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniClub.Worker", "UniClub.Worker\UniClub.Worker.csproj", "{8482138B-21E1-4431-8093-23623C22972D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
