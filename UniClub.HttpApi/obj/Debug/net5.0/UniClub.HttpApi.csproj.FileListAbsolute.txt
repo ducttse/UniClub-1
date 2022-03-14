@@ -113,12 +113,6 @@ C:\Users\arceu\Desktop\UniClub\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.
 C:\Users\arceu\Desktop\UniClub\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.genruntimeconfig.cache
 C:\Users\arceu\Desktop\UniClub\UniClub.HttpApi\bin\Debug\net5.0\Humanizer.dll
 C:\Users\arceu\Desktop\UniClub\UniClub.HttpApi\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.csproj.AssemblyReference.cache
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.GeneratedMSBuildEditorConfig.editorconfig
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.AssemblyInfoInputs.cache
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.AssemblyInfo.cs
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.csproj.CoreCompileInputs.cache
-E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.MvcApplicationPartsAssemblyInfo.cache
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\appsettings.Development.json
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\appsettings.json
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\Authentication\firebase-admin-sdk.json
@@ -234,6 +228,13 @@ E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Helper.pdb
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Repositories.pdb
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Services.pdb
 E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Specifications.pdb
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.csproj.AssemblyReference.cache
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.GeneratedMSBuildEditorConfig.editorconfig
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.AssemblyInfoInputs.cache
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.AssemblyInfo.cs
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.csproj.CoreCompileInputs.cache
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.MvcApplicationPartsAssemblyInfo.cs
+E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.MvcApplicationPartsAssemblyInfo.cache
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\scopedcss\bundle\UniClub.HttpApi.styles.css
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\staticwebassets\UniClub.HttpApi.StaticWebAssets.Manifest.cache
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.RazorTargetAssemblyInfo.cache

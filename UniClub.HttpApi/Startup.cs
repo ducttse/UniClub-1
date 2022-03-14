@@ -18,7 +18,6 @@ using UniClub.HttpApi.Utils;
 using UniClub.Queries;
 using UniClub.Redis;
 using UniClub.Services.Interfaces;
-using UniClub.Worker;
 
 namespace UniClub.HttpApi
 {
