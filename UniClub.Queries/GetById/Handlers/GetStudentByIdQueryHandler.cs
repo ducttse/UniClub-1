@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.Response;
+using UniClub.Queries.GetById.Specifications;
+using UniClub.Specifications;
 
 namespace UniClub.Queries.GetById.Handlers
 {
@@ -21,7 +24,8 @@ namespace UniClub.Queries.GetById.Handlers
         }
         public async Task<StudentDto> Handle(GetStudentByIdDto request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<StudentDto>(await _userManager.FindByIdAsync(request.Id));
+            var user = await SpecificationEvaluator<Person>.GetQuery(_userManager.Users, new GetStudentByIdQuerySpecification(request)).FirstOrDefaultAsync();
+            return _mapper.Map<StudentDto>(user);
         }
     }
 }

@@ -1,14 +1,20 @@
+using FirebaseAdmin;
 using FluentValidation.AspNetCore;
+using Google.Apis.Auth.OAuth2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using System.IO;
 using UniClub.Application;
+using UniClub.Application.Interfaces;
 using UniClub.Commands;
 using UniClub.EntityFrameworkCore;
 using UniClub.Helper.KebabCase;
@@ -48,28 +54,30 @@ namespace UniClub.HttpApi
                 .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddSingleton<IJwtUtils, JwtUtils>();
 
             services.AddHttpContextAccessor();
 
-            //FirebaseApp.Create(new AppOptions
-            //{
-            //    Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration.GetSection("Firebase").GetSection("FileOptions").Value))
-            //});
+            FirebaseApp.Create(new AppOptions
+            {
+                Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration.GetSection("Firebase").GetSection("FileOptions").Value))
+            });
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddJwtBearer(opt =>
-            //    {
-            //        opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
-            //        opt.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateIssuer = true,
-            //            ValidateAudience = true,
-            //            ValidateLifetime = true,
-            //            ValidateIssuerSigningKey = true,
-            //            ValidIssuer = Configuration.GetSection("Jwt").GetSection("Firebase").GetSection("ValidIssuer").Value,
-            //            ValidAudience = Configuration.GetSection("Jwt").GetSection("Firebase").GetSection("ValidAudience").Value
-            //        };
-            //    });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
+                        ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
+                    };
+                });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
@@ -99,6 +107,8 @@ namespace UniClub.HttpApi
                         builder.AllowAnyMethod();
                     });
             });
+
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,7 +122,7 @@ namespace UniClub.HttpApi
             app.UseHttpsRedirection();
             app.UseCors();
             app.UseRouting();
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

@@ -244,3 +244,4 @@ E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\refint\UniClub.HttpApi.dll
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.pdb
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\UniClub.HttpApi.genruntimeconfig.cache
 E:\UniClub\UniClub-1\UniClub.HttpApi\obj\Debug\net5.0\ref\UniClub.HttpApi.dll
+E:\UniClub\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

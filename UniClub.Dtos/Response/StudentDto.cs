@@ -10,5 +10,6 @@ namespace UniClub.Dtos.Response
         public string Address { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int? DepId { get; set; }
+        public string DepName { get; set; }
     }
 }

@@ -28,11 +28,11 @@ namespace UniClub.EntityFrameworkCore
                 await roleManager.CreateAsync(student);
             }
 
-            var administrator = new Person() { UserName = "admin", Email = "administrator@localhost" };
+            var administrator = new Person() { UserName = "admin", Email = "administrator@uniclub.com", Name = "admin" };
 
             if (userManager.Users.All(u => u.UserName != administrator.UserName))
             {
-                var result = await userManager.CreateAsync(administrator, "admin");
+                var result = await userManager.CreateAsync(administrator, "~d[3f6mz)yxx'D=y");
                 await userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
             }
         }

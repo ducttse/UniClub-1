@@ -22,6 +22,7 @@ namespace UniClub.Domain.Entities
         [MaxLength(300)]
         public override string Id { get; set; }
         [MaxLength(256)]
+        [Required]
         public string Name { get; set; }
         public bool? Gender { get; set; }
         [MaxLength(256)]

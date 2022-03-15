@@ -34,6 +34,8 @@ namespace UniClub.Queries.GetWithPagination.Specifications
                 }
             }
 
+            AddInclude(e => e.Dep);
+
             ApplyPagination(query.PageNumber, query.PageSize);
         }
     }

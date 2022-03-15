@@ -76,7 +76,8 @@ namespace UniClub.AutoMapper
             #endregion
 
             #region Student
-            CreateMap<Person, StudentDto>().ReverseMap();
+            CreateMap<Person, StudentDto>()
+                .ForMember(dto => dto.DepName, opt => opt.MapFrom(e => e.Dep.DepName));
             CreateMap<CreateStudentDto, Person>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
             CreateMap<UpdateStudentDto, Person>();
             #endregion
