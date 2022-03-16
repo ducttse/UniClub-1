@@ -43,8 +43,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniClub.Redis", "UniClub.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniClub.Worker", "UniClub.Worker\UniClub.Worker.csproj", "{8482138B-21E1-4431-8093-23623C22972D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniClub.Razor", "UniClub.Razor\UniClub.Razor.csproj", "{35DB5506-143D-4503-A27E-B4B8541DA7EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,10 +105,6 @@ Global
 		{8482138B-21E1-4431-8093-23623C22972D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8482138B-21E1-4431-8093-23623C22972D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8482138B-21E1-4431-8093-23623C22972D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35DB5506-143D-4503-A27E-B4B8541DA7EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35DB5506-143D-4503-A27E-B4B8541DA7EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35DB5506-143D-4503-A27E-B4B8541DA7EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35DB5506-143D-4503-A27E-B4B8541DA7EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,7 +129,6 @@ Global
 		{A68A2061-67F5-4939-A6D9-A5023D8E96BE} = {87D165C3-8F0D-4C74-9B0D-AE8E9FF444FD}
 		{EC550DC5-F31E-40A6-9C23-CBB4184677EC} = {1021ABDF-16EB-470A-909B-1A1AB83BAFEF}
 		{8482138B-21E1-4431-8093-23623C22972D} = {3A874EDD-012E-42A3-945A-8868FE91F73F}
-		{35DB5506-143D-4503-A27E-B4B8541DA7EF} = {A68A2061-67F5-4939-A6D9-A5023D8E96BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA779EBD-5272-4762-98DD-A43C45BF2B20}

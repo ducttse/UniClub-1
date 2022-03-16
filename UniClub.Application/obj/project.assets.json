@@ -5833,11 +5833,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\UniClub\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
+      "projectUniqueName": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
       "projectName": "UniClub.Application",
-      "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
+      "projectPath": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
       "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-      "outputPath": "E:\\UniClub\\UniClub-1\\UniClub.Application\\obj\\",
+      "outputPath": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5858,14 +5858,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\UniClub\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
-              "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj"
+            "E:\\UniClub\\New folder\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
+              "projectPath": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj"
             },
-            "E:\\UniClub\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj": {
-              "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj"
+            "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj": {
+              "projectPath": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj"
             },
-            "E:\\UniClub\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj": {
-              "projectPath": "E:\\UniClub\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj"
+            "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj": {
+              "projectPath": "E:\\UniClub\\New folder\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj"
             }
           }
         }
