@@ -60,7 +60,7 @@ namespace UniClub.HttpApi
 
             FirebaseApp.Create(new AppOptions
             {
-                Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration.GetSection("Firebase").GetSection("FileOptions").Value))
+                Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration["Firebase:FileOptions"]))
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

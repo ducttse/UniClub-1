@@ -14,5 +14,6 @@ namespace UniClub.Dtos.Response
         public DateTime EstablishedDate { get; set; }
         public int MemberCount { get; set; }
         public string Slogan { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

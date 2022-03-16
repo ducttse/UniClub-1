@@ -16,5 +16,7 @@ namespace UniClub.Dtos.Response
         public string ImageUrl { get; set; }
         public EventStatus Status { get; set; }
         public bool IsPrivate { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

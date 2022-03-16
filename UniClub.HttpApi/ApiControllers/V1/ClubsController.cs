@@ -6,6 +6,7 @@ using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
@@ -80,6 +81,28 @@ namespace UniClub.HttpApi.ApiControllers.V1
                 return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
             }
         }
+
+        [HttpPut("{id}/recover")]
+        public async Task<IActionResult> RecoverClub(int id, [FromBody] RecoverClubDto command)
+        {
+            try
+            {
+                if (command.Id.Equals(id))
+                {
+                    var result = await Mediator.Send(command);
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest(new ResponseResult() { StatusCode = HttpStatusCode.BadRequest, Data = "Invalid object" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
+            }
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClub(int id)

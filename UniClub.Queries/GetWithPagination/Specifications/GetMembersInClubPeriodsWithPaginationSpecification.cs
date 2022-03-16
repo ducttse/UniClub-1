@@ -10,6 +10,10 @@ namespace UniClub.Queries.GetWithPagination.Specifications
     {
         public GetMembersInClubPeriodsWithPaginationSpecification(GetClubMembersWithPaginationDto query)
         {
+            if (!query.IsDeleted)
+            {
+                SetFilterCondition(e => e.IsDeleted == false);
+            }
 
             if (!string.IsNullOrWhiteSpace(query.SearchValue))
             {

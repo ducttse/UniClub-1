@@ -3,9 +3,11 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using UniClub.Domain.Common.Enums;
+using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
+using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
 
@@ -46,23 +48,44 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateUser([FromBody] CreateUserDto command)
-        //{
-        //    try
-        //    {
-        //        command.SetRole(Role.Anonymous);
-        //        var result = await Mediator.Send(command);
-        //        return CreatedAtRoute(nameof(GetUser), new { id = result }, command);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
-        //    }
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserDto command)
+        {
+            try
+            {
+                command.SetRole(Role.Anonymous);
+                var result = await Mediator.Send(command);
+                return CreatedAtRoute(nameof(GetUser), new { id = result }, command);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(string id, [FromBody] UpdateUserDto command)
+        {
+            try
+            {
+                if (command.Id.Equals(id))
+                {
+                    var result = await Mediator.Send(command);
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest(new ResponseResult() { StatusCode = HttpStatusCode.BadRequest, Data = "Invalid object" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseResult() { StatusCode = HttpStatusCode.InternalServerError, Data = ex.Message });
+            }
+        }
+
+        [HttpPut("{id}/recover")]
+        public async Task<IActionResult> RecoverUser(int id, [FromBody] RecoverUserDto command)
         {
             try
             {

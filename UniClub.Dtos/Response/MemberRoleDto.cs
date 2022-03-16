@@ -13,5 +13,7 @@ namespace UniClub.Dtos.Response
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public int ClubPeriodId { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

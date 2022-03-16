@@ -14,5 +14,6 @@ namespace UniClub.Repositories.Interfaces
         Task<(List<T> Items, int Count)> GetListAsync(CancellationToken cancellationToken, ISpecification<T> specification = null);
         Task<int> HardDeleteAsync(T entity, CancellationToken cancellationToken);
         Task<int> UpdateAsync(T entity, T updatedEntity, CancellationToken cancellationToken);
+        Task<int> RecoverAsync(T entity, CancellationToken cancellationToken);
     }
 }

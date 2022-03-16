@@ -84,6 +84,25 @@ namespace UniClub.EntityFrameworkCore.Repositories
             }
         }
 
+        public virtual async Task<int> RecoverAsync(T entity, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    throw new ArgumentNullException(nameof(entity));
+                }
+
+                entity.IsDeleted = false;
+
+                return await _context.SaveChangesAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public virtual async Task<int> DeleteAsync(T entity, CancellationToken cancellationToken)
         {
             try

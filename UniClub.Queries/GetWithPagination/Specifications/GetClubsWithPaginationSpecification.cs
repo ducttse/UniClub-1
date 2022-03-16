@@ -10,7 +10,10 @@ namespace UniClub.Queries.GetWithPagination.Specifications
     {
         public GetClubsWithPaginationSpecification(GetClubsWithPaginationDto query) : base()
         {
-            SetFilterCondition(e => e.IsDeleted == false);
+            if (!query.IsDeleted)
+            {
+                SetFilterCondition(e => e.IsDeleted == false);
+            }
 
             if (!string.IsNullOrEmpty(query.SearchValue))
             {

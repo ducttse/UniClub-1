@@ -13,5 +13,7 @@ namespace UniClub.Dtos.Response
         public string ShortDescription { get; set; }
         public int? EventId { get; set; }
         public DateTime CreationTime { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }
