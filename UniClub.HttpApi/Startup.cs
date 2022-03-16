@@ -58,26 +58,26 @@ namespace UniClub.HttpApi
             services.AddSingleton<IJwtUtils, JwtUtils>();
             services.AddHttpContextAccessor();
 
-            FirebaseApp.Create(new AppOptions
-            {
-                Credential = GoogleCredential.FromFile(Path.Combine(Path.Combine(Environment.ContentRootPath, Configuration["Firebase:FileOptions"])))
-            });
+            //FirebaseApp.Create(new AppOptions
+            //{
+            //    Credential = GoogleCredential.FromFile(Path.Combine(Path.Combine(Environment.ContentRootPath, Configuration["Firebase:FileOptions"])))
+            //});
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opt =>
-                {
-                    opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
-                    opt.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        RequireExpirationTime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
-                        ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
-                    };
-                });
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(opt =>
+            //    {
+            //        opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
+            //        opt.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = true,
+            //            ValidateAudience = true,
+            //            ValidateLifetime = true,
+            //            RequireExpirationTime = true,
+            //            ValidateIssuerSigningKey = true,
+            //            ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
+            //            ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
+            //        };
+            //    });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
