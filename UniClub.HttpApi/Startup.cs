@@ -29,12 +29,14 @@ namespace UniClub.HttpApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -60,7 +62,7 @@ namespace UniClub.HttpApi
 
             FirebaseApp.Create(new AppOptions
             {
-                Credential = GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(), Configuration["Firebase:FileOptions"]))
+                Credential = GoogleCredential.FromFile(Path.Combine(Path.Combine(Environment.ContentRootPath, Configuration["Firebase:FileOptions"])))
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
