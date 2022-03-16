@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>dotnet-UniClub.Worker-22AE48E8-B8B6-4082-BDDC-63B59F59A421</UserSecretsId>
+    <UserSecretsId>dotnet-UniClub.Worker-5687E9FA-F37B-4478-AD47-CC6B43F7D9D8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

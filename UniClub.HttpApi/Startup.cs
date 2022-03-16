@@ -22,7 +22,6 @@ using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Services;
 using UniClub.HttpApi.Utils;
 using UniClub.Queries;
-using UniClub.Redis;
 using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi
@@ -43,7 +42,7 @@ namespace UniClub.HttpApi
         {
             services.AddEntityFrameworkCore(Configuration);
             services.AddApplication();
-            services.AddRedis(Configuration);
+            //services.AddRedis(Configuration);
             //services.AddWorkers();
             services.AddMediaRCommands();
             services.AddMediaRQueries();
@@ -57,7 +56,6 @@ namespace UniClub.HttpApi
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
             services.AddSingleton<IJwtUtils, JwtUtils>();
-
             services.AddHttpContextAccessor();
 
             FirebaseApp.Create(new AppOptions

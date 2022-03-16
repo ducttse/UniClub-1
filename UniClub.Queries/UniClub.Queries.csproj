@@ -5,12 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <Folder Include="GetById\Validators\" />
+    <Folder Include="GetWithPagination\Validators\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GetById\Validators\" />
-    <Folder Include="GetWithPagination\Validators\" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
