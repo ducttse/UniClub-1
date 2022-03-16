@@ -5,7 +5,7 @@ using UniClub.Domain.Common;
 
 namespace UniClub.Dtos.Update
 {
-    public class UpdateStudentDto : IRequest<Result>
+    public class UpdateUserDto : IRequest<Result>
     {
         [Required]
         public string Id { get; set; }

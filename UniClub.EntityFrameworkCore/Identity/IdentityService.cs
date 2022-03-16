@@ -108,11 +108,15 @@ namespace UniClub.EntityFrameworkCore.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<Result> UpdateUserAsync(string userId)
+        public async Task<Result> UpdateUserAsync(string userId, Person updatedUser)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id.ToString() == userId);
-
-            return user != null ? await UpdateUserAsync(user) : Result.Failure(new List<string>() { "User does not exist" });
+            if (user == null)
+            {
+                return Result.Failure(new List<string>() { "User does not exist" });
+            }
+            var updated = UpdateEntityWithInDatabase(user, updatedUser);
+            return await UpdateUserAsync(updated);
         }
 
         public async Task<Result> UpdateUserAsync(Person user)
@@ -120,6 +124,24 @@ namespace UniClub.EntityFrameworkCore.Identity
             var result = await _userManager.UpdateAsync(user);
 
             return result.ToApplicationResult();
+        }
+
+        protected virtual Person UpdateEntityWithInDatabase(Person entity, Person updatedEntity)
+        {
+            foreach (var inDatabaseProperty in entity.GetType().GetProperties())
+            {
+                if (!inDatabaseProperty.Name.Equals("Id"))
+                {
+                    var entityValue = updatedEntity.GetType().GetProperty(inDatabaseProperty.Name).GetValue(updatedEntity);
+                    {
+                        if (entityValue != null && entityValue != default)
+                        {
+                            updatedEntity.GetType().GetProperty(inDatabaseProperty.Name).SetValue(entity, entityValue);
+                        }
+                    }
+                }
+            }
+            return entity;
         }
     }
 }

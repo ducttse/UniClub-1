@@ -2,10 +2,10 @@
 
 namespace UniClub.Dtos.Delete
 {
-    public class DeleteStudentDto : IRequest<int>
+    public class DeleteUserDto : IRequest<int>
     {
         public string Id { get; }
-        public DeleteStudentDto(string id)
+        public DeleteUserDto(string id)
         {
             Id = id;
         }

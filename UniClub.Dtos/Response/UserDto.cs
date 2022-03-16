@@ -2,7 +2,7 @@
 
 namespace UniClub.Dtos.Response
 {
-    public class StudentDto
+    public class UserDto
     {
         public string Id { get; set; }
         public string Name { get; set; }

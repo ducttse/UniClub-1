@@ -16,7 +16,7 @@ namespace UniClub.Application.Interfaces
 
         Task<Result> DeleteUserAsync(string userId);
         Task<(Result Result, string UserId)> CreateUserAsync(Person user, string password);
-        Task<Result> UpdateUserAsync(string userId);
+        Task<Result> UpdateUserAsync(string userId, Person updatedUser);
         Task<Result> UpdateUserAsync(Person user);
         Task AddToRoleAsync(string userId, string role);
 

@@ -6,9 +6,9 @@ using UniClub.Specifications;
 
 namespace UniClub.Queries.GetWithPagination.Specifications
 {
-    public class GetStudentsWithPaginationSpecification : BaseSpecification<Person>
+    public class GetUsersWithPaginationQuerySpecification : BaseSpecification<Person>
     {
-        public GetStudentsWithPaginationSpecification(GetUsersWithPaginationDto query)
+        public GetUsersWithPaginationQuerySpecification(GetUsersWithPaginationDto query)
         {
             SetFilterCondition(e => e.IsDeleted == false);
 

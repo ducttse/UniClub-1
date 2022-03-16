@@ -6,7 +6,6 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using UniClub.Application.Interfaces;
-using UniClub.Application.Models;
 using UniClub.Domain.Entities;
 using UniClub.HttpApi.Utils;
 
@@ -80,6 +79,35 @@ namespace UniClub.HttpApi.ApiControllers.V1
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+    }
+
+    public class TokenVerifyRequest
+    {
+        public string Token { get; set; }
+    }
+
+    public class RegisterRequest
+    {
+        public string UserName { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
+    }
+
+    public class FirebaseSignUp
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool ReturnSecureToken { get; set; } = true;
+
+        public FirebaseSignUp(string email, string password, bool returnSecureToken = true)
+        {
+            Email = email;
+            Password = password;
+            ReturnSecureToken = returnSecureToken;
         }
     }
 }

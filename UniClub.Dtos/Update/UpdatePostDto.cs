@@ -13,5 +13,6 @@ namespace UniClub.Dtos.Update
         public PostStatus Status { get; set; }
         public string ShortDescription { get; set; }
         public int? EventId { get; set; }
+        public string Title { get; set; }
     }
 }

@@ -9,23 +9,22 @@ using UniClub.Dtos.Create;
 
 namespace UniClub.Commands.Create.Handlers
 {
-    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentDto, string>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserDto, string>
     {
-        private readonly string STUDENT_ROLE = "Student";
         private readonly IIdentityService _identityService;
         private readonly UserManager<Person> _userManager;
         private readonly IMapper _mapper;
 
-        public CreateStudentCommandHandler(IIdentityService identityService, UserManager<Person> userManager, IMapper mapper)
+        public CreateUserCommandHandler(IIdentityService identityService, UserManager<Person> userManager, IMapper mapper)
         {
             _identityService = identityService;
             _userManager = userManager;
             _mapper = mapper;
         }
-        public async Task<string> Handle(CreateStudentDto request, CancellationToken cancellationToken)
+        public async Task<string> Handle(CreateUserDto request, CancellationToken cancellationToken)
         {
             var result = await _identityService.CreateUserAsync(_mapper.Map<Person>(request), request.Password);
-            await _identityService.AddToRoleAsync(result.UserId, STUDENT_ROLE);
+            await _identityService.AddToRoleAsync(result.UserId, request.GetRole().ToString());
             return result.UserId;
         }
     }
