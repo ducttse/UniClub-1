@@ -22,3 +22,15 @@ E:\UniClub\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.dll
 E:\UniClub\UniClub-1\UniClub.Domain\obj\Debug\net5.0\refint\UniClub.Domain.dll
 E:\UniClub\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.pdb
 E:\UniClub\UniClub-1\UniClub.Domain\obj\Debug\net5.0\ref\UniClub.Domain.dll
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.deps.json
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.dll
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.pdb
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.AssemblyReference.cache
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfoInputs.cache
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfo.cs
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.CoreCompileInputs.cache
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.dll
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\refint\UniClub.Domain.dll
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.pdb
+E:\UniClub\New folder\UniClub-1\UniClub.Domain\obj\Debug\net5.0\ref\UniClub.Domain.dll
