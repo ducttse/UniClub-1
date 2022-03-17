@@ -47,7 +47,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent([FromBody] CreateEventDto command)
+        public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto command)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventDto command)
+        public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto command)
         {
             try
             {

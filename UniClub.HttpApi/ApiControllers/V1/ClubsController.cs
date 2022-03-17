@@ -48,7 +48,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClub([FromBody] CreateClubDto command)
+        public async Task<IActionResult> CreateClub([FromForm] CreateClubDto command)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateClub(int id, [FromBody] UpdateClubDto command)
+        public async Task<IActionResult> UpdateClub(int id, [FromForm] UpdateClubDto command)
         {
             try
             {

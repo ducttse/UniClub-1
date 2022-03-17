@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 
 namespace UniClub.Dtos.Create
@@ -11,6 +12,7 @@ namespace UniClub.Dtos.Create
         public string ShortDescription { get; set; }
         public int UniId { get; set; }
         public string AvatarUrl { get; set; }
+        public IFormFile UploadedAvatar { get; set; }
         public DateTime EstablishedDate { get; set; }
         public string Slogan { get; set; }
     }

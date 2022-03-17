@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniClub.EntityFrameworkCore;
 
 namespace UniClub.Infrastructure.Migrations
 {
     [DbContext(typeof(UniClubContext))]
-    partial class UniClubContextModelSnapshot : ModelSnapshot
+    [Migration("20220317012816_Add_ImageUrl_Person")]
+    partial class Add_ImageUrl_Person
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

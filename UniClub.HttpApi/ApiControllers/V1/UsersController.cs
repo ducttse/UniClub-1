@@ -16,7 +16,7 @@ using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UsersController : ApiControllerBase
     {
@@ -59,11 +59,10 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserDto command)
+        public async Task<IActionResult> CreateUser([FromForm] CreateUserDto command)
         {
             try
             {
-                command.SetRole(Role.Anonymous);
                 var result = await Mediator.Send(command);
                 return CreatedAtRoute(nameof(GetUser), new { id = result }, command);
             }
@@ -74,7 +73,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(string id, [FromBody] UpdateUserDto command)
+        public async Task<IActionResult> UpdateUser(string id, [FromForm] UpdateUserDto command)
         {
             try
             {

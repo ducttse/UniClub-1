@@ -11,6 +11,7 @@ namespace UniClub.Services
 {
     public class FirebaseUploadService : IUploadService
     {
+        
         private static string API_KEY = "AIzaSyB3r14X6dC4QYGvrYN7hVrLgNZNliK9ruQ";
         private static string BUCKET = "premium-client-337312.appspot.com";
         private static string AUTH_EMAIL = "administrator@uniclub.com";
@@ -20,10 +21,9 @@ namespace UniClub.Services
             string link = string.Empty;
             try
             {
-                using (var stream = new MemoryStream())
+                using (var stream = file.OpenReadStream())
                 {
-                    file.CopyTo(stream);
-
+                    
                     var auth = new FirebaseAuthProvider(new FirebaseConfig(API_KEY));
                     var signIn = await auth.SignInWithEmailAndPasswordAsync(AUTH_EMAIL, AUTH_PASSWORD);
 
@@ -38,8 +38,8 @@ namespace UniClub.Services
                             ThrowOnCancel = true
                         })
                         .Child(folder)
-                        .Child(file.FileName)
-                        .PutAsync(stream, cancellation.Token);
+                        .Child(Path.GetRandomFileName() + Path.GetExtension(file.FileName))
+                        .PutAsync(stream);
                     link = await task;
                 }
             }

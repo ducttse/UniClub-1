@@ -9,6 +9,7 @@ namespace UniClub.Dtos.Response
         public bool? Gender { get; set; }
         public string Address { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string ImageUrl { get; set; }
         public int? DepId { get; set; }
         public string DepName { get; set; }
         public bool IsDeleted { get; set; }

@@ -52,7 +52,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                command.SetRole(Role.Student);
+                command.Role = Role.Student;
                 var result = await Mediator.Send(command);
                 return CreatedAtRoute(nameof(GetStudent), new { id = result }, command);
             }

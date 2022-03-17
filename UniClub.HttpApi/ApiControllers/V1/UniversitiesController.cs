@@ -46,7 +46,7 @@ public class UniversitiesController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateUniversity([FromBody] CreateUniversityDto command)
+    public async Task<IActionResult> CreateUniversity([FromForm] CreateUniversityDto command)
     {
         try
         {
@@ -60,7 +60,7 @@ public class UniversitiesController : ApiControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUniversity(int id, [FromBody] UpdateUniversityDto command)
+    public async Task<IActionResult> UpdateUniversity(int id, [FromForm] UpdateUniversityDto command)
     {
         try
         {

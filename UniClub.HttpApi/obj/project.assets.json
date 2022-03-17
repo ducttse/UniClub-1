@@ -3204,6 +3204,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
+          "Microsoft.AspNetCore.Http.Features": "5.0.15",
           "UniClub.Repositories": "1.0.0"
         },
         "compile": {

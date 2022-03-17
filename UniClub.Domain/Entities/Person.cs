@@ -27,6 +27,8 @@ namespace UniClub.Domain.Entities
         public bool? Gender { get; set; }
         [MaxLength(256)]
         public string Address { get; set; }
+        [MaxLength(500)]
+        public string ImageUrl { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public int? DepId { get; set; }
         public string CreatedBy { get; set; }
