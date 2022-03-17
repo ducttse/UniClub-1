@@ -61,7 +61,8 @@ namespace UniClub.HttpApi
             
             string rootPath;
             if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("HOME")))
-                rootPath = System.Environment.GetEnvironmentVariable("HOME") + "\\site\\wwwroot\\bin";
+                
+                rootPath = Path.Combine(System.Environment.GetEnvironmentVariable("HOME"), "site", "wwwroot");
             else
                 rootPath = ".";
 

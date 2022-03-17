@@ -11,10 +11,10 @@ namespace UniClub.Services
 {
     public class FirebaseUploadService : IUploadService
     {
-        private static string API_KEY = "";
-        private static string BUCKET = "";
-        private static string AUTH_EMAIL = "";
-        private static string AUTH_PASSWORD = "";
+        private static string API_KEY = "AIzaSyB3r14X6dC4QYGvrYN7hVrLgNZNliK9ruQ";
+        private static string BUCKET = "premium-client-337312.appspot.com";
+        private static string AUTH_EMAIL = "administrator@uniclub.com";
+        private static string AUTH_PASSWORD = "~d[3f6mz)yxx'D=y";
         public async Task<string> Upload(IFormFile file, string folder = "files")
         {
             string link = string.Empty;

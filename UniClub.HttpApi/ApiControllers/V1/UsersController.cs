@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using UniClub.Domain.Common.Enums;
@@ -10,6 +12,7 @@ using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
 using UniClub.HttpApi.Models;
+using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
@@ -17,6 +20,13 @@ namespace UniClub.HttpApi.ApiControllers.V1
     [ApiController]
     public class UsersController : ApiControllerBase
     {
+        private readonly IUploadService _uploadService;
+
+        public UsersController(IUploadService uploadService)
+        {
+            _uploadService = uploadService;
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetUsersWithPagination([FromQuery] GetUsersWithPaginationDto query)
         {

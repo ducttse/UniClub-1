@@ -8,7 +8,7 @@ namespace UniClub.Services
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddTransient<IDateTime, DateTimeService>();
-            services.AddTransient<IUploadService, ApplicationUploadService>();
+            services.AddTransient<IUploadService, FirebaseUploadService>();
             return services;
         }
     }
