@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
@@ -57,27 +58,35 @@ namespace UniClub.HttpApi
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
             services.AddSingleton<IJwtUtils, JwtUtils>();
             services.AddHttpContextAccessor();
+            
+            string rootPath;
+            if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("HOME")))
+                rootPath = System.Environment.GetEnvironmentVariable("HOME") + "\\site\\wwwroot\\bin";
+            else
+                rootPath = ".";
 
-            //FirebaseApp.Create(new AppOptions
-            //{
-            //    Credential = GoogleCredential.FromFile(Path.Combine(Path.Combine(Environment.ContentRootPath, Configuration["Firebase:FileOptions"])))
-            //});
+            string firebaseSdkPath = Path.Combine(rootPath, Configuration["Firebase:FileOptions"]);
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddJwtBearer(opt =>
-            //    {
-            //        opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
-            //        opt.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateIssuer = true,
-            //            ValidateAudience = true,
-            //            ValidateLifetime = true,
-            //            RequireExpirationTime = true,
-            //            ValidateIssuerSigningKey = true,
-            //            ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
-            //            ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
-            //        };
-            //    });
+            FirebaseApp.Create(new AppOptions
+            {
+                Credential = GoogleCredential.FromFile(firebaseSdkPath)
+            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
+                        ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
+                    };
+                });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
