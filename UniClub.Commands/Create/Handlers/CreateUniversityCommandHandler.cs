@@ -11,6 +11,7 @@ namespace UniClub.Commands.Create.Handlers
 {
     public class CreateUniversityCommandHandler : IRequestHandler<CreateUniversityDto, int>
     {
+        private readonly string DEFAULT_LOGO = "https://firebasestorage.googleapis.com/v0/b/premium-client-337312.appspot.com/o/universities%2Fdefaultlogo.jpg?alt=media&token=b85be7d0-7423-44c6-8237-f2a3b30c42bc";
         private readonly IUniversityRepository _universityRepository;
         private readonly IUploadService _uploadService;
         private readonly IMapper _mapper;
@@ -24,7 +25,7 @@ namespace UniClub.Commands.Create.Handlers
 
         public async Task<int> Handle(CreateUniversityDto request, CancellationToken cancellationToken)
         {
-            string logoUrl = null;
+            string logoUrl = DEFAULT_LOGO;
             if (request.UploadedLogo != null && request.UploadedLogo.Length > 0)
             {
                 logoUrl = await _uploadService.Upload(request.UploadedLogo, "universities");

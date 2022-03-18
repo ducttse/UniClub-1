@@ -16,6 +16,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateUniversityDto, University>();
             CreateMap<UpdateUniversityDto, University>();
             CreateMap<DeleteUniversityDto, University>();
+            CreateMap<UniversityDto, UpdateUniversityDto>();
             #endregion
 
             #region ClubMapping
