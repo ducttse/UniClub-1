@@ -8,12 +8,14 @@ using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class EventsController : ApiControllerBase
     {
         [HttpGet]
@@ -46,6 +48,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPost]
         public async Task<IActionResult> CreateEvent([FromForm] CreateEventDto command)
         {
@@ -60,6 +63,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEvent(int id, [FromForm] UpdateEventDto command)
         {
@@ -81,6 +85,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPut("{id}/recover")]
         public async Task<IActionResult> RecoverEvent(int id, [FromBody] RecoverEventDto command)
         {
@@ -102,6 +107,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {

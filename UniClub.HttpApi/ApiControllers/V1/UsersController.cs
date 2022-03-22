@@ -57,7 +57,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
 
-        [HttpPost("SchoolAdmin")]
+        [HttpPost("school-admin")]
         public async Task<IActionResult> CreateSchoolAdmin([FromForm] CreateSchoolAdminDto command)
         {
             try
@@ -94,7 +94,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}/recover")]
-        public async Task<IActionResult> RecoverUser(int id, [FromBody] RecoverUserDto command)
+        public async Task<IActionResult> RecoverUser(string id, [FromBody] RecoverUserDto command)
         {
             try
             {

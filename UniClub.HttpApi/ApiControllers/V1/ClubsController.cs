@@ -192,8 +192,8 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [Authorize(Role = "SchoolAdmin")]
-        [HttpPost("{id}/ClubAdmin")]
-        public async Task<IActionResult> CreateClubAdmin(int id, [FromBody] CreateClubAdminDto command)
+        [HttpPost("{id}/club-admin")]
+        public async Task<IActionResult> CreateClubAdmin(int id, [FromForm] CreateClubAdminDto command)
         {
             try
             {

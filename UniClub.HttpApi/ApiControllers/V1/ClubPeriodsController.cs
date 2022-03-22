@@ -8,12 +8,14 @@ using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize(Role = "SchoolAdmin")]
     public class ClubPeriodsController : ApiControllerBase
     {
         [HttpGet]

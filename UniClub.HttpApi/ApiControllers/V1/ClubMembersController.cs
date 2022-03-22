@@ -8,6 +8,7 @@ using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
@@ -48,6 +49,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPost]
         public async Task<IActionResult> CreateClubMember(int cpid, [FromBody] CreateClubMemberDto command)
         {
@@ -63,6 +65,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClubMember(int cpid, string id, [FromBody] UpdateClubMemberDto command)
         {
@@ -85,6 +88,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpPut("{id}/recover")]
         public async Task<IActionResult> RecoverClubMember(int cpid, string id, [FromBody] RecoverClubMemberDto command)
         {
@@ -107,6 +111,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubAdmin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClubMember(int cpid, string id)
         {
