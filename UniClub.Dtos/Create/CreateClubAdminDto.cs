@@ -24,7 +24,7 @@ namespace UniClub.Dtos.Create
         [Required]
         public string Password { get; set; }
         public IFormFile UploadedImage { get; set; }
-        public string ImageUrl { get; }
+        public string ImageUrl { get; set; }
         public int ClubId { get => _clubId; }
         public void SetClubId(int clubId) => _clubId = clubId;
         public int UniId { get => _uniId; }

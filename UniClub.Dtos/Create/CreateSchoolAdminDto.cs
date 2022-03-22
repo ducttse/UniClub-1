@@ -24,6 +24,6 @@ namespace UniClub.Dtos.Create
         [Required]
         public int UniId { get; set; }
         [JsonIgnore]
-        public string ImageUrl { get; }
+        public string ImageUrl { get; set; }
     }
 }

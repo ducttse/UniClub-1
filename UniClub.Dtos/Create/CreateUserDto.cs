@@ -23,7 +23,7 @@ namespace UniClub.Dtos.Create
         [Required]
         public string Password { get; set; }
         public IFormFile UploadedImage { get; set; }
-        public string ImageUrl { get; }
+        public string ImageUrl { get; set; }
         public Role Role { get; set; }
     }
 }
