@@ -80,7 +80,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent([FromBody] CreateUserDto command)
+        public async Task<IActionResult> CreateStudent([FromForm] CreateUserDto command)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateStudent(string id, [FromBody] UpdateUserDto command)
+        public async Task<IActionResult> UpdateStudent(string id, [FromForm] UpdateUserDto command)
         {
             try
             {
