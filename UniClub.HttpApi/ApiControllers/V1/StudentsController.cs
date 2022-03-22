@@ -1,27 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using UniClub.Application.Interfaces;
 using UniClub.Domain.Common.Enums;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize(Role = "SchoolAdmin")]
     public class StudentsController : ApiControllerBase
     {
+        private IFireBaseRegisterService _fireBaseRegisterService;
+
+        public StudentsController(IFireBaseRegisterService fireBaseRegisterService)
+        {
+            _fireBaseRegisterService = fireBaseRegisterService;
+        }
+
         [HttpGet]
-        public async Task<IActionResult> GetStudentsWithPagination([FromQuery] GetUsersWithPaginationDto query)
+        public async Task<IActionResult> GetStudentsWithPagination([FromQuery] GetStudentsWithPaginationDto query)
         {
             try
             {
-                query.SetRole(Role.Student);
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                int uniId = int.Parse(claim.Value);
+                query.SetUniId(uniId);
+
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -36,8 +58,18 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetUserByIdDto(id, Role.Student);
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                int uniId = int.Parse(claim.Value);
+
+                var query = new GetStudentByIdDto(id, uniId);
                 var result = await Mediator.Send(query);
+
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Student {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
@@ -54,6 +86,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             {
                 command.Role = Role.Student;
                 var result = await Mediator.Send(command);
+                await _fireBaseRegisterService.RegisterToFireBase(command.Email, command.Password);
                 return CreatedAtRoute(nameof(GetStudent), new { id = result }, command);
             }
             catch (Exception ex)

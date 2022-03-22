@@ -8,6 +8,10 @@ namespace UniClub.Domain.Common
     {
         protected virtual bool BeAValidName(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
             if (name.Contains("  "))
             {
                 return false;

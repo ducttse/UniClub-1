@@ -39,12 +39,12 @@ namespace UniClub.Queries.GetWithPagination.Handlers
             var result = new List<UserDto>();
             int count = 0;
             List<Person> joinResult = new List<Person>();
-            switch (request.GetRole())
+            switch (request.Role)
             {
                 case Role.Student:
-                    var usersInStudent = await _userManager.GetUsersInRoleAsync(request.GetRole().ToString());
+                    var usersInStudent = await _userManager.GetUsersInRoleAsync(request.Role.ToString());
 
-                    var students = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetStudentsWithPaginationSpecification(request)).ToListAsync();
+                    var students = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetUsersWithPaginationQuerySpecification(request)).ToListAsync();
 
                     joinResult = (from student in students
                                   join user in usersInStudent on student.Id equals user.Id
@@ -54,9 +54,9 @@ namespace UniClub.Queries.GetWithPagination.Handlers
                     count = joinResult.Count();
                     break;
                 case Role.SystemAdministrator:
-                    var usersInSystemAdministrator = await _userManager.GetUsersInRoleAsync(request.GetRole().ToString());
+                    var usersInSystemAdministrator = await _userManager.GetUsersInRoleAsync(request.Role.ToString());
 
-                    var systemAdministrators = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetStudentsWithPaginationSpecification(request)).ToListAsync();
+                    var systemAdministrators = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetUsersWithPaginationQuerySpecification(request)).ToListAsync();
 
                     joinResult = (from systemAdministrator in systemAdministrators
                                   join user in usersInSystemAdministrator on systemAdministrator.Id equals user.Id
@@ -66,9 +66,9 @@ namespace UniClub.Queries.GetWithPagination.Handlers
                     count = joinResult.Count();
                     break;
                 case Role.SchoolAdmin:
-                    var usersInSchoolAdmin = await _userManager.GetUsersInRoleAsync(request.GetRole().ToString());
+                    var usersInSchoolAdmin = await _userManager.GetUsersInRoleAsync(request.Role.ToString());
 
-                    var schoolAdmins = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetStudentsWithPaginationSpecification(request)).ToListAsync();
+                    var schoolAdmins = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetUsersWithPaginationQuerySpecification(request)).ToListAsync();
 
                     joinResult = (from schoolAdmin in schoolAdmins
                                   join user in usersInSchoolAdmin on schoolAdmin.Id equals user.Id

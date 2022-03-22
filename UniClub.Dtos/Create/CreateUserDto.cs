@@ -19,10 +19,11 @@ namespace UniClub.Dtos.Create
         public string Address { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public int? DepId { get; set; }
+        [JsonIgnore]
+        [Required]
         public string Password { get; set; }
         public IFormFile UploadedImage { get; set; }
-        [JsonIgnore]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; }
         public Role Role { get; set; }
     }
 }

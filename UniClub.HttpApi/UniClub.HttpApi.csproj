@@ -26,7 +26,6 @@
     <ProjectReference Include="..\UniClub.Commands\UniClub.Commands.csproj" />
     <ProjectReference Include="..\UniClub.EntityFrameworkCore\UniClub.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\UniClub.Queries\UniClub.Queries.csproj" />
-    <ProjectReference Include="..\UniClub.Redis\UniClub.Redis.csproj" />
     <ProjectReference Include="..\UniClub.Worker\UniClub.Worker.csproj" />
   </ItemGroup>
 

@@ -15,6 +15,7 @@ namespace UniClub.Dtos.Update
         public IFormFile UploadedLogo { get; set; }
         public string LogoUrl { get; set; }
         public string Slogan { get; set; }
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
         public DateTime EstablishedDate { get; set; }
         public string Website { get; set; }
         public string ShortName { get; set; }

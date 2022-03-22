@@ -6,9 +6,11 @@ namespace UniClub.Dtos.GetById
     public class GetClubByIdDto : IRequest<ClubDto>
     {
         public int Id { get; }
-        public GetClubByIdDto(int id)
+        public int UniId { get; set; }
+        public GetClubByIdDto(int id, int uniId)
         {
             Id = id;
+            UniId = uniId;
         }
     }
 }

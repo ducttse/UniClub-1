@@ -9,10 +9,12 @@ using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
 using UniClub.HttpApi.ApiControllers;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[Authorize(Role = "SystemAdministrator")]
 public class UniversitiesController : ApiControllerBase
 {
     [HttpGet]

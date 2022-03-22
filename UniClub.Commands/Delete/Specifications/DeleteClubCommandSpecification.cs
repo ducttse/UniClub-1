@@ -10,7 +10,7 @@ namespace UniClub.Commands.Delete.Specifications
         {
             SetFilterCondition(e => !e.IsDeleted);
 
-            SetFilterCondition(e => e.Id == dto.Id);
+            SetFilterCondition(e => e.Id == dto.Id && e.UniId == dto.UniId);
         }
     }
 }

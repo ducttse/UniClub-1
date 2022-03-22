@@ -24,6 +24,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateClubDto, Club>();
             CreateMap<UpdateClubDto, Club>();
             CreateMap<DeleteClubDto, Club>();
+            CreateMap<ClubDto, UpdateClubDto>();
             #endregion
 
             #region ClubPeriodMapping
@@ -31,13 +32,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateClubPeriodDto, ClubPeriod>();
             CreateMap<UpdateClubPeriodDto, ClubPeriod>();
             CreateMap<DeleteClubPeriodDto, ClubPeriod>();
-            #endregion
-
-            #region ClubRoleMapping
-            CreateMap<ClubRole, ClubRoleDto>().ReverseMap();
-            CreateMap<CreateClubRoleDto, ClubRole>();
-            CreateMap<UpdateClubRoleDto, ClubRole>();
-            CreateMap<DeleteClubRoleDto, ClubRole>();
+            CreateMap<ClubPeriodDto, UpdateClubPeriodDto>();
             #endregion
 
             #region ClubTaskMapping
@@ -45,6 +40,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateClubTaskDto, ClubTask>();
             CreateMap<UpdateClubTaskDto, ClubTask>();
             CreateMap<DeleteClubTaskDto, ClubTask>();
+            CreateMap<ClubTaskDto, UpdateClubTaskDto>();
             #endregion
 
             #region DepartmentMapping
@@ -52,6 +48,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateDepartmentDto, Department>();
             CreateMap<UpdateDepartmentDto, Department>();
             CreateMap<DeleteDepartmentDto, Department>();
+            CreateMap<DepartmentDto, UpdateDepartmentDto>();
             #endregion
 
             #region EventMapping
@@ -59,6 +56,7 @@ namespace UniClub.AutoMapper
             CreateMap<CreateEventDto, Event>();
             CreateMap<UpdateEventDto, Event>();
             CreateMap<DeleteEventDto, Event>();
+            CreateMap<EventDto, UpdateEventDto>();
             #endregion
 
 
@@ -79,19 +77,22 @@ namespace UniClub.AutoMapper
             #region Student
             CreateMap<Person, UserDto>()
                 .ForMember(dto => dto.DepName, opt => opt.MapFrom(e => e.Dep.DepName));
-            CreateMap<CreateUserDto, Person>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
+            CreateMap<CreateUserDto, Person>();
+            CreateMap<CreateSchoolAdminDto, Person>();
             CreateMap<UpdateUserDto, Person>();
+            CreateMap<UserDto, UpdateUserDto>();
             #endregion
 
             #region ClubMembers
             CreateMap<MemberRole, MemberRoleDto>()
                 .ForMember(dto => dto.StudentId, opt => opt.MapFrom(e => e.MemberId))
-                .ForMember(dto => dto.Name, opt => opt.MapFrom(e => e.Member.Name))
-                .ForMember(dto => dto.Role, opt => opt.MapFrom(e => e.ClubRole.Role));
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(e => e.Member.Name));
             CreateMap<CreateClubMemberDto, MemberRole>();
             CreateMap<UpdateClubMemberDto, MemberRole>();
             CreateMap<DeleteClubMemberDto, MemberRole>();
             #endregion
+
+
         }
     }
 }

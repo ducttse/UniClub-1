@@ -15,6 +15,7 @@ namespace UniClub.Dtos.Update
         public string Name { get; set; }
         public bool? Gender { get; set; }
         public string Address { get; set; }
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
         public DateTime DateOfBirth { get; set; }
         public int? DepId { get; set; }
         public IFormFile UploadedImage { get; set; }

@@ -6,12 +6,12 @@ namespace UniClub.Dtos.GetById
     public class GetClubMemberByIdDto : IRequest<MemberRoleDto>
     {
         public string MemberId { get; set; }
-        private int _clubPeriodId;
         public GetClubMemberByIdDto(string memberId)
         {
             MemberId = memberId;
         }
 
+        private int _clubPeriodId;
         public int GetClubPeriodId() => _clubPeriodId;
         public void SetClubPeriodId(int clubPeriodId) => _clubPeriodId = clubPeriodId;
     }

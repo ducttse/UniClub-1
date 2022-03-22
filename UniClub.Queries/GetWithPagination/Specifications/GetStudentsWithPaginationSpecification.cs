@@ -8,7 +8,7 @@ namespace UniClub.Queries.GetWithPagination.Specifications
 {
     public class GetStudentsWithPaginationSpecification : BaseSpecification<Person>
     {
-        public GetStudentsWithPaginationSpecification(GetUsersWithPaginationDto query)
+        public GetStudentsWithPaginationSpecification(GetStudentsWithPaginationDto query)
         {
             if (!query.IsDeleted)
             {
@@ -17,12 +17,12 @@ namespace UniClub.Queries.GetWithPagination.Specifications
 
             if (!string.IsNullOrWhiteSpace(query.SearchValue))
             {
-                SetFilterCondition((e => e.Id.ToString().Equals(query.SearchValue)
+                SetFilterCondition((e => (e.Id.ToString().Equals(query.SearchValue)
                                         || EF.Functions.Collate(e.Name, "SQL_Latin1_General_CP1_CI_AI").Contains(query.SearchValue)
                                         || e.Email.Contains(query.SearchValue)
                                         || e.DateOfBirth.ToString().Equals(query.SearchValue)
                                         || e.PhoneNumber.Contains(query.SearchValue)
-                                        || EF.Functions.Collate(e.Address, "SQL_Latin1_General_CP1_CI_AI").Contains(query.SearchValue)));
+                                        || EF.Functions.Collate(e.Address, "SQL_Latin1_General_CP1_CI_AI").Contains(query.SearchValue)) && e.Dep.UniId == query.UniId));
             }
             if ((query.OrderBy != null))
             {

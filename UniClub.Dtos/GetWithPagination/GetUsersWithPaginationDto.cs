@@ -8,9 +8,7 @@ namespace UniClub.Dtos.GetWithPagination
 {
     public class GetUsersWithPaginationDto : RequestPaginationQuery<PersonProperties?>, IRequest<PaginatedList<UserDto>>
     {
-        private Role _role;
         public override PersonProperties? OrderBy { get; set; }
-        public Role GetRole() => _role;
-        public void SetRole(Role role) => _role = role;
+        public Role Role { get; set; }
     }
 }

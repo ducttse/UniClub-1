@@ -7,12 +7,14 @@ using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class PostImagesController : ApiControllerBase
     {
         [HttpGet]

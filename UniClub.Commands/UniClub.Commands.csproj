@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UniClub.Application\UniClub.Application.csproj" />
+    <ProjectReference Include="..\UniClub.Queries\UniClub.Queries.csproj" />
   </ItemGroup>
 
 </Project>

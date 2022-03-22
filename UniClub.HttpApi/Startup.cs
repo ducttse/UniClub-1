@@ -1,15 +1,12 @@
 using FirebaseAdmin;
 using FluentValidation.AspNetCore;
 using Google.Apis.Auth.OAuth2;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -20,6 +17,7 @@ using UniClub.Commands;
 using UniClub.EntityFrameworkCore;
 using UniClub.Helper.KebabCase;
 using UniClub.HttpApi.Filters;
+using UniClub.HttpApi.Middlewares;
 using UniClub.HttpApi.Services;
 using UniClub.HttpApi.Utils;
 using UniClub.Queries;
@@ -56,12 +54,12 @@ namespace UniClub.HttpApi
                 .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
-            services.AddSingleton<IJwtUtils, JwtUtils>();
+            services.AddTransient<IFireBaseRegisterService, FireBaseRegisterService>();
             services.AddHttpContextAccessor();
-            
+
             string rootPath;
             if (!string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("HOME")))
-                
+
                 rootPath = Path.Combine(System.Environment.GetEnvironmentVariable("HOME"), "site", "wwwroot");
             else
                 rootPath = ".";
@@ -72,22 +70,6 @@ namespace UniClub.HttpApi
             {
                 Credential = GoogleCredential.FromFile(firebaseSdkPath)
             });
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(opt =>
-                {
-                    opt.Authority = Configuration["Jwt:Firebase:ValidIssuer"];
-                    opt.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        RequireExpirationTime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = Configuration["Jwt:Firebase:ValidIssuer"],
-                        ValidAudience = Configuration["Jwt:Firebase:ValidAudience"]
-                    };
-                });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
@@ -105,6 +87,29 @@ namespace UniClub.HttpApi
             {
                 c.OperationFilter<KebabCasingParamOperationFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UniClub.HttpApi", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{}
+                    }
+                });
             });
 
             services.AddCors(options =>
@@ -130,17 +135,13 @@ namespace UniClub.HttpApi
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UniClub.HttpApi v1"));
             app.UseHttpsRedirection();
+            app.UseMiddleware<JwtMiddleware>();
             app.UseCors();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(
-                    name: "AdminAreaRoute",
-                    areaName: "Admin",
-                    pattern: "admin/{controller:slugify=Dashboard}/{action:slugify=Index}/{id:slugify?}");
-
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller:slugify}/{action:slugify}/{id:slugify?}",

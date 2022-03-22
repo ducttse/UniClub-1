@@ -4,13 +4,12 @@ using UniClub.Specifications;
 
 namespace UniClub.Queries.GetById.Specifications
 {
-    public class GetClubRoleByIdQuerySpecification : BaseSpecification<ClubRole>
+    public class GetUserByIdQuerySpecification : BaseSpecification<Person>
     {
-        public GetClubRoleByIdQuerySpecification(GetClubRoleByIdDto dto)
+        public GetUserByIdQuerySpecification(GetUserByIdDto dto)
         {
             SetFilterCondition(e => !e.IsDeleted);
-
-            SetFilterCondition(e => e.Id == e.Id);
+            SetFilterCondition(e => e.Id == dto.Id);
         }
     }
 }

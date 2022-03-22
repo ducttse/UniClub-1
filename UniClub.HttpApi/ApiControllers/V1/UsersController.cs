@@ -1,30 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using UniClub.Domain.Common.Enums;
+using UniClub.Application.Interfaces;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
-using UniClub.Services.Interfaces;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize(Role = "SystemAdministrator")]
     public class UsersController : ApiControllerBase
     {
-        private readonly IUploadService _uploadService;
+        private readonly IFireBaseRegisterService _fireBaseRegisterService;
 
-        public UsersController(IUploadService uploadService)
+        public UsersController(IFireBaseRegisterService fireBaseRegisterService)
         {
-            _uploadService = uploadService;
+            _fireBaseRegisterService = fireBaseRegisterService;
         }
 
         [HttpGet]
@@ -32,7 +31,6 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                query.SetRole(Role.Anonymous);
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -47,10 +45,10 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetUserByIdDto(id, Role.Anonymous);
+                var query = new GetUserByIdDto(id);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
-                    : NotFound(new ResponseResult() { Data = $"User {id} is not found", StatusCode = HttpStatusCode.NotFound });
+                    : NotFound(new ResponseResult() { Data = "User {id} is not found", StatusCode = HttpStatusCode.NotFound });
             }
             catch (Exception ex)
             {
@@ -58,12 +56,14 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateUser([FromForm] CreateUserDto command)
+
+        [HttpPost("SchoolAdmin")]
+        public async Task<IActionResult> CreateSchoolAdmin([FromForm] CreateSchoolAdminDto command)
         {
             try
             {
                 var result = await Mediator.Send(command);
+                await _fireBaseRegisterService.RegisterToFireBase(command.Email, command.Password);
                 return CreatedAtRoute(nameof(GetUser), new { id = result }, command);
             }
             catch (Exception ex)

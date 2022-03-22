@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
@@ -8,12 +11,14 @@ using UniClub.Dtos.GetById;
 using UniClub.Dtos.GetWithPagination;
 using UniClub.Dtos.Recover;
 using UniClub.Dtos.Update;
+using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize(Role = "SchoolAdmin")]
     public class DepartmentsController : ApiControllerBase
     {
         [HttpGet]
@@ -21,6 +26,14 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                query.SetUniId(int.Parse(claim.Value));
                 var result = await Mediator.Send(query);
                 return Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK });
             }
@@ -35,7 +48,16 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
-                var query = new GetDepartmentByIdDto(id);
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                var uniId = int.Parse(claim.Value);
+
+                var query = new GetDepartmentByIdDto(id, uniId);
                 var result = await Mediator.Send(query);
                 return result != null ? Ok(new ResponseResult() { Data = result, StatusCode = HttpStatusCode.OK })
                     : NotFound(new ResponseResult() { Data = $"Department {id} is not found", StatusCode = HttpStatusCode.NotFound });
@@ -51,6 +73,16 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                var uniId = int.Parse(claim.Value);
+                command.SetUniId(uniId);
+
                 var result = await Mediator.Send(command);
                 return CreatedAtRoute(nameof(GetDepartment), new { id = result }, command);
             }
@@ -65,8 +97,18 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+                var uniId = int.Parse(claim.Value);
+
                 if (command.Id.Equals(id))
                 {
+                    command.SetUniId(uniId);
+
                     var result = await Mediator.Send(command);
                     return NoContent();
                 }

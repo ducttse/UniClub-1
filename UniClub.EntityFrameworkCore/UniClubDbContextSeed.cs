@@ -15,6 +15,8 @@ namespace UniClub.EntityFrameworkCore
 
             var student = new IdentityRole("Student");
 
+            var clubAdmin = new IdentityRole("ClubAdmin");
+
             if (roleManager.Roles.All(r => r.Name != administratorRole.Name))
             {
                 await roleManager.CreateAsync(administratorRole);
@@ -27,7 +29,10 @@ namespace UniClub.EntityFrameworkCore
             {
                 await roleManager.CreateAsync(student);
             }
-
+            if (roleManager.Roles.All(r => r.Name != clubAdmin.Name))
+            {
+                await roleManager.CreateAsync(student);
+            }
             var administrator = new Person() { UserName = "admin", Email = "administrator@uniclub.com", Name = "admin" };
 
             if (userManager.Users.All(u => u.UserName != administrator.UserName))
