@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
@@ -55,6 +58,17 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("club"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                int clubId = int.Parse(claim.Value.Split("-")[0]);
+
+                command.SetClubId(clubId);
+
                 command.SetClubPeriodId(cpid);
                 var result = await Mediator.Send(command);
                 return CreatedAtRoute(nameof(GetClubMemberById), new { id = result }, command);

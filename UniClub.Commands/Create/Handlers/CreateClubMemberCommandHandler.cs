@@ -2,8 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using UniClub.Domain.Common.Enums;
 using UniClub.Domain.Entities;
 using UniClub.Dtos.Create;
 using UniClub.Repositories.Interfaces;
@@ -30,6 +32,9 @@ namespace UniClub.Commands.Create.Handlers
             {
                 throw new Exception("No student found");
             }
+
+            var claim = new Claim("club", $"{request.ClubId.ToString()}-{request.GetClubPeriodId()}-{ClubRole.President}");
+            await _userManager.AddClaimAsync(result, claim);
             return await _memberRoleRepository.CreateAsync(_mapper.Map<MemberRole>(request), cancellationToken);
         }
     }
