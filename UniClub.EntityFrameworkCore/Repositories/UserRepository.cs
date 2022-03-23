@@ -124,6 +124,25 @@ namespace UniClub.EntityFrameworkCore.Repositories
             }
         }
 
+        public virtual async Task<int> RecoverAsync(Person entity, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    throw new ArgumentNullException(nameof(entity));
+                }
+
+                entity.IsDeleted = false;
+
+                return await _context.SaveChangesAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         protected virtual void UpdateEntityWithInDatabase(Person entity, Person updatedEntity)
         {
             foreach (var inDatabaseProperty in entity.GetType().GetProperties())

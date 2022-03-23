@@ -4,7 +4,7 @@ using UniClub.Domain.Common;
 
 namespace UniClub.Dtos.Recover
 {
-    public class RecoverUserDto : IRequest<Result>
+    public class RecoverUserDto : IRequest<int>
     {
         [Required]
         public string Id { get; set; }

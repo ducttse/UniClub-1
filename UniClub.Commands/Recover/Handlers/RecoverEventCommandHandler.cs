@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UniClub.Commands.Recover.Specifications;
@@ -22,6 +23,10 @@ namespace UniClub.Commands.Recover.Handlers
         public async Task<int> Handle(RecoverEventDto request, CancellationToken cancellationToken)
         {
             var entity = await _eventRepository.GetByIdAsync(cancellationToken, new RecoverEventCommandSpecification(request));
+            if (entity == null)
+            {
+                throw new Exception("Not found deleted entity");
+            }
             return await _eventRepository.RecoverAsync(entity, cancellationToken);
         }
     }

@@ -10,15 +10,3 @@ C:\Users\arceu\Desktop\PRN-Project\PRN_Project\UniClub.Domain\obj\Debug\net5.0\U
 C:\Users\arceu\Desktop\PRN-Project\PRN_Project\UniClub.Domain\obj\Debug\net5.0\refint\UniClub.Domain.dll
 C:\Users\arceu\Desktop\PRN-Project\PRN_Project\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.pdb
 C:\Users\arceu\Desktop\PRN-Project\PRN_Project\UniClub.Domain\obj\Debug\net5.0\ref\UniClub.Domain.dll
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.deps.json
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.dll
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\bin\Debug\net5.0\UniClub.Domain.pdb
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.AssemblyReference.cache
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfoInputs.cache
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.AssemblyInfo.cs
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.csproj.CoreCompileInputs.cache
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.dll
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\refint\UniClub.Domain.dll
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\UniClub.Domain.pdb
-C:\Users\arceu\Desktop\New folder (2)\UniClub.Domain\obj\Debug\net5.0\ref\UniClub.Domain.dll
