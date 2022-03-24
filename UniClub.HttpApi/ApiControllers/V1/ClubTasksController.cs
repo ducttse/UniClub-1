@@ -15,10 +15,11 @@ namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    [Authorize(Role = "Student")]
+
     public class ClubTasksController : ApiControllerBase
     {
         [HttpGet]
+        [Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetClubTasksWithPagination([FromQuery] GetClubTasksWithPaginationDto query)
         {
             try
@@ -33,6 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpGet("{id}", Name = "GetClubTask")]
+        [Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetClubTask(int id)
         {
             try
@@ -48,6 +50,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubManager")]
         [HttpPost]
         public async Task<IActionResult> CreateClubTask([FromBody] CreateClubTaskDto command)
         {
@@ -62,6 +65,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubManager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClubTask(int id, [FromBody] UpdateClubTaskDto command)
         {
@@ -83,6 +87,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubManager")]
         [HttpPut("{id}/recover")]
         public async Task<IActionResult> RecoverClubTask(int id, [FromBody] RecoverClubTaskDto command)
         {
@@ -104,6 +109,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
+        [Authorize(Role = "ClubManager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClubTask(int id)
         {

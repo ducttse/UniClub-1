@@ -3,6 +3,7 @@
     public enum ClubRole
     {
         Member,
+        Leader,
         President
     }
 }

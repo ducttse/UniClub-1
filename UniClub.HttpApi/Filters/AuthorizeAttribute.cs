@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using UniClub.Domain.Common.Enums;
 using UniClub.Domain.Entities;
 
 namespace UniClub.HttpApi.Filters
@@ -35,9 +36,32 @@ namespace UniClub.HttpApi.Filters
                 foreach (var role in Role.Split(" "))
                 {
                     isInRole = claims.Any(c => c.Type == "role" && c.Value.Contains(role));
-                    break;
+                    if (isInRole)
+                    {
+                        break;
+                    }
                 }
                 if (!isInRole)
+                {
+                    context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                    return;
+                }
+            }
+            if (!string.IsNullOrEmpty(Policy))
+            {
+                bool isValid = false;
+                switch (Policy)
+                {
+                    case ("ClubManager"):
+                        isValid = claims.Any(c => c.Type == "club" && (c.Value.Contains(ClubRole.President.ToString()) || c.Value.Contains(ClubRole.Leader.ToString())));
+                        break;
+                    case ("InClub"):
+                        isValid = claims.Any(c => c.Type == "club" && Enum.IsDefined(typeof(ClubRole), c.Value.Split("-")[1]));
+                        break;
+                    default:
+                        return;
+                }
+                if (!isValid)
                 {
                     context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
                     return;
