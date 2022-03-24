@@ -15,10 +15,10 @@ namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    [Authorize]
     public class EventsController : ApiControllerBase
     {
         [HttpGet]
+        [Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetEventsWithPagination([FromQuery] GetEventsWithPaginationDto query)
         {
             try
@@ -33,6 +33,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpGet("{id}", Name = "GetEvent")]
+        [Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetEvent(int id)
         {
             try
