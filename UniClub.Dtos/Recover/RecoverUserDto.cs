@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using System.ComponentModel.DataAnnotations;
-using UniClub.Domain.Common;
 
 namespace UniClub.Dtos.Recover
 {

@@ -218,7 +218,6 @@ C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Dtos.d
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.EntityFrameworkCore.dll
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Helper.dll
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Queries.dll
-C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Redis.dll
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Repositories.dll
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Services.dll
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Specifications.dll
@@ -226,7 +225,6 @@ C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Worker
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Commands.pdb
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.EntityFrameworkCore.pdb
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Queries.pdb
-C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Redis.pdb
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Worker.pdb
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.Application.pdb
 C:\Users\arceu\Desktop\UniClub-1\UniClub.HttpApi\bin\Debug\net5.0\UniClub.AutoMapper.pdb

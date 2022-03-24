@@ -3,10 +3,7 @@ using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UniClub.Application.Interfaces;
 using UniClub.Commands.Recover.Specifications;
-using UniClub.Domain.Common;
-using UniClub.Domain.Entities;
 using UniClub.Dtos.Recover;
 using UniClub.Repositories.Interfaces;
 

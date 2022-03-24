@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Application\\UniClub.Application.csproj": {}
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Application\\UniClub.Application.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Application\\UniClub.Application.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
         "projectName": "UniClub.Application",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Application\\UniClub.Application.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Application\\UniClub.Application.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Application\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,14 +32,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj"
               },
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\UniClub.Helper.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\UniClub.Helper.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj"
               },
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\UniClub.Services.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\UniClub.Services.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj",
         "projectName": "UniClub.AutoMapper",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\UniClub.AutoMapper.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.AutoMapper\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.AutoMapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -106,8 +106,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\UniClub.Dtos.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\UniClub.Dtos.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\UniClub.Dtos.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\UniClub.Dtos.csproj"
               }
             }
           }
@@ -146,14 +146,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\UniClub.Domain.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\UniClub.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj",
         "projectName": "UniClub.Domain",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\UniClub.Domain.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -214,14 +214,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\UniClub.Dtos.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\UniClub.Dtos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\UniClub.Dtos.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\UniClub.Dtos.csproj",
         "projectName": "UniClub.Dtos",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\UniClub.Dtos.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\UniClub.Dtos.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Dtos\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Dtos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -242,8 +242,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\UniClub.Repositories.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\UniClub.Repositories.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\UniClub.Repositories.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\UniClub.Repositories.csproj"
               }
             }
           }
@@ -286,14 +286,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\UniClub.Helper.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\UniClub.Helper.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj",
         "projectName": "UniClub.Helper",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\UniClub.Helper.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\UniClub.Helper.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Helper\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Helper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -344,14 +344,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\UniClub.Repositories.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\UniClub.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\UniClub.Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\UniClub.Repositories.csproj",
         "projectName": "UniClub.Repositories",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\UniClub.Repositories.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\UniClub.Repositories.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Repositories\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -372,8 +372,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\UniClub.Specifications.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\UniClub.Specifications.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\UniClub.Specifications.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\UniClub.Specifications.csproj"
               }
             }
           }
@@ -406,14 +406,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\UniClub.Services.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\UniClub.Services.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj",
         "projectName": "UniClub.Services",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\UniClub.Services.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\UniClub.Services.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Services\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -482,14 +482,14 @@
         }
       }
     },
-    "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\UniClub.Specifications.csproj": {
+    "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\UniClub.Specifications.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\UniClub.Specifications.csproj",
+        "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\UniClub.Specifications.csproj",
         "projectName": "UniClub.Specifications",
-        "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\UniClub.Specifications.csproj",
+        "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\UniClub.Specifications.csproj",
         "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Specifications\\obj\\",
+        "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Specifications\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -510,8 +510,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\UniClub.Domain.csproj": {
-                "projectPath": "C:\\Users\\arceu\\Desktop\\New folder (2)\\UniClub.Domain\\UniClub.Domain.csproj"
+              "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj": {
+                "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Domain\\UniClub.Domain.csproj"
               }
             }
           }
