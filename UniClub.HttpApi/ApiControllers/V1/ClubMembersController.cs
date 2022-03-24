@@ -17,7 +17,7 @@ using UniClub.HttpApi.Models;
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
-    [Route("api/v1/club-periods/cpid/[controller]")]
+    [Route("api/v1/club-periods/{cpid}/[controller]")]
     public class ClubMembersController : ApiControllerBase
     {
         [HttpGet]

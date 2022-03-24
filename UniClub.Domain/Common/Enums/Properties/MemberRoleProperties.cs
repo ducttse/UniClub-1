@@ -3,6 +3,7 @@
     public enum MemberRoleProperties
     {
         MemberId,
+        ClubRoleId,
         Status,
         StartTime,
         EndTime,

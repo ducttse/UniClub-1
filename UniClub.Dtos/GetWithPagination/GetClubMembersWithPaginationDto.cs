@@ -10,7 +10,7 @@ namespace UniClub.Dtos.GetWithPagination
     {
         private int _clubPeriodId;
         public void SetClubPeriodId(int clubPeriodId) => _clubPeriodId = clubPeriodId;
-        public int GetClubPeriodId() => _clubPeriodId;
+        public int ClubPeriodId { get => _clubPeriodId; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public override MemberRoleProperties? OrderBy { get; set; }

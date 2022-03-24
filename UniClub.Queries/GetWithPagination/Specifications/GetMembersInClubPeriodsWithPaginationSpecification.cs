@@ -15,6 +15,8 @@ namespace UniClub.Queries.GetWithPagination.Specifications
                 SetFilterCondition(e => e.IsDeleted == false);
             }
 
+            SetFilterCondition(e => e.ClubPeriodId == query.ClubPeriodId);
+
             if (!string.IsNullOrWhiteSpace(query.SearchValue))
             {
                 SetFilterCondition(e => e.MemberId.Equals(query.SearchValue)
@@ -49,6 +51,8 @@ namespace UniClub.Queries.GetWithPagination.Specifications
             }
 
             ApplyPagination(query.PageNumber, query.PageSize);
+
+            AddInclude(e => e.Member);
 
         }
     }

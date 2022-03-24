@@ -51,7 +51,7 @@ namespace UniClub.Commands.Create.Handlers
             var result = await _identityService.CreateUserAsync(_mapper.Map<Person>(request), request.Password);
             await _identityService.AddToRoleAsync(result.UserId, Role.ClubAdmin.ToString());
 
-            var claim = new Claim("club", $"{request.ClubId.ToString()}-{ClubRole.President}");
+            var claim = new Claim("club", $"{request.ClubId}-{ClubRole.President}");
             var user = await _userManager.FindByIdAsync(result.UserId);
 
             await _userManager.AddClaimAsync(user, claim);

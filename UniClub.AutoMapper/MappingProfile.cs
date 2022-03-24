@@ -78,7 +78,6 @@ namespace UniClub.AutoMapper
             CreateMap<Person, UserDto>()
                 .ForMember(dto => dto.DepName, opt => opt.MapFrom(e => e.Dep.DepName));
             CreateMap<CreateUserDto, Person>();
-            CreateMap<CreateSchoolAdminDto, Person>();
             CreateMap<UpdateUserDto, Person>();
             CreateMap<UserDto, UpdateUserDto>();
             #endregion
@@ -86,13 +85,24 @@ namespace UniClub.AutoMapper
             #region ClubMembers
             CreateMap<MemberRole, MemberRoleDto>()
                 .ForMember(dto => dto.StudentId, opt => opt.MapFrom(e => e.MemberId))
-                .ForMember(dto => dto.Name, opt => opt.MapFrom(e => e.Member.Name));
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(e => e.Member.Name))
+                .ForMember(dto => dto.DateOfBirth, opt => opt.MapFrom(e => e.Member.DateOfBirth))
+                .ForMember(dto => dto.Email, opt => opt.MapFrom(e => e.Member.Email))
+                .ForMember(dto => dto.Role, opt => opt.MapFrom(e => e.ClubRoleId))
+                .ForMember(dto => dto.ImageUrl, opt => opt.MapFrom(e => e.Member.ImageUrl))
+                .ForMember(dto => dto.Gender, opt => opt.MapFrom(e => e.Member.Gender));
             CreateMap<CreateClubMemberDto, MemberRole>();
             CreateMap<UpdateClubMemberDto, MemberRole>();
             CreateMap<DeleteClubMemberDto, MemberRole>();
             #endregion
 
+            #region SchoolAdmin
+            CreateMap<CreateSchoolAdminDto, Person>();
+            #endregion
 
+            #region ClubAdmin
+            CreateMap<CreateClubAdminDto, Person>();
+            #endregion
         }
     }
 }
