@@ -48,6 +48,7 @@ namespace UniClub.Commands.Create.Handlers
                 }
             }
             request.ImageUrl = imageUrl;
+            var x = _mapper.Map<Person>(request);
             var result = await _identityService.CreateUserAsync(_mapper.Map<Person>(request), request.Password);
             await _identityService.AddToRoleAsync(result.UserId, Role.ClubAdmin.ToString());
 

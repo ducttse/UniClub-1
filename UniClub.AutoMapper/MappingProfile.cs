@@ -91,7 +91,8 @@ namespace UniClub.AutoMapper
                 .ForMember(dto => dto.Role, opt => opt.MapFrom(e => e.ClubRoleId))
                 .ForMember(dto => dto.ImageUrl, opt => opt.MapFrom(e => e.Member.ImageUrl))
                 .ForMember(dto => dto.Gender, opt => opt.MapFrom(e => e.Member.Gender));
-            CreateMap<CreateClubMemberDto, MemberRole>();
+            CreateMap<CreateClubMemberDto, MemberRole>()
+                .ForMember(e => e.ClubRoleId, opt => opt.MapFrom(dto => dto.Role));
             CreateMap<UpdateClubMemberDto, MemberRole>();
             CreateMap<DeleteClubMemberDto, MemberRole>();
             #endregion

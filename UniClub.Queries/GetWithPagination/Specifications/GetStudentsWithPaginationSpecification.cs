@@ -22,6 +22,7 @@ namespace UniClub.Queries.GetWithPagination.Specifications
                                         || e.Email.Contains(query.SearchValue)
                                         || e.DateOfBirth.ToString().Equals(query.SearchValue)
                                         || e.PhoneNumber.Contains(query.SearchValue)
+                                        || e.Dep.DepName.Contains(query.SearchValue)
                                         || EF.Functions.Collate(e.Address, "SQL_Latin1_General_CP1_CI_AI").Contains(query.SearchValue)) && e.Dep.UniId == query.UniId));
             }
             if ((query.OrderBy != null))

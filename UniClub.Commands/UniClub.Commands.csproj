@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Create\Specifications\" />
     <Folder Include="Delete\Validators\" />
     <Folder Include="HardDelete\Validators\" />
     <Folder Include="Recover\Validators\" />
