@@ -11,6 +11,8 @@ namespace UniClub.Commands.Update.Specifications
             SetFilterCondition(e => !e.IsDeleted);
 
             SetFilterCondition(e => e.Id == dto.Id);
+
+            AddInclude(e => e.PostImages);
         }
     }
 }

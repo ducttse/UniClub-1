@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
@@ -49,10 +52,19 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] CreatePostDto command)
+        public async Task<IActionResult> CreatePost([FromForm] CreatePostDto command)
         {
             try
             {
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("user_id"));
+
+                if (claim == null)
+                {
+                    return Unauthorized();
+                }
+
+                command.PersonId = claim.Value;
+
                 var result = await Mediator.Send(command);
                 return CreatedAtRoute(nameof(GetPost), new { id = result }, command);
             }
@@ -63,12 +75,21 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePost(int id, [FromBody] UpdatePostDto command)
+        public async Task<IActionResult> UpdatePost(int id, [FromForm] UpdatePostDto command)
         {
             try
             {
                 if (command.Id.Equals(id))
                 {
+                    var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("user_id"));
+
+                    if (claim == null)
+                    {
+                        return Unauthorized();
+                    }
+
+                    command.PersonId = claim.Value;
+
                     var result = await Mediator.Send(command);
                     return NoContent();
                 }

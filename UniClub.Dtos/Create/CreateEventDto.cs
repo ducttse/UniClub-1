@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using UniClub.Domain.Common.Enums;
 
@@ -20,5 +21,6 @@ namespace UniClub.Dtos.Create
         public string ImageUrl { get; set; }
         public EventStatus Status { get; set; }
         public bool IsPrivate { get; set; }
+        public IDictionary<int, bool> EventByClubs { get; set; }
     }
 }

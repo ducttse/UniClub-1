@@ -8,6 +8,10 @@ namespace UniClub.Application
     {
         protected virtual bool BeAValidName(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
             name = name.Replace("  ", "");
             name = name.Replace("-", "");
             return name.All(Char.IsLetter);

@@ -10,7 +10,7 @@ namespace UniClub.Queries.GetById.Specifications
         {
             SetFilterCondition(e => !e.IsDeleted);
 
-            SetFilterCondition(e => e.Id == dto.Id);
+            SetFilterCondition(e => e.Id == dto.Id && e.PostId == dto.PostId);
         }
     }
 }

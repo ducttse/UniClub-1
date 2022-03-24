@@ -8,6 +8,8 @@ namespace UniClub.Queries.GetWithPagination.Specifications
     {
         public GetPostImagesSpecification(GetPostImagesDto query)
         {
+            SetFilterCondition(e => e.PostId == query.PostId);
+
             NotApplyPagination();
         }
     }
