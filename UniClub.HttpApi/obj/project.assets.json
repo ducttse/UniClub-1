@@ -9969,11 +9969,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
+      "projectUniqueName": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
       "projectName": "UniClub.HttpApi",
-      "projectPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
+      "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.HttpApi\\UniClub.HttpApi.csproj",
       "packagesPath": "C:\\Users\\arceu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.HttpApi\\obj\\",
+      "outputPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.HttpApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -9994,17 +9994,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Commands\\UniClub.Commands.csproj": {
-              "projectPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Commands\\UniClub.Commands.csproj"
+            "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Commands\\UniClub.Commands.csproj": {
+              "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Commands\\UniClub.Commands.csproj"
             },
-            "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.EntityFrameworkCore\\UniClub.EntityFrameworkCore.csproj": {
-              "projectPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.EntityFrameworkCore\\UniClub.EntityFrameworkCore.csproj"
+            "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.EntityFrameworkCore\\UniClub.EntityFrameworkCore.csproj": {
+              "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.EntityFrameworkCore\\UniClub.EntityFrameworkCore.csproj"
             },
-            "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Queries\\UniClub.Queries.csproj": {
-              "projectPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Queries\\UniClub.Queries.csproj"
+            "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Queries\\UniClub.Queries.csproj": {
+              "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Queries\\UniClub.Queries.csproj"
             },
-            "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Worker\\UniClub.Worker.csproj": {
-              "projectPath": "C:\\Users\\arceu\\Desktop\\New folder\\UniClub-1\\UniClub.Worker\\UniClub.Worker.csproj"
+            "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Worker\\UniClub.Worker.csproj": {
+              "projectPath": "C:\\Users\\arceu\\Desktop\\UniClub-1\\UniClub.Worker\\UniClub.Worker.csproj"
             }
           }
         }
