@@ -1,15 +1,14 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using UniClub.Dtos.GetById;
 using UniClub.HttpApi.Filters;
 using UniClub.HttpApi.Models;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Linq;
 
 namespace UniClub.HttpApi.ApiControllers.V1
 {

@@ -6,7 +6,6 @@ using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using UniClub.Application.Interfaces;
-using UniClub.Domain.Common.Enums;
 using UniClub.Dtos.Create;
 using UniClub.Dtos.Delete;
 using UniClub.Dtos.GetById;
