@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniClub.EntityFrameworkCore;
 
 namespace UniClub.Infrastructure.Migrations
 {
     [DbContext(typeof(UniClubContext))]
-    partial class UniClubContextModelSnapshot : ModelSnapshot
+    [Migration("20220325033659_Add_EmailClubAdmin_For_Club")]
+    partial class Add_EmailClubAdmin_For_Club
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

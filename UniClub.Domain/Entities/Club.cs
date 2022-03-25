@@ -24,6 +24,7 @@ namespace UniClub.Domain.Entities
         public DateTime EstablishedDate { get; set; }
         public string Slogan { get; set; }
         public int MemberCount { get; set; }
+        public string Email { get; set; }
 
 
         public virtual University Uni { get; set; }

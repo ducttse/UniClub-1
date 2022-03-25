@@ -10,6 +10,7 @@ namespace UniClub.Dtos.Response
         public string ShortName { get; set; }
         public string Description { get; set; }
         public string ShortDescription { get; set; }
+        public string Email { get; set; }
         public int UniId { get; set; }
         public string AvatarUrl { get; set; }
         [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]

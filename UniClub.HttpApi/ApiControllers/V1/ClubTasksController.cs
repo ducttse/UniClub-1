@@ -50,7 +50,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [Authorize(Role = "ClubManager")]
+        [Authorize(Policy = "ClubManager")]
         [HttpPost]
         public async Task<IActionResult> CreateClubTask([FromBody] CreateClubTaskDto command)
         {
@@ -65,7 +65,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [Authorize(Role = "ClubManager")]
+        [Authorize(Policy = "ClubManager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateClubTask(int id, [FromBody] UpdateClubTaskDto command)
         {
@@ -87,7 +87,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [Authorize(Role = "ClubManager")]
+        [Authorize(Policy = "ClubManager")]
         [HttpPut("{id}/recover")]
         public async Task<IActionResult> RecoverClubTask(int id, [FromBody] RecoverClubTaskDto command)
         {
@@ -109,7 +109,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [Authorize(Role = "ClubManager")]
+        [Authorize(Policy = "ClubManager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClubTask(int id)
         {
