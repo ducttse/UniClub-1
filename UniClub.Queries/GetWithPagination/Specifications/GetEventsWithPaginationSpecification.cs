@@ -52,6 +52,8 @@ namespace UniClub.Queries.GetWithPagination.Specifications
                 }
             }
 
+            AddInclude("EventByClubs");
+
             ApplyPagination(query.PageNumber, query.PageSize);
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UniClub.Domain.Common.Enums;
+using UniClub.Domain.Entities;
 
 namespace UniClub.Dtos.Response
 {
@@ -17,6 +19,6 @@ namespace UniClub.Dtos.Response
         public EventStatus Status { get; set; }
         public bool IsPrivate { get; set; }
         public bool IsDeleted { get; set; }
-
+        public IList<EventByClub> EventByClubs { get; set; }
     }
 }

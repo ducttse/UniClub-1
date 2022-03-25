@@ -52,7 +52,8 @@ namespace UniClub.AutoMapper
             #endregion
 
             #region EventMapping
-            CreateMap<Event, EventDto>().ReverseMap();
+            CreateMap<Event, EventDto>()
+                .ForMember(dto => dto.EventByClubs, opt => opt.MapFrom(e => e.EventByClubs));
             CreateMap<CreateEventDto, Event>();
             CreateMap<UpdateEventDto, Event>();
             CreateMap<DeleteEventDto, Event>();

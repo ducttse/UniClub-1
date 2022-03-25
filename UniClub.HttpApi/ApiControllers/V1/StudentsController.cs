@@ -81,15 +81,19 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateStudent([FromForm] CreateUserDto command)
+        public async Task<IActionResult> CreateStudent([FromForm] CreateStudentDto command)
         {
             try
             {
-                if (command.DepId == null)
+                var claim = ((IList<Claim>)HttpContext.Items["Claims"]).FirstOrDefault(c => c.Type.Equals("university"));
+
+                if (claim == null)
                 {
-                    throw new Exception("DepId cannot be empty");
+                    return Unauthorized();
                 }
-                command.Role = Role.Student;
+
+                int uniId = int.Parse(claim.Value);
+                command.UniId = uniId;
                 var result = await Mediator.Send(command);
                 await _fireBaseRegisterService.RegisterToFireBase(command.Email, command.Password);
                 return CreatedAtRoute(nameof(GetStudent), new { id = result }, command);
