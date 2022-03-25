@@ -19,7 +19,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
     public class ClubTasksController : ApiControllerBase
     {
         [HttpGet]
-        [Authorize(Role = "Student ClubAdmin")]
+        //[Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetClubTasksWithPagination([FromQuery] GetClubTasksWithPaginationDto query)
         {
             try
@@ -34,7 +34,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
         }
 
         [HttpGet("{id}", Name = "GetClubTask")]
-        [Authorize(Role = "Student ClubAdmin")]
+        //[Authorize(Role = "Student ClubAdmin")]
         public async Task<IActionResult> GetClubTask(int id)
         {
             try
