@@ -85,6 +85,10 @@ namespace UniClub.HttpApi.ApiControllers.V1
         {
             try
             {
+                if (command.DepId == null)
+                {
+                    throw new Exception("DepId cannot be empty");
+                }
                 command.Role = Role.Student;
                 var result = await Mediator.Send(command);
                 await _fireBaseRegisterService.RegisterToFireBase(command.Email, command.Password);

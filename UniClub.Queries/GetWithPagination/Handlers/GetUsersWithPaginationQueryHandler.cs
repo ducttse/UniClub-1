@@ -77,6 +77,18 @@ namespace UniClub.Queries.GetWithPagination.Handlers
                     result = joinResult.Select(e => _mapper.Map<UserDto>(e)).ToList();
                     count = joinResult.Count();
                     break;
+                case Role.ClubAdmin:
+                    var usersInClubAdmin = await _userManager.GetUsersInRoleAsync(request.Role.ToString());
+
+                    var clubAdmins = await SpecificationEvaluator<Person>.GetQuery(_context.People.AsQueryable(), new GetUsersWithPaginationQuerySpecification(request)).ToListAsync();
+
+                    joinResult = (from clubAdmin in clubAdmins
+                                  join user in usersInClubAdmin on clubAdmin.Id equals user.Id
+                                  select clubAdmin).ToList();
+
+                    result = joinResult.Select(e => _mapper.Map<UserDto>(e)).ToList();
+                    count = joinResult.Count();
+                    break;
                 default:
                     var users = await _userRepository.GetListAsync(cancellationToken, new GetUsersWithPaginationQuerySpecification(request));
                     result = users.Items.Select(e => _mapper.Map<UserDto>(e)).ToList();

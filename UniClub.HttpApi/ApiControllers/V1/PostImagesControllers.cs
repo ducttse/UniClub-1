@@ -10,7 +10,7 @@ using UniClub.HttpApi.Models;
 namespace UniClub.HttpApi.ApiControllers.V1
 {
     [ApiController]
-    [Route("api/v1/post/{pid}/[controller]")]
+    [Route("api/v1/posts/{pid}/[controller]")]
     [Authorize]
     public class PostImagesController : ApiControllerBase
     {
