@@ -11,6 +11,7 @@ namespace UniClub.Commands.Create.Handlers
 {
     public class CreateEventDtoQueryHandler : IRequestHandler<CreateEventDto, int>
     {
+        private string DEFAULT_IMAGE = "https://firebasestorage.googleapis.com/v0/b/premium-client-337312.appspot.com/o/users%2Fdfpzpmgs.1rp.jpg?alt=media&token=8bcb2ae0-7d9a-4c50-95c3-57d7412e441f";
         private readonly IEventRepository _eventRepository;
         private readonly IUploadService _uploadService;
         private readonly IMapper _mapper;
@@ -24,7 +25,7 @@ namespace UniClub.Commands.Create.Handlers
 
         public async Task<int> Handle(CreateEventDto request, CancellationToken cancellationToken)
         {
-            string imageUrl = null;
+            string imageUrl = DEFAULT_IMAGE;
             if (request.UploadedImage != null && request.UploadedImage.Length > 0)
             {
                 imageUrl = await _uploadService.Upload(request.UploadedImage, "events");
