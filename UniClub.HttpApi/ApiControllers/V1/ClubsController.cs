@@ -29,7 +29,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             _fireBaseRegisterService = fireBaseRegisterService;
         }
 
-        [Authorize(Role = "SchoolAdmin Student")]
+        //[Authorize(Role = "SchoolAdmin Student")]
         [HttpGet]
         public async Task<IActionResult> GetClubsWithPagination([FromQuery] GetClubsWithPaginationDto query)
         {
@@ -53,7 +53,7 @@ namespace UniClub.HttpApi.ApiControllers.V1
             }
         }
 
-        [Authorize(Role = "SchoolAdmin Student")]
+        //[Authorize(Role = "SchoolAdmin Student")]
         [HttpGet("{id}", Name = "GetClub")]
         public async Task<IActionResult> GetClub(int id)
         {
